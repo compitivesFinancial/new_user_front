@@ -1,0 +1,237 @@
+<div><div class="campaign-tab">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" routerLink="/add-kyc">Kyc Details</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " data-toggle="tab" routerLink="/my-profile">Edit Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" routerLink="/campaign-list">View Opportunity</a>
+        </li>
+    </ul>
+</div>
+<section class="container-fluid campaign">
+    <div class="col-md-5 mx-auto">
+        <!-- <div class="row step-row">
+            <div class="step active verified">
+                <span>1</span>
+                <p>Basic Info</p>
+            </div>
+            <div class="step active">
+                <span>2</span>
+                <p>ID verification</p>
+            </div>
+            <div class="step ">
+                <span>3</span>
+                <p>Personal Info</p>
+            </div>
+        </div> -->
+        <ul class="nav nav-tabs justify-content-center" role="tablist">
+            <ng-container  *ngFor="let data of kyc_form;let i=index;" >
+                <li class="nav-item">
+                    <a class="nav-link step verified" [class.active]="tab_index == i">
+                        <span>{{i+1}}</span>
+                        <p >{{data.title}}</p>
+                        <!-- <p *ngIf="tab_index=="></p> -->
+                    </a>
+                </li>
+
+            </ng-container>
+            <!-- <li class="nav-item">
+                <a class="nav-link step verified" data-toggle="tab" href="#" role="tab">
+                    <span>3</span>
+                    <p>Personal Info</p>
+                </a>
+            </li> -->
+        </ul>
+    </div>
+    <div class="container">
+        <div class="container bg-white border-sec">
+            <ng-container  *ngFor="let data of kyc_form;let i=index;" >
+                <div class="upload-sec" *ngIf="i == tab_index">
+                    <div class="skip" *ngIf="i == 0">
+                        <span class="status">{{LANG.Status}}: <span class="text-success" *ngIf="disabled_inputs;else pending">Approved</span>
+                        <ng-template #pending><span class="text-warning">Pending</span></ng-template>
+                        </span>
+                    </div>
+                    <div class="skip link" *ngIf="i == 0 && user_type == '2'">
+                        <a routerLink="/campaign-list">{{LANG.Skip}}</a>
+                    </div>
+                    <h3>{{data.title}}</h3>
+                    <ng-container *ngFor="let item of data.info_type;let j=index;">
+
+                        <p style="font-weight: 600;" *ngIf="item.detail.length != ''">{{item.title}}</p>
+                        <!-- <p style="font-weight: 600;"*ngIf="tab_index==1">{{data.info_type[1].title}}</p> -->
+
+                        <div class="row campaign-row">
+                            <ng-container *ngFor="let fields of item.detail;let k=index;">
+                                <div class="form-group col-md-6" *ngIf="fields.type == field_types.Email || fields.type == field_types.Mobile || fields.type == field_types.Characters || fields.type == field_types.Number && fields.id != 112 && fields.id != 113 && fields.id != 114 && fields.id != 115 && fields.id != 116">
+                                    <label *ngIf="fields.title !='crName' && fields.title !='businessType'">{{fields.title}}</label>
+                                    <input type="text" *ngIf="fields.title !='crName' && fields.title !='businessType'" class="form-control" placeholder="{{fields.title}}" name="field{{i}}{{j}}{{k}}" [(ngModel)]="fields.value" (keypress)="onlyNumbers($event,fields)" [maxLength]="fields.type == field_types.Mobile ? '10' : '50'" [disabled]="disabled_inputs || fields.id == 6 || fields.id == 8 || fields.id == 100">
+                                    <span class="error" *ngIf="fields.required && fields.title !='crName' && fields.title !='businessType'">{{LANG.This_field_is_required}}</span>
+                                    <span class="error" *ngIf="fields.invalid && fields.title !='crName' && fields.title !='businessType'">{{fields.error_message}}</span>
+
+                                </div>
+                                <div class="form-group col-md-6" *ngIf="fields.type == field_types.Date && fields.id != 112 && fields.id != 113&& fields.id != 114&& fields.id != 115 && fields.id != 116">
+                                    <label>{{fields.title}}</label>
+                                    <input type="date" class="form-control" placeholder="{{fields.title}}" name="field{{i}}{{j}}{{k}}" [(ngModel)]="fields.value" [disabled]="disabled_inputs">
+                                    <span class="error" *ngIf="fields.required">{{LANG.This_field_is_required}}</span>
+
+                                </div>
+                                <div class="form-group col-md-6" *ngIf="fields.type == 9 && fields.id != 112 && fields.id != 113&& fields.id != 114&& fields.id != 115 && fields.id != 116">
+                                    <label>{{fields.title}}</label>
+                                    <input type="text" class="form-control" placeholder="{{fields.title}}" name="field{{i}}{{j}}{{k}}" [(ngModel)]="fields.value" [disabled]="disabled_inputs">
+                                    <span class="error" *ngIf="fields.required">{{LANG.This_field_is_required}}</span>
+                                    <a (click)="verifyCrNumber(fields.value)" class="pointer">verify</a>
+                                </div>
+
+
+                                <div class="form-group col-md-6" *ngIf="fields.id == 112 || fields.id == 113 ||fields.id == 114 ||fields.id == 115 ||fields.id == 116">
+                                    <label>{{fields.title}}</label>
+                                    <input type="text" *ngIf="fields.id == 112 && fields.value== null" class="form-control" [(ngModel)]="crname" disabled>
+                                    <input type="text" *ngIf="fields.id == 112 && fields.value!= null" class="form-control" [(ngModel)]="fields.value" disabled>
+
+                                    <input type="text" *ngIf="fields.id == 113 && fields.value== null" class="form-control" [(ngModel)]="crEntityNumber" disabled>
+                                    <input type="text" *ngIf="fields.id == 113 && fields.value!= null" class="form-control" [(ngModel)]="fields.value" disabled>
+
+                                    <input type="text" *ngIf="fields.id == 114 && fields.value== null" class="form-control" [(ngModel)]="businessType" disabled>
+                                    <input type="text" *ngIf="fields.id == 114 && fields.value!= null" class="form-control" [(ngModel)]="fields.value" disabled>
+
+                                    <input type="text" *ngIf="fields.id == 115 && fields.value== null" class="form-control" [(ngModel)]="issueDate" disabled>
+                                    <input type="text" *ngIf="fields.id == 115 && fields.value!= null" class="form-control" [(ngModel)]="fields.value" disabled>
+
+                                    <input type="text" *ngIf="fields.id == 116 && fields.value== null" class="form-control" [(ngModel)]="expiryDate" disabled>
+                                    <input type="text" *ngIf="fields.id == 116 && fields.value!= null" class="form-control" [(ngModel)]="fields.value" disabled>
+
+
+                                </div>
+                            </ng-container>
+                            <!-- <div class="form-group col-md-6">
+                                <input type="text" class="form-control" placeholder="Company’s share price *"  name="">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" placeholder="Total Valuation *"  name="">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" placeholder="Min. Investment per investor *"  name="">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" placeholder="Max Investment per investor *"  name="">
+                            </div> -->
+                        </div>
+                        <ng-container *ngFor="let fields of item.detail;let k=index;">
+                            <ng-container *ngIf="fields.type == field_types.Fileupload">
+                                <h5>{{LANG.Upload_pictures_for}} {{fields.title}}</h5>
+                                <!-- <small>Supported Format: Jpeg, Png, Jpg, Max Size 50Kb</small> -->
+                                <div class="add-image" [class.mb-0]="fields.required">
+                                    <input style="display: none" type="file" (change)="changeImage($event,fields)" id="fileInput{{i}}{{j}}{{k}}" [disabled]="disabled_inputs">
+                                    <span *ngIf="fields.value">
+                                        <img src="{{fields.value}}" class="" *ngIf="fields.ext != 'pdf' && fields.ext != 'docx'">
+                                        <img src="assets/images/pdf-logo.png" class="" *ngIf="fields.ext == 'pdf'">
+                                        <img src="assets/images/words-logo.png" class="" *ngIf="fields.ext == 'docx'">
+                                        <ng-container *ngIf="fields.progress && fields.progress !== 100">
+                                            <div class="text-center mt-2">
+                                              <progress max="100" [value]="fields.progress"></progress>
+                                            </div>
+                                        </ng-container>
+                                    </span>
+                                    <span (click)="showFileInput(i,j,k)"><i class="fa fa-plus"></i>{{LANG.Add_image}}</span>
+                                </div>
+                                <span class="error mt-2 mb-5" *ngIf="fields.required">{{LANG.This_field_is_required}}</span>
+
+                            </ng-container>
+                            <!-- <h5>Fundraise campaign details</h5>
+                            <div class="row campaign-row">
+                                <div class="form-group col-md-12">
+                                    <input type="text" class="form-control" placeholder="How much amount you are expecting to raise?"  name="">
+                                </div>
+                            </div> -->
+                            <ng-container *ngIf="fields.type == field_types.Textarea">
+                                <h5>{{LANG.About}} {{fields.title}}</h5>
+                                <div class="row campaign-row">
+
+                                    <div class="form-group col-md-12">
+                                        <textarea class="form-control" placeholder="{{LANG.Tell_about_your}} {{fields.title}}" name="textarea{{i}}{{j}}{{k}}" [(ngModel)]="fields.value" [disabled]="disabled_inputs"></textarea>
+                                        <span class="error" *ngIf="fields.required">{{LANG.This_field_is_required}}</span>
+
+                                    </div>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="fields.type == field_types.Yes_No">
+                                <h5>{{fields.title}}</h5>
+                                <div class="row campaign-row">
+                                    <div>
+                                        <div class="form-check">
+                                            <div class="radio-1">
+                                                <input type="radio" class="radio-buttons" id="yes{{i}}{{j}}{{k}}" name="field{{i}}{{j}}{{k}}" value="1" [checked]="fields.value == 1" [(ngModel)]="fields.value" [disabled]="disabled_inputs">
+                                                <label name="gender" for="yes{{i}}{{j}}{{k}}">{{LANG.Yes}}</label>
+                                            </div>
+                                            <div class="radio-2">
+                                                <input type="radio" class="radio-buttons" id="no{{i}}{{j}}{{k}}" name="field{{i}}{{j}}{{k}}" value="0" [checked]="fields.value == 0" [(ngModel)]="fields.value" [disabled]="disabled_inputs">
+                                                <label name="gender" for="no{{i}}{{j}}{{k}}">{{LANG.No}}</label>
+                                            </div>
+                                        </div>
+                                        <span class="error pl-4" *ngIf="fields.required">{{LANG.This_field_is_required}}</span>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                        <!-- <div class="upload-logo">
+                            <span>
+                                <img src="assets/images/gallery.svg" alt="">
+                            </span>
+                            <div>
+                                <button class="btn head-button-wrap start"><span>UPLOAD DP</span></button>
+                                <small>Supported Format: Jpeg, Png, Jpg, Max Size 50Kb</small>
+                            </div>
+                        </div> -->
+                        <!-- <div class="row border-bot">
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" placeholder="Employee name"  name="">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" placeholder="Designation"  name="">
+                            </div>
+                            <a href="#" class="add-member">+ add more team member</a>
+                        </div>
+                        <h5>Terms & Conditions</h5>
+                        <div class="row campaign-row">
+                            <div class="form-group col-md-12 camp-text">
+                                <textarea class="form-control" placeholder="Write your Terms & Conditions here"  ></textarea>
+                            </div>
+                        </div>
+                        <div class="row camp-button">
+                            <div class="col-md-6">
+                                <button class="btn head-button-wrap start w-100">PREVIEW CAMPAIGN</button>
+                            </div>
+                            <div class="col-md-6 submit-button">
+                                <button class="btn w-100"> SUBMIT & START CAMPAIGN</button>
+                            </div>
+                        </div> -->
+                    </ng-container>
+
+                    <div class="buttons">
+                        <button class="btn back" *ngIf="i != 0" (click)="back(i)">Back</button>
+                        <button class="btn next" (click)="next(i)" *ngIf="i != kyc_form.length-1">Next</button>
+                    </div>
+
+                </div>
+            </ng-container>
+            <div class="row camp-button justify-content-center" *ngIf="data_loaded && !disabled_inputs && tab_index == kyc_form.length-1">
+                <div class="col-md-6 submit-button text-center">
+                    <button class="btn" [class.loading]="load" (click)="addKYCDetails(kyc_form.length-1)">
+                        <ng-container *ngIf="load;else noLoader;">
+                            <loader></loader>
+                        </ng-container>
+                        <ng-template #noLoader>
+                            {{type == 1 && !disabled_inputs ? LANG.UPDATE : LANG.SUBMIT}}
+                        </ng-template>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+</div>

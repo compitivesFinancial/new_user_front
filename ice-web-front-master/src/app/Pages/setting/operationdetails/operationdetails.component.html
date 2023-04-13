@@ -1,0 +1,497 @@
+<div class="campaign-details container-fluid">
+    <div class="container">
+        <button class="btn back"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back</button>
+        <div class="row campaign-row-btn">
+            <div class="campaign-blue">
+                <img src="{{campaignName?.campaign_images[0].image}}" alt="" class="black-img">
+                <div>
+                    <h2>{{campaignName?.tagline}}</h2>
+                    <!-- <h6>{{}}</h6> -->
+                    <!-- <div>
+                        <span class="globe-img"><img src="assets/images/globe.png" alt="">www.weatherflow.temp</span>
+                        <span class="globe-img"><img src="assets/images/map.png" alt="">Riyadh, Saudi Arabia</span>
+                    </div> -->
+                </div>
+            </div>
+            <!-- <div class="chart-container col-md-5">
+                <div class="chart" data-percent="5%" data-bar-color="#00C48A">
+                    <span class="percent" data-after="%">5</span>
+                    <p>Amount Paid</p>
+                </div>
+            </div> -->
+        </div>
+        <ul class="nav nav-tabs wallet-tab" *ngIf="user_data.role_type==3">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#history">Transaction History</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#payments" (click)="upcoming()">Upcoming Payments</a>
+            </li>
+        </ul>
+        <ul class="nav nav-tabs wallet-tab" *ngIf="user_data.role_type==2">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#history">Debit History</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#payments" (click)="upcoming()">Credit History</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container-fluid detail-2" *ngIf="user_data.role_type==3">
+    <div class="container">
+        <div class="tab-content">
+            <div class="tab-pane active " id="history">
+                <div class="row detail2-row">
+                    <div class="col-md-7">
+                        <div class="table-first">
+                            <p>Transaction History</p>
+                            <!-- <div class="dropdown">
+                                <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown">
+                                    Sort By : Recent
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Recent</a>
+                                    <a class="dropdown-item" href="#">Recent</a>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="table-responsive table-section">
+                            <table class="table table-borderless ">
+                                <tbody class="campaign-tab-detail">
+
+                                    <tr *ngFor="let item of receivedinvestment">
+                                        <!-- <div *ngIf="receivedinvestment.total_paid>0">  -->
+                                        <td class="detail-name" *ngIf="item.total_paid!=null">
+                                            <img src="../../../../assets/images/contact_image.png" alt="">
+                                            <div class="date-name">
+                                                <h4> Installment paid</h4>
+                                                <p>Date : {{item?.paid_date}}</p>
+                                            </div>
+                                        </td>
+                                        <td class="invest" *ngIf="item.total_paid!=null">
+                                            <span>Transaction ID</span>
+                                            <p>{{transactionID}}</p>
+                                        </td>
+                                        <td class="invest" *ngIf="item.total_paid!=null">
+                                            <span>Amount Paid</span>
+                                            <p> SAR {{item?.total_paid}}</p>
+                                        </td>
+                                        <!-- </div> -->
+                                    </tr>
+
+                                    <!-- <tr>
+                                        <td class="detail-name">
+                                            <img src="assets/images/flower-1.png" alt="">
+                                            <div class="date-name">
+                                                <h4>May 2022 Installment paid</h4>
+                                                <p>Date : 22 Oct 2020, 10:pm</p>
+                                            </div>
+                                        </td>
+                                        <td class="invest">
+                                            <span>Transaction ID</span>
+                                            <p>86738468293694</p>
+                                        </td>
+                                        <td class="invest">
+                                            <span>Invested</span>
+                                            <p> SAR 10,000</p>
+                                        </td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="detail-right">
+                            <div class="wallet-tab2">
+                                <div>
+                                    <p>Raised amount</p>
+
+
+                                </div>
+                                <span>SR {{amount_data?.amount_raised}}</span>
+                            </div>
+                            <div class="amount-raised detail-right wallet-tab2">
+                                <p>Amount Raised Intrese</p>
+                                <span>SR {{amount_data?.amount_raised_intrest}}</span>
+                            </div>
+                            <div class="amount-raised detail-right wallet-tab2">
+                                <p>Final Amount</p>
+                                <span>SR {{TotalInvestment(amount_data?.amount_raised,amount_data?.amount_raised_intrest)}}</span>
+
+                                <!-- <div></div> -->
+                                <!-- <h1>SAR {{campaignName?.total_valuation}}</h1> -->
+                            </div>
+                            <div class="top-invest">
+                                <p>Monthly Installment</p>
+                                <span>SR {{amount_data?.monthly_instalment}}</span>
+                            </div>
+                            <!-- <div class="amount-raised">
+                                <p>Amount paid</p>
+                                <p>SR {{oppertunityDetailsList?.amount_paid}}</p>
+                            </div> -->
+                            <div class="amount-raised">
+                                <p>Principle paid</p>
+                                <p>SR {{amount_data?.amount_paid}}</p>
+                            </div>
+                            <div class="amount-raised">
+                                <p>Principle Left</p>
+                                <p>SR {{principleRemain()}}</p>
+                            </div>
+                            <div class="amount-raised total">
+                                <p>Due payment</p>
+                                <p>SR {{amount_data?.due_amount}}</p>
+                            </div>
+                            <div class=" button-amount" *ngIf="amount_data.due_ids!=null">
+                                <button class="btn" (click)="payNow()">PAY NOW</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane active " id="payments" *ngIf="upcomingPayment==true">
+                <div class="row detail2-row">
+                    <div class="col-md-7">
+                        <div class="table-first">
+                            <p>Upvoming Transaction History</p>
+                            <!-- <div class="dropdown">
+                                <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown">
+                                    Sort By : Recent
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Recent</a>
+                                    <a class="dropdown-item" href="#">Recent</a>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="table-responsive table-section">
+                            <table class="table table-borderless ">
+                                <tbody class="campaign-tab-detail">
+
+                                    <tr *ngFor="let item of upcomingInvestmentList">
+                                        <td class="detail-name">
+                                            <img src="../../../../assets/images/contact_image.png" alt="">
+                                            <div class="date-name">
+                                                <h4> Installment To Pay</h4>
+                                                <p>Due Date : {{item?.due_date}}</p>
+                                            </div>
+                                        </td>
+                                        <!-- <td class="invest">
+                                            <span>Transaction ID</span>
+                                            <p>{{item?.invester_id}}</p>
+                                        </td> -->
+                                        <td class="invest">
+                                            <span>Total Amount to be Paid</span>
+                                            <p> SAR {{item?.total_expected}}</p>
+                                        </td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <td class="detail-name">
+                                            <img src="assets/images/flower-1.png" alt="">
+                                            <div class="date-name">
+                                                <h4>May 2022 Installment paid</h4>
+                                                <p>Date : 22 Oct 2020, 10:pm</p>
+                                            </div>
+                                        </td>
+                                        <td class="invest">
+                                            <span>Transaction ID</span>
+                                            <p>86738468293694</p>
+                                        </td>
+                                        <td class="invest">
+                                            <span>Invested</span>
+                                            <p> SAR 10,000</p>
+                                        </td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="detail-right">
+                            <div class="wallet-tab2">
+                                <div>
+                                    <p>Raised amount</p>
+
+
+                                </div>
+                                <span>SR {{amount_data?.amount_raised}}</span>
+                            </div>
+                            <div class="amount-raised detail-right wallet-tab2">
+                                <p>Amount Raised Intrese</p>
+                                <span>SR {{amount_data?.amount_raised_intrest}}</span>
+                            </div>
+                            <div class="amount-raised detail-right wallet-tab2">
+                                <p>Final Amount</p>
+                                <span>SR {{TotalInvestment(amount_data?.amount_raised,amount_data?.amount_raised_intrest)}}</span>
+
+                                <!-- <div></div> -->
+                                <!-- <h1>SAR {{campaignName?.total_valuation}}</h1> -->
+                            </div>
+                            <div class="top-invest">
+                                <p>Monthly Installment</p>
+                                <span>SR {{amount_data?.monthly_instalment}}</span>
+                            </div>
+                            <!-- <div class="amount-raised">
+                                <p>Amount paid</p>
+                                <p>SR {{oppertunityDetailsList?.amount_paid}}</p>
+                            </div> -->
+                            <div class="amount-raised">
+                                <p>Amount paid</p>
+                                <p>SR {{amount_data?.amount_paid}}</p>
+                            </div>
+                            <div class="amount-raised">
+                                <p>Amount Yet to receive</p>
+                                <p>SR {{principleRemain()}}</p>
+                            </div>
+                            <div class="amount-raised total">
+                                <p>Due payment</p>
+                                <p>SR {{amount_data?.due_amount}}</p>
+                            </div>
+                            <div class=" button-amount" *ngIf="amount_data.due_ids!=null">
+                                <button class="btn" (click)="payNow()">PAY NOW</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid detail-2" *ngIf="user_data.role_type==2">
+    <div class="container">
+        <div class="tab-content">
+            <div class="tab-pane active " id="history">
+                <div class="row detail2-row">
+                    <div class="col-md-7">
+                        <div class="table-first">
+                            <!-- <p>Transaction History</p> -->
+                            <!-- <div class="dropdown">
+                                <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown">
+                                    Sort By : Recent
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Recent</a>
+                                    <a class="dropdown-item" href="#">Recent</a>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="table-responsive table-section">
+                            <table class="table table-borderless ">
+                                <tbody class="campaign-tab-detail">
+
+                                    <tr *ngFor="let item of receiveddebit">
+                                        <!-- <div *ngIf="receivedinvestment.total_paid>0">  -->
+                                        <td class="detail-name">
+                                            <img src="../../../../assets/images/contact_image.png" alt="">
+                                            <div class="date-name">
+                                                <h4> Withdraw on</h4>
+                                                <p>Date : {{item?.created_on}}</p>
+                                            </div>
+                                        </td>
+                                        <td class="invest">
+                                            <span>Transaction ID</span>
+                                            <p>{{transactionID}}</p>
+                                        </td>
+                                        <td class="invest">
+                                            <span>Debited Amount</span>
+                                            <p> SAR {{item?.debit_amount}}</p>
+                                        </td>
+                                        <!-- </div> -->
+                                    </tr>
+
+                                    <!-- <tr>
+                                        <td class="detail-name">
+                                            <img src="assets/images/flower-1.png" alt="">
+                                            <div class="date-name">
+                                                <h4>May 2022 Installment paid</h4>
+                                                <p>Date : 22 Oct 2020, 10:pm</p>
+                                            </div>
+                                        </td>
+                                        <td class="invest">
+                                            <span>Transaction ID</span>
+                                            <p>86738468293694</p>
+                                        </td>
+                                        <td class="invest">
+                                            <span>Invested</span>
+                                            <p> SAR 10,000</p>
+                                        </td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="detail-right">
+                            <div class="wallet-tab2">
+                                <div>
+                                    <p>Invested </p>
+
+
+                                </div>
+                                <span>SR {{investorWalletDetails?.invested}}</span>
+                            </div>
+                            <div class="amount-raised detail-right wallet-tab2">
+                                <p>Profit</p>
+                                <span>SR {{investorWalletDetails?.profit}}</span>
+                            </div>
+                            <div class="amount-raised detail-right wallet-tab2">
+                                <p>Final Reciveable</p>
+                                <span>SR {{TotalInvestment(investorWalletDetails?.invested,investorWalletDetails?.profit)}}</span>
+
+                                <!-- <div></div> -->
+                                <!-- <h1>SAR {{campaignName?.total_valuation}}</h1> -->
+                            </div>
+                            <div class="top-invest">
+                                <div class="amount-raised">
+                                    <p>Recieved Amount</p>
+                                    <p>SR {{investorWalletDetails?.recievable_amount}}</p>
+                                </div>
+                                <!-- <p>Monthly Installment</p>
+                                <span>SR {{amount_data?.monthly_instalment}}</span> -->
+                            </div>
+                            <!-- <div class="amount-raised">
+                                <p>Amount paid</p>
+                                <p>SR {{oppertunityDetailsList?.amount_paid}}</p>
+                            </div> -->
+                            <!-- <div class="amount-raised">
+                                <p>Recieved Amount</p>
+                                <p>SR {{amount_data?.amount_paid}}</p>
+                            </div> -->
+                            <div class="amount-raised">
+                                <p>Debited Amount</p>
+                                <p>SR {{investorWalletDetails?.old_withdrawal}}</p>
+                            </div>
+                            <div class="amount-raised">
+                                <p>Amount yet to receive</p>
+                                <p>SR {{principleRemainInvestor()}}</p>
+                            </div>
+                            <div class="amount-raised total">
+                                <p>Withdrawl Amount</p>
+                                <p>SR {{investorWalletDetails?.withdrawal}}</p>
+                            </div>
+                            <div class=" button-amount">
+                                <button class="btn" (click)="withdraw()" *ngIf="investorWalletDetails?.withdrawal>0">Withdraw</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane active " id="payments" *ngIf="upcomingPayment==true">
+                <div class="row detail2-row">
+                    <div class="col-md-7">
+                        <div class="table-first">
+                            <!-- <p>Upvoming Transaction History</p> -->
+                            <!-- <div class="dropdown">
+                                <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown">
+                                    Sort By : Recent
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Recent</a>
+                                    <a class="dropdown-item" href="#">Recent</a>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="table-responsive table-section">
+                            <table class="table table-borderless ">
+                                <tbody class="campaign-tab-detail">
+
+                                    <tr *ngFor="let item of receivedcredit">
+                                        <td class="detail-name">
+                                            <img src="../../../../assets/images/contact_image.png" alt="">
+                                            <div class="date-name">
+                                                <h4>Profit Received</h4>
+                                                <p>Due Date : {{item?.created_on}}</p>
+                                            </div>
+                                        </td>
+                                        <!-- <td class="invest">
+                                            <span>Transaction ID</span>
+                                            <p>{{item?.invester_id}}</p>
+                                        </td> -->
+                                        <td class="invest">
+                                            <span>Credited Amount</span>
+                                            <p> SAR {{item?.credit_amount}}</p>
+                                        </td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <td class="detail-name">
+                                            <img src="assets/images/flower-1.png" alt="">
+                                            <div class="date-name">
+                                                <h4>May 2022 Installment paid</h4>
+                                                <p>Date : 22 Oct 2020, 10:pm</p>
+                                            </div>
+                                        </td>
+                                        <td class="invest">
+                                            <span>Transaction ID</span>
+                                            <p>86738468293694</p>
+                                        </td>
+                                        <td class="invest">
+                                            <span>Invested</span>
+                                            <p> SAR 10,000</p>
+                                        </td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="detail-right">
+                            <div class="wallet-tab2">
+                                <div>
+                                    <p>Invested </p>
+
+
+                                </div>
+                                <span>SR {{investorWalletDetails?.invested}}</span>
+                            </div>
+                            <div class="amount-raised detail-right wallet-tab2">
+                                <p>Profit</p>
+                                <span>SR {{investorWalletDetails?.profit}}</span>
+                            </div>
+                            <div class="amount-raised detail-right wallet-tab2">
+                                <p>Final Reciveable</p>
+                                <span>SR {{TotalInvestment(investorWalletDetails?.invested,investorWalletDetails?.profit)}}</span>
+
+                                <!-- <div></div> -->
+                                <!-- <h1>SAR {{campaignName?.total_valuation}}</h1> -->
+                            </div>
+                            <div class="top-invest">
+                                <div class="amount-raised">
+                                    <p>Recieved Amount</p>
+                                    <p>SR {{investorWalletDetails?.recievable_amount}}</p>
+                                </div>
+                                <!-- <p>Monthly Installment</p>
+                                <span>SR {{amount_data?.monthly_instalment}}</span> -->
+                            </div>
+                            <!-- <div class="amount-raised">
+                                <p>Amount paid</p>
+                                <p>SR {{oppertunityDetailsList?.amount_paid}}</p>
+                            </div> -->
+                            <!-- <div class="amount-raised">
+                                <p>Recieved Amount</p>
+                                <p>SR {{amount_data?.amount_paid}}</p>
+                            </div> -->
+                            <div class="amount-raised">
+                                <p>Debited Amount</p>
+                                <p>SR {{investorWalletDetails?.old_withdrawal}}</p>
+                            </div>
+                            <div class="amount-raised">
+                                <p>Amount yet to receive</p>
+                                <p>SR {{principleRemainInvestor()}}</p>
+                            </div>
+                            <div class="amount-raised total">
+                                <p>Withdrawl Amount</p>
+                                <p>SR {{investorWalletDetails?.withdrawal}}</p>
+                            </div>
+                            <div class=" button-amount">
+                                <button class="btn" (click)="withdraw()" *ngIf="investorWalletDetails?.withdrawal>0">Withdraw</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

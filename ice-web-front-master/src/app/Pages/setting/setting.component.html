@@ -1,0 +1,254 @@
+<div class="campaign-tab">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#wallet">My Wallet</a>
+        </li>
+        <!-- <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#bank">Bank Details</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#kyc">KYC Details</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#profile">Edit Profile</a>
+        </li> -->
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="wallet">
+            <div class="container-fluid wallet-list">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="wallet-left" *ngIf="user_data?.role_type==3">
+                                <i class="fa fa-film" aria-hidden="true"></i>
+                                <h6>Amount Yet to pay</h6>
+                                <h1>SR {{roundOF(walletFundBorower?.wallet_amount)}}</h1>
+                                <!-- <button class="btn add-amount">ADD AMOUNT</button> -->
+                            </div>
+                            <div class="wallet-left" *ngIf="user_data?.role_type==2">
+                                <i class="fa fa-film" aria-hidden="true"></i>
+                                <h6>Available cash in your CFC wallet</h6>
+                                <h1>SR {{walletFund?.wallet_total}}</h1>
+                                <button class="btn add-amount" data-toggle="modal" data-target="#addmoney">ADD AMOUNT</button>
+                            </div>
+<!-- Add Money Modal -->
+                            <div class="modal fade" id="addmoney" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog Modalsize" role="document" >
+                                  <div class="modal-content ModalWidth">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <title>Enter the Amount</title>
+                                      <input type="text" placeholder="enter the amount" class="form-control" [(ngModel)]="amount">
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="addmoney()">Save changes</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                            
+                        </div>
+                        <div *ngIf="user_data.role_type==3" class="col-md-8 wallet-right">
+                            <!-- <div class="col-md-8 wallet-right"> -->
+                            <h6>Your active funds</h6>
+                            <div>
+                                <div class="wallet-right1" *ngFor="let details of totalDetails">
+                                    <div class="right-first">
+                                        <div class="chart-container">
+                                            <div class="chart" data-percent="13" data-bar-color="#00C48A">
+                                                <span class="percent" data-after="%">{{details?.total_paid}}</span>
+                                                
+                                            </div>
+                                            <circle-progress
+                                           [percent]="getPercent(details?.total_paid,details?.total_raised)"
+                                           [radius]="60"
+                                           [outerStrokeWidth]="10"
+                                           [innerStrokeWidth]="8"
+                                           [outerStrokeColor]="'#78C000'"
+                                           [innerStrokeColor]="'#C7E596'"
+                                           [animation]="true"
+                                           [animationDuration]="300"
+                                           ></circle-progress>
+                                           <p>Amount Paid</p>
+                                        </div>
+                                        <div class="right-2">
+                                            <h4>{{details.tagline}}</h4>
+                                            <p>The Next Tech Of Aviation</p>
+                                            <div class="right-raised">
+                                                <div class="col-md-4 amo-rai">
+                                                    <p>Amount Raised</p>
+                                                    <h5>SAR {{details?.total_raised}}</h5>
+                                                </div>
+                                                <div class="col-md-4 amo-rai">
+                                                    <p>Amount Paid</p>
+                                                    <h5 class="paid-sr">SAR {{details?.total_paid}}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right-second">
+                                        <div class="right-raised">
+                                            <div class="col-md-4 amo-rai">
+                                                <p>Due this month</p>
+                                                <h5>SAR {{details.due_amount}}</h5>
+                                            </div>
+                                            <button class="btn right-arrow" (click)="navToDetails(details)"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="wallet-right1">
+                                        <div class="right-first">
+                                            <div class="chart-container">
+                                                <div class="chart" data-percent="13" data-bar-color="#00C48A">
+                                                    <span class="percent" data-after="%">13</span>
+                                                    <p>Amount Paid</p>
+                                                </div>
+                                            </div>
+                                            <div class="right-2">
+                                                <h4>FlyForward Corp.</h4>
+                                                <p>The Next Tech Of Aviation</p>
+                                                <div class="right-raised">
+                                                    <div>
+                                                        <p>Amount Raised</p>
+                                                        <h5>SAR 6550</h5>
+                                                    </div>
+                                                    <div>
+                                                        <p>Amount Paid</p>
+                                                        <h5 class="paid-sr">SAR 520</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right-second">
+                                            <div class="right-raised">
+                                                <div>
+                                                    <p>Due this month</p>
+                                                    <h5>SAR 6550</h5>
+                                                </div>
+                                                <button class="btn right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                        <div *ngIf="user_data?.role_type == 2">
+                            <div class="table-responsive table-section">
+                                <table class="table table-borderless ">
+                                    <tbody>
+
+                                        <!-- <tr *ngFor="let item of investorDetails">
+                                            <td class="detail-name">
+                                                <img src="assets/images/flower-1.png" alt="">
+                                                <div class="date-name">
+                                                    <h4>Installment paid</h4>  
+                                                    <p>Date : {{item?.invested_date}}</p>
+                                                </div>
+                                            </td>
+                                            <td class="invest">
+                                                <span>Campaign ID</span>
+                                                <p>{{item?.campaign_id}}</p>
+                                            </td>
+                                            <td class="invest">
+                                                <span>Received</span>
+                                                <p> SAR {{item?.amount_recieved}}</p>
+                                            </td>
+                                            <td class="invest">
+                                                <span>Invested</span>
+                                                <p> SAR {{item?.amount_invested}}</p>
+                                            </td>
+                                        </tr> -->
+                                        <div class="wallet-right1" *ngFor="let details of investorDetails">
+                                            <div class="right-first">
+                                                <div class="chart-container">
+                                                    <div class="chart" data-percent="13" data-bar-color="#00C48A">
+                                                        <span class="percent" data-after="%">{{details?.old_withdrawal}}</span>
+                                                        
+                                                    </div>
+                                           <circle-progress
+                                           [percent]="getPercent(details?.old_withdrawal,details?.amount_invested)"
+                                           [radius]="60"
+                                           [outerStrokeWidth]="16"
+                                           [innerStrokeWidth]="8"
+                                           [outerStrokeColor]="'#78C000'"
+                                           [innerStrokeColor]="'#C7E596'"
+                                           [animation]="true"
+                                           [animationDuration]="300"
+                                           ></circle-progress>
+                                           <!-- <div class="chart" data-percent="13" data-bar-color="#00C48A">
+                                            <span class="percent" data-after="%">{{details?.old_withdrawal}}</span>
+                                            
+                                        </div>  -->
+                                           <p>Amount Received</p>
+                                                </div>
+                                                <div class="right-2">
+                                                    <h4>{{details.opportnity_detail?.tagline}}</h4>
+                                                    <p>The Next Tech Of Aviation</p>
+                                                    <div class="right-raised">
+                                                        <div class="col-md-4 amo-rai">
+                                                            <p>Invested</p>
+                                                            <h5>SAR {{details?.amount_invested}}</h5>
+                                                        </div>
+                                                        <div class="col-md-4 amo-rai">
+                                                            <p>Profit</p>
+                                                            <h5 class="paid-sr">SAR {{details?.expedted_profit}}</h5>
+                                                        </div>
+                                                        <!-- <div>
+                                                            <p>Receied</p>
+                                                            <h5 class="paid-sr">SAR {{details?.amount_recieved}}</h5>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="right-second">
+                                                <div class="right-raised">
+                                                    <div class="col-md-4 amo-rai">
+                                                        <p>Withdraw Amount</p>
+                                                        <h5>SAR {{details.withdraw_amount != null ? details.withdraw_amount:0}}</h5>
+                                                    </div>
+                                                    <button class="btn right-arrow" (click)="navToDetailsInvest(details.campaign_id)"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <tr>
+                                            <td class="detail-name">
+                                                <img src="assets/images/flower-1.png" alt="">
+                                                <div class="date-name">
+                                                    <h4>May 2022 Installment paid</h4>
+                                                    <p>Date : 22 Oct 2020, 10:pm</p>
+                                                </div>
+                                            </td>
+                                            <td class="invest">
+                                                <span>Transaction ID</span>
+                                                <p>86738468293694</p>
+                                            </td>
+                                            <td class="invest">
+                                                <span>Invested</span>
+                                                <p> SAR 10,000</p>
+                                            </td>
+                                        </tr> -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+
+
+</div>

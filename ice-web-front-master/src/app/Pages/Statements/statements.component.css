@@ -1,0 +1,12 @@
+.tab-background{
+    padding: 50px;
+    background-color: #fff;
+    margin-bottom: 50px
+}
+
+.btn.btn-primary,.btn.btn-primary:active{
+    border: none;
+    background: none;
+    color: #160034;
+    text-decoration: underline;
+}

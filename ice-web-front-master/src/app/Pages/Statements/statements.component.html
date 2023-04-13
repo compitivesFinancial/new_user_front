@@ -1,0 +1,52 @@
+<div class="tab-background col-md-12">
+    <div class="table-responsive">
+        <table id="borrowers"
+            class="display nowrap table table-hover table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Due Date</th>
+                    <th>Principle Expected</th>
+                    <th>Interest Expected</th>
+                    <th>Fees Expected</th>
+                    <th>Total Expected</th>
+                    <th>Principle Paid</th>
+                    <th>Interest Paid</th>
+                    <th>Fees Paid</th>
+                    <th>Total Paid</th>
+                    <th>Paid Date</th>
+                    <th>Principle Due</th>
+                    <th>Interest Due</th>
+                    <th>Fees Due</th>
+                    <th>Total Due</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of borrower_statement; let i=index;">
+                    <td>{{data.due_date | date:'mediumDate'}}</td>
+                    <td>{{data.principle_expected}}</td>
+                    <td>{{data.interest_expected}}</td>
+                    <td>{{data.fees_expected}}</td>
+                    <td>{{data.total_expected}}</td>
+                    <td>{{data.principle_paid ? data.principle_paid : '-'}}</td>
+                    <td>{{data.interest_paid ? data.interest_paid : '-'}}</td>
+                    <td>{{data.fees_paid ? data.fees_paid : '-'}}</td>
+                    <td>{{data.total_paid ? data.total_paid : '-'}}</td>
+                    <td>{{data.paid_date ?  (data.paid_date | date:'mediumDate') : '-'}}</td>
+                    <td>
+                        {{data.principle_due ? data.principle_due : '-'}}
+                        <div class="text-center" *ngIf="+data.show_pay_btn">
+                            <button type="button" class="btn btn-primary" (click)="payLoan(data,i)">Pay</button>
+                        </div> 
+                    </td>
+                    <td>{{data.interest_due ? data.interest_due : '-'}}</td>
+                    <td>{{data.fees_due ? data.fees_due : '-'}}</td>
+                    <td>{{data.total_due ? data.total_due : '-'}}</td>
+                    <td>{{data.status == '0' ? 'Pending' : 'Paid'}}</td>
+                    
+                </tr>   
+            
+            </tbody>
+        </table>
+    </div>
+</div>

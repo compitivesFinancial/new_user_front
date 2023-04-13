@@ -1,0 +1,72 @@
+<section class="container-fluid investor bg-white">
+    <div class="col-md-8 mx-auto">
+        <!-- <h2 class="text-center" *ngIf="user_data.role_type == 2">Find a company. Become its next investor.</h2> -->
+        <div class="investor-tab">
+            <ul class="nav nav-tabs" *ngIf="user_data.role_type == 2">
+                <li class="nav-item" (click)="changeTabs(1)">
+                    <a class="nav-link active" data-toggle="tab" href="#newest">All Opportunities</a>
+                </li>
+                <li class="nav-item" (click)="changeTabs(2)">
+                    <a class="nav-link" data-toggle="tab" href="#trending">My Opportunities</a>
+                </li>
+                <li class="nav-item" (click)="changeTabs(3)">
+                    <a class="nav-link" data-toggle="tab" href="#returns">Closed Opportunities</a>
+                </li>
+            </ul>
+            <ul class="nav nav-tabs" *ngIf="user_data.role_type == 3">
+                <li class="nav-item" (click)="changeTabs(1)">
+                    <a class="nav-link active" data-toggle="tab" href="#newest">All Opportunities</a>
+                    <!-- <a class="nav-link active" data-toggle="tab" href="#newest">Active Opportunities</a> -->
+                </li>
+                 <!--<li class="nav-item" (click)="changeTabs(3)">
+                    <a class="nav-link" data-toggle="tab" href="#trending">Inactive Opportunities</a>
+                </li>
+                <li class="nav-item" (click)="changeTabs(3)">
+                    <a class="nav-link" data-toggle="tab" href="#returns">Rejected Opportunities</a>
+                </li> -->
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane col-md-12 active" id="newest">
+                    <div class="row investor-row">
+                        <div class="col-md-4" *ngFor="let list of campaign_list;">
+                            <div class="owl-carousel owl-theme " id="carousel-1"  class="item">
+                                <div>
+                                    <div class="carousel-content" >
+                                        <div class="caro-img carousel-slide">
+                                            <img  src="{{list.campaign_images[0].image}}" class="w-100" alt="" >
+                                            <!-- <span>2 days left</span> -->
+                                        </div>
+                                        <div class="pad-carousel">
+                                            <h6 >{{list.tagline}}</h6>
+                                            <p>{{list.reason_to_invest}}</p>
+                                            
+                                            <div class="d-flex justify-content-between ">
+                                                <div class="fund-rate">
+                                                    <h5>SAR {{list.raised}} </h5>
+                                                    <p>Pledged Of SAR {{list.total_valuation}} Goal</p>
+                                                </div>
+                                                <div class="fund-investers">
+                                                    <h4>Investers</h4>
+                                                    <p>{{list.investers}}</p>
+                                                    <!-- <button class="btn btn-primary custom" (click)="navTo(list)">View Details</button> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-container *ngIf="campaign_list.length == 0 && data_loaded">
+                            <div class="col-md-12 pb-5 pl-3">
+                                <h3>Sorry, No data to display!</h3>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <!-- <div class="col-md-4 mx-auto">
+                        <button class="btn w-100 load-more">LOAD MORE</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
