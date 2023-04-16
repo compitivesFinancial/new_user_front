@@ -20,13 +20,14 @@
 
                 </div>
                 <div class="form-group col-md-6">
-                    <input type="text" class="form-control" placeholder="{{LANG.Companys_share_price}} *"  name="share_price" [(ngModel)]="campaign_details.share_price" (keypress)="onlyNumbers($event)">
-                    <span class="error" *ngIf="errors?.share_price">{{LANG.This_field_is_required}}</span>
-                </div>
-                <div class="form-group col-md-6">
                     <input type="text" class="form-control" placeholder="{{LANG.Total_Valuation}} *"  name="total_valuation" [(ngModel)]="campaign_details.total_valuation" (keypress)="onlyNumbers($event)">
                     <span class="error" *ngIf="errors?.total_valuation">{{LANG.This_field_is_required}}</span>
                 </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="{{LANG.Companys_share_price}} *" hidden="true" name="share_price" [(ngModel)]="campaign_details.share_price" (keypress)="onlyNumbers($event)">
+                    <span class="error" *ngIf="errors?.share_price">{{LANG.This_field_is_required}}</span>
+                </div>
+
                 <!-- <div class="form-group col-md-6">
                     <input type="text" class="form-control" placeholder="{{LANG.Min_Investment_per_investor}} *"  name="min_investment" [(ngModel)]="campaign_details.min_investment" (keypress)="onlyNumbers($event)">
                     <span class="error" *ngIf="errors?.min_investment">{{LANG.This_field_is_required}}</span>

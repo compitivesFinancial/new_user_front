@@ -228,7 +228,7 @@ export class AddCampaignComponent implements OnInit {
 add(){
   const data:campaign_data={
     "tagline": this.campaign_details.tagline,
-    "share_price": this.campaign_details.share_price,
+    "share_price": "1000",
     "total_valuation": this.campaign_details.total_valuation,
     // "min_investment": this.campaign_details.min_investment,
     // "max_investment": this.campaign_details.max_investment,

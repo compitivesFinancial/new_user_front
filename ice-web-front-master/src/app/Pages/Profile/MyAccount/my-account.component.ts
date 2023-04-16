@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
+import { LkServiceService } from 'src/app/Shared/Services/lk-service.service';
 import { LoginService } from 'src/app/Shared/Services/login.service';
 @Component({
   selector: 'app-my-account',
@@ -19,11 +20,14 @@ export class MyAccountComponent implements OnInit {
   old_password:any= ''
   new_password:any=''
 
-  constructor(private loginService:LoginService, public toast:ToastrService) { 
+  constructor(private loginService:LoginService, public toast:ToastrService, lkService:LkServiceService) { 
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
       this.user_data=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
     }
+for(let bank of lkService.getBankList()){
+  console.log(`{ the bank name ${bank.nameAr} the bank name english ${bank.nameEn}}`)
+}
   }
 
   ngOnInit(): void {
