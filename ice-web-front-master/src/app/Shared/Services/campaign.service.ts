@@ -90,9 +90,14 @@ export class CampaignService{
     }
 
     verifyCrNumber(id:any){
-        this.url ="checkcrnumber/"+id
+        this.url ="commercialregistration/"+id
       return  this.api.get(this.url,"")
     }
+    // old one edited by qaysar
+    // verifyCrNumber(id:any){
+    //     this.url ="checkcrnumber/"+id
+    //   return  this.api.get(this.url,"")
+    // }
     
 
     
