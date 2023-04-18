@@ -29,7 +29,7 @@
 
         <div class="row campaign-row">
             <div class="form-check">
-                <div class="radio-1">
+                <div class="radio-1" *ngIf="role_type === '2'">
                     <input type="radio" class="radio-buttons" id="yes" name="registration_type" value="1"
                         [(ngModel)]="registration_type.registration_type">
                     <label name="registration_type" for="yes">{{LANG.Individual}}</label>
