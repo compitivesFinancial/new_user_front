@@ -416,21 +416,24 @@ export class AddKycComponent implements OnInit {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return !re.test(email)
   }
-  public verifyCR: any
-  verifyCrNumber(number: any) {
-    this.campaign_service.verifyCrNumber(number).subscribe((res: any) => {
+public verifyCR:any
+verfyimg:boolean = false
+  verifyCrNumber(number:any){
+    this.campaign_service.verifyCrNumber(number).subscribe((res:any)=>{
+      let status = res.status
       this.verifyCR = res.response
-      if (this.verifyCR.is_verified == 1) {
+      // if(this.verifyCR.is_verified==1){
+        if(status){
         this.toast.success("verified")
-
+        
         this.crname = this.verifyCR.crName
         this.crEntityNumber = this.verifyCR.crEntityNumber
         this.issueDate = this.verifyCR.issueDate
         this.expiryDate = this.verifyCR.expiryDate
-        this.businessType = this.verifyCR.businessType.name
-
+        // this.businessType = this.verifyCR.businessType.name
+        
       }
-      else {
+      else{
         this.toast.error("not veriied")
       }
 

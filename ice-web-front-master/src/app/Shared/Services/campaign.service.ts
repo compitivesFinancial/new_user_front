@@ -90,7 +90,7 @@ export class CampaignService{
     }
 
     verifyCrNumber(id:any){
-        this.url ="commercialregistration/"+id
+        this.url =`commercialregistration/${id}`;
       return  this.api.get(this.url,"")
     }
     // old one edited by qaysar
@@ -99,6 +99,12 @@ export class CampaignService{
     //   return  this.api.get(this.url,"")
     // }
     
-
-    
+    getFooter(){
+        this.url = "footer";
+		return this.api.get(this.url,"");
+    }
+    // getFooter(){
+    //     this.url = "footer";
+	// 	return this.api.getFooter(this.url,"");
+    // }
 }

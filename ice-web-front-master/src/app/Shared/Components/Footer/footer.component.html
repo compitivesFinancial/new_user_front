@@ -1,4 +1,4 @@
-    <!-- <footer class="container-fluid footer">
+<!-- <footer class="container-fluid footer">
         <div class="container">
             <div class="footer-row1">
                 <div class="row footer-row">
@@ -56,12 +56,12 @@
 
 <footer class="container-fluid footer">
     <div class="container">
-        <div class="row" >
-            <div class="col-md-3 col-6" >
+        <div class="row">
+            <div class="col-md-3 col-6">
                 <h5>Invest</h5>
                 <div *ngFor="let item of investfooterDetails">
-                <a (click)="goToDetails(item)">{{item.title}}</a>
-            </div>
+                    <a (click)="goToDetails(item)" *ngIf="item.type === 1">{{item.title}}</a>
+                </div>
                 <!-- <a >Raising Now</a> -->
                 <!-- <a >Secondary Marketplace</a>
                 <a >Private Deal Room</a> -->
@@ -70,7 +70,9 @@
             </div>
             <div class="col-md-3 col-6">
                 <h5>Raise</h5>
-                <a *ngFor="let item of raiseDetauls" (click)="goToDetails(item)">{{item.title}}</a>
+                <div *ngFor="let item of investfooterDetails">
+                    <a (click)="goToDetails(item)" *ngIf="item.type === 2">{{item.title}}</a>
+                </div>                
                 <!-- <a >From The Crowd</a>
                 <a >From Private Investor</a>
                 <a >Secondary Liquidity</a>
@@ -85,16 +87,20 @@
                 <a >Secondary Market Terms</a>
                 <a  routerLink="/terms-&-conditions">Terms Of Service</a> -->
                 <!-- <a *ngFor="let data of pages_list;" (click)="goToDetails(data)">{{data.title}}</a> -->
-                <a *ngFor="let item of legalDetails" (click)="goToDetails(item)">{{item.title}}</a>
+                <div *ngFor="let item of investfooterDetails">
+                    <a (click)="goToDetails(item)" *ngIf="item.type === 3">{{item.title}}</a>
+                </div>
 
                 <!-- <a routerLink="/privacy-policy">Privacy Policies</a> -->
                 <!-- <a >Legal</a> -->
             </div>
             <div class="col-md-3 col-6">
                 <h5>Compp.</h5>
-                <a *ngFor="let item of compdetails" (click)="goToDetails(item)">{{item.title}}</a>
+                <div *ngFor="let item of investfooterDetails">
+                    <a (click)="goToDetails(item)" *ngIf="item.type === 4">{{item.title}}</a>
+                </div>
                 <!-- <a >Careers</a>      -->
-               
+
             </div>
         </div>
         <div class="footer-row1">
@@ -106,13 +112,13 @@
                 <!-- <a  class="footer-logo">
                     <img src="assets/images/logo.svg" class="w-100" alt="" />
                 </a> -->
-                 <a  class="footer-logo ">
+                <a class="footer-logo ">
                     <img src="assets/images/footer-logo2.png" class="w-100" alt="" />
                 </a>
                 <!-- <a class="footer-logo" >
                     <img src="{{logo}}" class="w-100" alt="" />
                 </a> -->
-                <a class="footer-logo " >
+                <a class="footer-logo ">
                     <img src="{{logo_1}}" class="w-100 img-size" alt="" />
                 </a>
             </div>

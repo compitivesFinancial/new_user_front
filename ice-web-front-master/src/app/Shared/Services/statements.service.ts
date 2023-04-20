@@ -57,7 +57,7 @@ export class StatementsService{
 		return this.api.get(this.url,"");
     }
 
-    
+
    
 
     
