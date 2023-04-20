@@ -422,15 +422,13 @@ verfyimg:boolean = false
     this.campaign_service.verifyCrNumber(number).subscribe((res:any)=>{
       let status = res.status
       this.verifyCR = res.response
-      // if(this.verifyCR.is_verified==1){
         if(status){
-        this.toast.success("verified")
-        
+        this.toast.success("verified")        
         this.crname = this.verifyCR.crName
         this.crEntityNumber = this.verifyCR.crEntityNumber
         this.issueDate = this.verifyCR.issueDate
         this.expiryDate = this.verifyCR.expiryDate
-        // this.businessType = this.verifyCR.businessType.name
+        this.businessType = this.verifyCR.businessType.name
         
       }
       else{
