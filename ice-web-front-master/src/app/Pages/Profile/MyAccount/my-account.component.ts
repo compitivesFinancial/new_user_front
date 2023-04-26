@@ -25,9 +25,6 @@ export class MyAccountComponent implements OnInit {
     if(localStorage.getItem(user_data) != undefined){
       this.user_data=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
     }
-// for(let bank of lkService.getBankList()){
-//   console.log(`{ the bank name ${bank.nameAr} the bank name english ${bank.nameEn}}`)
-// }
   }
 
   ngOnInit(): void {

@@ -15,4 +15,7 @@ export enum FieldType {
     MaritalStatus=14,
     Education=15,
     JobStatus=16,
+    Years=17,
+    Months=18,
+    Days=19,
 }
