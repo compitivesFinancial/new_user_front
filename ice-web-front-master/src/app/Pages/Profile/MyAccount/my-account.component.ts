@@ -3,6 +3,8 @@ import { Toast, ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { LkServiceService } from 'src/app/Shared/Services/lk-service.service';
 import { LoginService } from 'src/app/Shared/Services/login.service';
+import { SharedService } from 'src/app/Shared/Services/shared.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-my-account',
   templateUrl: './my-account.component.html',
@@ -19,14 +21,26 @@ export class MyAccountComponent implements OnInit {
   user_data:any={};
   old_password:any= ''
   new_password:any=''
+  LANG:any={};
 
-  constructor(private loginService:LoginService, public toast:ToastrService, lkService:LkServiceService) { 
+  constructor(private loginService:LoginService, public toast:ToastrService, lkService:LkServiceService,private shared:SharedService) { 
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
       this.user_data=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
     }
+    this.subscriptions.push(this.shared.languageChange.subscribe((path:any)=>{
+      this.changeLanguage();
+    }))
+    this.changeLanguage();
   }
-
+  changeLanguage(){
+    if(localStorage.getItem("arabic") == "true" && localStorage.getItem("arabic") != null) {
+        this.LANG=environment.arabic_translations;
+    }
+    else {
+        this.LANG=environment.english_translations;
+    }
+  }
   ngOnInit(): void {
     if(this.user_data.role_type == 2){
       this.getProfileDetails(1);

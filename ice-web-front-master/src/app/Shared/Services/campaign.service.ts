@@ -78,6 +78,10 @@ export class CampaignService{
 		return this.api.post(this.url, data);
         
     }
+    investmentOppertunityQaysar(){
+        this.url ="list_campaign";
+        return this.api.get(this.url,"")
+    }
 
     investmentOppertunity(){
         this.url ="list_campaignoutside";

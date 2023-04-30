@@ -44,7 +44,7 @@
         <div class="form-group">
             <input type="text" class="form-control" placeholder="{{LANG.Full_Name}}" name="first_name"
                 [(ngModel)]="first_name">
-            <span class="error" *ngIf="registration_error.first_name">This Field is required</span>
+            <span class="error" *ngIf="registration_error.first_name">{{LANG.This_field_is_required}}</span>
         </div>
         <!-- <div class="form-group">
             <input type="text" class="form-control" placeholder="{{LANG.Last_name}} ({{LANG.Optional}})" name="last_name" [(ngModel)]="last_name">
@@ -52,8 +52,8 @@
         <div class="form-group">
             <input type="text" class="form-control" placeholder="{{LANG.Email}}" name="email" [(ngModel)]="email"
                 [disabled]="email_disable">
-            <span class="error" *ngIf="registration_error.email_id">This field is required</span>
-            <span class="error" *ngIf="registration_error.email_id_valid">Enter Valid Email</span>
+            <span class="error" *ngIf="registration_error.email_id">{{LANG.This_field_is_required}}</span>
+            <span class="error" *ngIf="registration_error.email_id_valid">{{LANG.Enter_valid_Email_Id}}</span>
         </div>
         <!-- <div class="form-group">
             <input type="text" placeholder="{{LANG.Mobile_Number}}" class="form-control" name="mobile_number" [(ngModel)]="display_mobile_number" disabled>
@@ -68,18 +68,16 @@
                 <input type="text" placeholder="{{LANG.Mobile_Number}}" class="form-control" name="mobile_number"
                     [(ngModel)]="mobile_number" (keypress)="onlyNumbers($event)">
             </div>
-            <span class="error" *ngIf="registration_error.mobile_number">This field required</span>
-            <span class="error" *ngIf="registration_error.mobile_number_valid && country_code == '+966'">Enter Valid
-                Mobile Number (Ex: 0551234567 or 551235678)</span>
-            <span class="error" *ngIf="registration_error.mobile_number_valid && country_code != '+966'">Enter Valid
-                Mobile Number </span>
+            <span class="error" *ngIf="registration_error.mobile_number">{{LANG.This_field_is_required}}</span>
+            <span class="error" *ngIf="registration_error.mobile_number_valid && country_code == '+966'">{{LANG.Enter_Valid_Mobile_Number_Ex}}</span>
+            <span class="error" *ngIf="registration_error.mobile_number_valid && country_code != '+966'">{{LANG.Enter_valid_Mobile_Number}} </span>
 
         </div>
 
         <div class="form-group">
             <input type="text" class="form-control" placeholder="{{LANG.User_Name}}" name="user_name"
                 [(ngModel)]="user_name">
-            <span class="error" *ngIf="registration_error.user_name">This field is required</span>
+            <span class="error" *ngIf="registration_error.user_name">{{LANG.This_field_is_required}}</span>
         </div>
 
 
@@ -93,21 +91,21 @@
         </div>
         <ng-container *ngIf="registration_error.password || password">
             <div class="password-detail">
-                <p class="pwd-txt-left">Password Must Contain</p>
+                <p class="pwd-txt-left">{{LANG.Password_Must_contain}}</p>
                 <p>{{LANG.Weak}}</p>
             </div>
             <div class="password-detail password-gap">
                 <div class="pwd-val">
                     <p [class.text-danger]="registration_error.password_length"
-                        [class.text-success]="!registration_error.password_length">- At Least Character</p>
+                        [class.text-success]="!registration_error.password_length">- {{LANG.At_Least_Character}}</p>
                     <p [class.text-danger]="registration_error.password_upper_case"
-                        [class.text-success]="!registration_error.password_upper_case">- A capital letter</p>
+                        [class.text-success]="!registration_error.password_upper_case">- {{LANG.A_capital_letter}}</p>
                     <p [class.text-danger]="registration_error.password_lower_case"
-                        [class.text-success]="!registration_error.password_lower_case">- A_small_lette</p>
+                        [class.text-success]="!registration_error.password_lower_case">- {{LANG.A_small_letter}}</p>
                     <p [class.text-danger]="registration_error.password_number"
-                        [class.text-success]="!registration_error.password_number">- A_number</p>
+                        [class.text-success]="!registration_error.password_number">- {{LANG.A_number}}</p>
                     <p [class.text-danger]="registration_error.password_special"
-                        [class.text-success]="!registration_error.password_special">- A_special_character</p>
+                        [class.text-success]="!registration_error.password_special">- {{LANG.A_special_character}}</p>
                 </div>
                 <p>
                     <ng-container *ngFor="let data of number;">
@@ -121,8 +119,8 @@
                 name="confirm_password" [(ngModel)]="confirm_password">
             <a class="show-pwd" (click)="passwordVisibility('confirm_password','eye2')"><i class="fa fa-eye" id="eye2"
                     aria-hidden="true"></i></a>
-            <span class="error" *ngIf="registration_error.confirm_password">This field is required</span>
-            <span class="error" *ngIf="registration_error.password_match">Password Does not match</span>
+            <span class="error" *ngIf="registration_error.confirm_password">{{LANG.This_field_is_required}}</span>
+            <span class="error" *ngIf="registration_error.password_match">{{LANG.Password_doesnt_matched}}</span>
         </div>
         <!-- <div class="form-group"> -->
         <!-- <select class="form-control" name="registration_type" [(ngModel)]="registration_type">
@@ -154,7 +152,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Terms And Condition</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">{{LANG.terms_conditions}}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { StatementsService } from 'src/app/Shared/Services/statements.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { SharedService } from 'src/app/Shared/Services/shared.service';
 
 @Component({
   templateUrl: './user-campaign-details.component.html',
@@ -12,8 +14,9 @@ export class UserCampaignDetailsComponent implements OnInit {
   subscriptions:Subscription[]=[];
   data_loaded:boolean=false;
   id:string="";
+  LANG:any={};
   
-  constructor(private statmentsService:StatementsService,private route:ActivatedRoute) {
+  constructor(private statmentsService:StatementsService,private route:ActivatedRoute ,private shared:SharedService) {
     this.subscriptions.push(this.route.queryParams
       .subscribe(
         (params: Params) => {
@@ -23,11 +26,22 @@ export class UserCampaignDetailsComponent implements OnInit {
           }
         }
     ))
+    this.subscriptions.push(this.shared.languageChange.subscribe((path:any)=>{
+      this.changeLanguage();
+    }))
+    this.changeLanguage();
   }
 
   ngOnInit(): void {
   }
-
+  changeLanguage(){
+    if(localStorage.getItem("arabic") == "true" && localStorage.getItem("arabic") != null) {
+        this.LANG=environment.arabic_translations;
+    }
+    else {
+        this.LANG=environment.english_translations;
+    }
+  }
   getUserCampaigns(){
     this.subscriptions.push(this.statmentsService.getUserCampaignDetails(this.id).subscribe((res:any)=>{
       this.campaign_details=res.response;

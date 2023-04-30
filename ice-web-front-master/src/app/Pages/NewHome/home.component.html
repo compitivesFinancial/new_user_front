@@ -2,7 +2,7 @@
 
 
 <section class="col-md-12 sec1 " *ngFor="let data of home_data?.section0">
-    <video id="myVideo" src="{{data.image}}" class="w-100" playsinline loop autoplay [muted]="true">
+    <video id="myVideo" src="{{data.s}}" class="w-100" playsinline loop autoplay [muted]="true">
         <source src="" type="">
     </video>
 
@@ -247,8 +247,8 @@
 </section>
  <section class="container-fluid carousel">
     <div class="carousel-first ">
-        <h2>Investment opportunities</h2>
-        <p>Open and ongoing popular croudfungings for you to choose from</p>
+        <h2>{{LANG.Investment_opportunities}}</h2>
+        <p>{{LANG.Open_and_ongoing_popular_croudfungings_for_you_to_choose_from}}</p>
     </div>
     <div class="row center">
     <div class="col-md-3" *ngFor="let list of investmentOppertunityList">
@@ -271,14 +271,14 @@
                         <div class="d-flex justify-content-between ">
                             <div class="fund-rate">
                                 <h5>SAR {{list.raised}} </h5>
-                                <p>Pledged Of SAR {{list.total_valuation}} Goal</p>
-                                <h5>Close Date</h5>
+                                <p>{{LANG.Pledged_Of_SAR}} {{list.total_valuation}} {{LANG.Goal}}</p>
+                                <h5>{{LANG.Close_Date}}</h5>
                                 <p>{{list.close_date != null ? list.close_date:'----'}}</p>
                             </div>
                             <div class="fund-investers">
-                                <h4>Investers</h4>
+                                <h4>{{LANG.Investers}}</h4>
                                 <p>{{list.investers}}</p>
-                                <button class="btn btn-primary custom" (click)="navTo(list)">View Details</button>
+                                <button class="btn btn-primary custom" (click)="navTo(list)">{{LANG.View_Details}}</button>
                             </div>
                         </div>
                     </div>
@@ -396,11 +396,11 @@
     </div>
 </div>
 </div>
-    <button class="btn explore hov-btn" routerLink="/campaign-list"><span>EXPLORE ALL</span></button>
+    <button class="btn explore hov-btn" routerLink="/campaign-list"><span>{{LANG.EXPLORE_ALL}}</span></button>
 </section>
 <section class="container-fluid carousel bg-caro">
     <div class="carousel-first ">
-        <h2>Upcoming opportunities</h2>
+        <h2>{{LANG.Upcoming_opportunities}}</h2>
         <!-- <p>Comming soon on CFC, Investments you might wanna give a thought.</p> -->
     </div>
     <div class="col-md-10 caro-width" >
@@ -422,14 +422,14 @@
                         <div class="d-flex justify-content-between">
                             <div class="fund-rate">
                                 <h5>SAR {{list.raised}} </h5>
-                                <p>Pledged Of SAR {{list.total_valuation}} Goal</p>
+                                <p>{{LANG.Pledged_Of_SAR}} {{list.total_valuation}} {{LANG.Goal}}</p>
                             </div>
                             <div class="fund-investers">
-                                <h4>Investers</h4>
+                                <h4>{{LANG.Investers}}</h4>
                                 <p>{{list.investers}}</p>
                             </div>
                         </div>
-                        <button class="btn btn-primary" (click)="navTo(list)">View Details</button>
+                        <button class="btn btn-primary" (click)="navTo(list)">{{LANG.View_Details}}</button>
                     </div>
                 </div>
             </div>
@@ -543,7 +543,7 @@
             </div> -->
         </div>
     </div>
-    <button class="btn explore hov-btn" routerLink="/campaign-list"><span>EXPLORE ALL</span></button>
+    <button class="btn explore hov-btn" routerLink="/campaign-list"><span>{{LANG.EXPLORE_ALL}}</span></button>
 </section>
 <!--<section class="container-fluid carousel  third-craousel">
     <div class="carousel-first ">

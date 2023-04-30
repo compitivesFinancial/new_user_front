@@ -12,6 +12,9 @@ export class QuickLinkComponent implements OnInit {
   public id:string="";
   public details:any={};
   LANG:any=""
+
+
+  
   constructor(private statement:StatementsService,private route:ActivatedRoute,private shared:SharedService) {
     this.shared.languageChange.subscribe((path:any)=>{
       this.changeLanguage();

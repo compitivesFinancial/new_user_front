@@ -1,7 +1,7 @@
 <div class="campaign-tab">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#wallet">My Wallet</a>
+            <a class="nav-link active" data-toggle="tab" href="#wallet">{{LANG.My_Wallet}}</a>
         </li>
         <!-- <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#bank">Bank Details</a>
@@ -21,33 +21,33 @@
                         <div class="col-md-4">
                             <div class="wallet-left" *ngIf="user_data?.role_type==3">
                                 <i class="fa fa-film" aria-hidden="true"></i>
-                                <h6>Amount Yet to pay</h6>
+                                <h6>{{LANG.amountYetToPay}}</h6>
                                 <h1>SR {{roundOF(walletFundBorower?.wallet_amount)}}</h1>
                                 <!-- <button class="btn add-amount">ADD AMOUNT</button> -->
                             </div>
                             <div class="wallet-left" *ngIf="user_data?.role_type==2">
                                 <i class="fa fa-film" aria-hidden="true"></i>
-                                <h6>Available cash in your CFC wallet</h6>
+                                <h6>{{LANG.Available_cash_in_your_CFC_wallet}}</h6>
                                 <h1>SR {{walletFund?.wallet_total}}</h1>
-                                <button class="btn add-amount" data-toggle="modal" data-target="#addmoney">ADD AMOUNT</button>
+                                <button class="btn add-amount" data-toggle="modal" data-target="#addmoney">{{LANG.add-amount}}</button>
                             </div>
 <!-- Add Money Modal -->
                             <div class="modal fade" id="addmoney" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog Modalsize" role="document" >
                                   <div class="modal-content ModalWidth">
                                     <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                      <h5 class="modal-title" id="exampleModalLabel">{{LANG.Modal_title}}</h5>
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
                                     </div>
                                     <div class="modal-body">
-                                      <title>Enter the Amount</title>
+                                      <title>{{LANG.Enter_the_Amount}}</title>
                                       <input type="text" placeholder="enter the amount" class="form-control" [(ngModel)]="amount">
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                      <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="addmoney()">Save changes</button>
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">{{LANG.close}}</button>
+                                      <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="addmoney()">{{LANG.Save_changes}}</button>
                                     </div>
                                   </div>
                                 </div>
@@ -58,7 +58,7 @@
                         </div>
                         <div *ngIf="user_data.role_type==3" class="col-md-8 wallet-right">
                             <!-- <div class="col-md-8 wallet-right"> -->
-                            <h6>Your active funds</h6>
+                            <h6>{{LANG.Your_active_funds}}</h6>
                             <div>
                                 <div class="wallet-right1" *ngFor="let details of totalDetails">
                                     <div class="right-first">
@@ -77,18 +77,18 @@
                                            [animation]="true"
                                            [animationDuration]="300"
                                            ></circle-progress>
-                                           <p>Amount Paid</p>
+                                           <p>{{LANG.Amount_paid}}</p>
                                         </div>
                                         <div class="right-2">
                                             <h4>{{details.tagline}}</h4>
-                                            <p>The Next Tech Of Aviation</p>
+                                            <p>{{LANG.The_Next_Tech_Of_Aviation}}</p>
                                             <div class="right-raised">
                                                 <div class="col-md-4 amo-rai">
-                                                    <p>Amount Raised</p>
+                                                    <p>{{LANG.Amount_Raised}}</p>
                                                     <h5>SAR {{details?.total_raised}}</h5>
                                                 </div>
                                                 <div class="col-md-4 amo-rai">
-                                                    <p>Amount Paid</p>
+                                                    <p>{{LANG.Amount_paid}}</p>
                                                     <h5 class="paid-sr">SAR {{details?.total_paid}}</h5>
                                                 </div>
                                             </div>
@@ -97,7 +97,7 @@
                                     <div class="right-second">
                                         <div class="right-raised">
                                             <div class="col-md-4 amo-rai">
-                                                <p>Due this month</p>
+                                                <p>{{LANG.Due_this_month}}</p>
                                                 <h5>SAR {{details.due_amount}}</h5>
                                             </div>
                                             <button class="btn right-arrow" (click)="navToDetails(details)"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
@@ -187,18 +187,18 @@
                                             <span class="percent" data-after="%">{{details?.old_withdrawal}}</span>
                                             
                                         </div>  -->
-                                           <p>Amount Received</p>
+                                           <p>{{LANG.Amount_Received}}</p>
                                                 </div>
                                                 <div class="right-2">
                                                     <h4>{{details.opportnity_detail?.tagline}}</h4>
-                                                    <p>The Next Tech Of Aviation</p>
+                                                    <p>{{LANG.The_Next_Tech_Of_Aviation}}</p>
                                                     <div class="right-raised">
                                                         <div class="col-md-4 amo-rai">
-                                                            <p>Invested</p>
+                                                            <p>{{LANG.Invested}}</p>
                                                             <h5>SAR {{details?.amount_invested}}</h5>
                                                         </div>
                                                         <div class="col-md-4 amo-rai">
-                                                            <p>Profit</p>
+                                                            <p>{{LANG.Profit}}</p>
                                                             <h5 class="paid-sr">SAR {{details?.expedted_profit}}</h5>
                                                         </div>
                                                         <!-- <div>
@@ -211,7 +211,7 @@
                                             <div class="right-second">
                                                 <div class="right-raised">
                                                     <div class="col-md-4 amo-rai">
-                                                        <p>Withdraw Amount</p>
+                                                        <p>{{LANG.withdraw_amount}}</p>
                                                         <h5>SAR {{details.withdraw_amount != null ? details.withdraw_amount:0}}</h5>
                                                     </div>
                                                     <button class="btn right-arrow" (click)="navToDetailsInvest(details.campaign_id)"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>

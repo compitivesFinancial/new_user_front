@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { CampaignService } from 'src/app/Shared/Services/campaign.service';
 import { LoginService } from 'src/app/Shared/Services/login.service';
+import { SharedService } from 'src/app/Shared/Services/shared.service';
+import { environment } from 'src/environments/environment';
 declare const $:any
 @Component({
   selector: 'app-campaign-details',
@@ -19,8 +21,10 @@ export class CampaignDetailsComponent implements OnInit {
   load:boolean=false;
   user_data:any={};
   user_details:any={};
-  
-  constructor(private route:ActivatedRoute,private campaignService:CampaignService,private loginService:LoginService,private toast:ToastrService,private router:Router) {
+  LANG:any={}
+
+
+  constructor(private route:ActivatedRoute,private campaignService:CampaignService,private loginService:LoginService,private toast:ToastrService,private router:Router,private shared:SharedService) {
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
       this.user_data=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
@@ -34,8 +38,19 @@ export class CampaignDetailsComponent implements OnInit {
           }
         }
     ))
+    this.subscriptions.push(this.shared.languageChange.subscribe((path:any)=>{
+      this.changeLanguage();
+    }))
+    this.changeLanguage();
    }
-
+   changeLanguage(){
+    if(localStorage.getItem("arabic") == "true" && localStorage.getItem("arabic") != null) {
+        this.LANG=environment.arabic_translations;
+    }
+    else {
+        this.LANG=environment.english_translations;
+    }
+  }
   ngOnInit(): void {
     this.getProfileDetails();
   }

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CampaignService } from 'src/app/Shared/Services/campaign.service';
 import { InvestmentService } from './investment.service';
+import { Subscription } from 'rxjs';
+import { SharedService } from 'src/app/Shared/Services/shared.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-investment',
@@ -14,13 +17,18 @@ export class InvestmentComponent implements OnInit {
   user_data:any={};
   dashboard_data:any={};
   closedOPpertunity:boolean=false
-
-  constructor(public investmentService:InvestmentService,private campaignService:CampaignService, public router:Router) { 
+  subscriptions:Subscription[]=[];
+  LANG:any={};
+  
+  constructor(public investmentService:InvestmentService,private campaignService:CampaignService, public router:Router,private shared:SharedService) { 
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
       this.user_data=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
     }
-    
+    this.subscriptions.push(this.shared.languageChange.subscribe((path:any)=>{
+      this.changeLanguage();
+    }))
+    this.changeLanguage();
   }
 
   ngOnInit(): void {
@@ -153,7 +161,14 @@ public closedInvestedDetails:any
           this.router.navigateByUrl(`/wallet`)
         }
     
-    
+        changeLanguage(){
+          if(localStorage.getItem("arabic") == "true" && localStorage.getItem("arabic") != null) {
+              this.LANG=environment.arabic_translations;
+          }
+          else {
+              this.LANG=environment.english_translations;
+          }
+        }
   }
 
 

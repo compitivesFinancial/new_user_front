@@ -81,8 +81,9 @@ export class AddCampaignComponent implements OnInit {
       this.err=true;
     }
     if(this.campaign_details.share_price == "" || this.campaign_details.share_price == undefined){
-      this.errors.share_price=true;
-      this.err=true;
+      this.campaign_details.share_price = 1000;
+      // this.errors.share_price=true;
+      // this.err=true;
     }
     if(this.campaign_details.total_valuation == "" || this.campaign_details.total_valuation == undefined){
       this.errors.total_valuation=true;

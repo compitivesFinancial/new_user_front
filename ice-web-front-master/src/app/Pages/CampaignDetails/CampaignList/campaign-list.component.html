@@ -4,18 +4,18 @@
         <div class="investor-tab">
             <ul class="nav nav-tabs" *ngIf="user_data.role_type == 2">
                 <li class="nav-item" (click)="changeTabs(1)">
-                    <a class="nav-link active" data-toggle="tab" href="#newest">All Opportunities</a>
+                    <a class="nav-link active" data-toggle="tab" href="#newest">{{LANG.All_Opportunities}}</a>
                 </li>
                 <li class="nav-item" (click)="changeTabs(2)">
-                    <a class="nav-link" data-toggle="tab" href="#trending">My Opportunities</a>
+                    <a class="nav-link" data-toggle="tab" href="#trending">{{LANG.My_Opportunities}}</a>
                 </li>
                 <li class="nav-item" (click)="changeTabs(3)">
-                    <a class="nav-link" data-toggle="tab" href="#returns">Closed Opportunities</a>
+                    <a class="nav-link" data-toggle="tab" href="#returns">{{LANG.Closed_Opportunities}}</a>
                 </li>
             </ul>
             <ul class="nav nav-tabs" *ngIf="user_data.role_type == 3">
                 <li class="nav-item" (click)="changeTabs(1)">
-                    <a class="nav-link active" data-toggle="tab" href="#newest">All Opportunities</a>
+                    <a class="nav-link active" data-toggle="tab" href="#newest">{{LANG.All_Opportunities}}</a>
                     <!-- <a class="nav-link active" data-toggle="tab" href="#newest">Active Opportunities</a> -->
                 </li>
                  <!--<li class="nav-item" (click)="changeTabs(3)">
@@ -46,7 +46,7 @@
                                                     <p>Pledged Of SAR {{list.total_valuation}} Goal</p>
                                                 </div>
                                                 <div class="fund-investers">
-                                                    <h4>Investers</h4>
+                                                    <h4>{{LANG.Investers}}</h4>
                                                     <p>{{list.investers}}</p>
                                                     <!-- <button class="btn btn-primary custom" (click)="navTo(list)">View Details</button> -->
                                                 </div>
@@ -58,7 +58,7 @@
                         </div>
                         <ng-container *ngIf="campaign_list.length == 0 && data_loaded">
                             <div class="col-md-12 pb-5 pl-3">
-                                <h3>Sorry, No data to display!</h3>
+                                <h3>{{LANG.Sorry_No_data_to_display}}</h3>
                             </div>
                         </ng-container>
                     </div>

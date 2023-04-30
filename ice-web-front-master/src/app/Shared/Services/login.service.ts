@@ -69,7 +69,9 @@ export class LoginService{
     }
 
     termsandCondition(){
-        this.url = "get_page_by_idoutside/3"
+        // this.url = "get_page_by_idoutside/3"
+        //Change By Qaysar To check The data return from API
+        this.url = "get_page_by_id/3"
         return this.api.get(this.url,"")
     }
 

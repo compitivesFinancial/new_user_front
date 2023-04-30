@@ -1,6 +1,6 @@
 <div class="campaign-details container-fluid">
     <div class="container">
-        <button class="btn back"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back</button>
+        <button class="btn back"><i class="fa fa-chevron-left" aria-hidden="true"></i>{{LANG.Back}}</button>
         <div class="row campaign-row-btn">
             <div class="campaign-blue">
                 <img src="{{campaignName?.campaign_images[0].image}}" alt="" class="black-img">
@@ -22,18 +22,18 @@
         </div>
         <ul class="nav nav-tabs wallet-tab" *ngIf="user_data.role_type==3">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#history">Transaction History</a>
+                <a class="nav-link active" data-toggle="tab" href="#history">{{LANG.Transaction_History}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#payments" (click)="upcoming()">Upcoming Payments</a>
+                <a class="nav-link" data-toggle="tab" href="#payments" (click)="upcoming()">{{LANG.Upcoming_Payments}}</a>
             </li>
         </ul>
         <ul class="nav nav-tabs wallet-tab" *ngIf="user_data.role_type==2">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#history">Debit History</a>
+                <a class="nav-link active" data-toggle="tab" href="#history">{{LANG.Debit_History}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#payments" (click)="upcoming()">Credit History</a>
+                <a class="nav-link" data-toggle="tab" href="#payments" (click)="upcoming()">{{LANG.Credit_History}}</a>
             </li>
         </ul>
     </div>
@@ -45,7 +45,7 @@
                 <div class="row detail2-row">
                     <div class="col-md-7">
                         <div class="table-first">
-                            <p>Transaction History</p>
+                            <p>{{LANG.Transaction_History}}</p>
                             <!-- <div class="dropdown">
                                 <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown">
                                     Sort By : Recent
@@ -65,16 +65,16 @@
                                         <td class="detail-name" *ngIf="item.total_paid!=null">
                                             <img src="../../../../assets/images/contact_image.png" alt="">
                                             <div class="date-name">
-                                                <h4> Installment paid</h4>
+                                                <h4> {{LANG.Installment_paid}}</h4>
                                                 <p>Date : {{item?.paid_date}}</p>
                                             </div>
                                         </td>
                                         <td class="invest" *ngIf="item.total_paid!=null">
-                                            <span>Transaction ID</span>
+                                            <span>{{LANG.Transaction_ID}}</span>
                                             <p>{{transactionID}}</p>
                                         </td>
                                         <td class="invest" *ngIf="item.total_paid!=null">
-                                            <span>Amount Paid</span>
+                                            <span>{{LANG.Amount_Paid}}</span>
                                             <p> SAR {{item?.total_paid}}</p>
                                         </td>
                                         <!-- </div> -->
@@ -105,25 +105,23 @@
                         <div class="detail-right">
                             <div class="wallet-tab2">
                                 <div>
-                                    <p>Raised amount</p>
-
-
+                                    <p>{{LANG.Raised_amount}}</p>
                                 </div>
                                 <span>SR {{amount_data?.amount_raised}}</span>
                             </div>
                             <div class="amount-raised detail-right wallet-tab2">
-                                <p>Amount Raised Intrese</p>
+                                <p>{{LANG.Amount_Raised_Intrese}}</p>
                                 <span>SR {{amount_data?.amount_raised_intrest}}</span>
                             </div>
                             <div class="amount-raised detail-right wallet-tab2">
-                                <p>Final Amount</p>
+                                <p>{{LANG.Final_Amount}}</p>
                                 <span>SR {{TotalInvestment(amount_data?.amount_raised,amount_data?.amount_raised_intrest)}}</span>
 
                                 <!-- <div></div> -->
                                 <!-- <h1>SAR {{campaignName?.total_valuation}}</h1> -->
                             </div>
                             <div class="top-invest">
-                                <p>Monthly Installment</p>
+                                <p>{{LANG.Monthly_Installment}}</p>
                                 <span>SR {{amount_data?.monthly_instalment}}</span>
                             </div>
                             <!-- <div class="amount-raised">
@@ -131,19 +129,19 @@
                                 <p>SR {{oppertunityDetailsList?.amount_paid}}</p>
                             </div> -->
                             <div class="amount-raised">
-                                <p>Principle paid</p>
+                                <p>{{LANG.Principle_paid}}</p>
                                 <p>SR {{amount_data?.amount_paid}}</p>
                             </div>
                             <div class="amount-raised">
-                                <p>Principle Left</p>
+                                <p>{{LANG.Principle_Left}}</p>
                                 <p>SR {{principleRemain()}}</p>
                             </div>
                             <div class="amount-raised total">
-                                <p>Due payment</p>
+                                <p>{{LANG.Due_payment}}</p>
                                 <p>SR {{amount_data?.due_amount}}</p>
                             </div>
                             <div class=" button-amount" *ngIf="amount_data.due_ids!=null">
-                                <button class="btn" (click)="payNow()">PAY NOW</button>
+                                <button class="btn" (click)="payNow()">{{LANG.PAY_NOW}}</button>
                             </div>
                         </div>
                     </div>
@@ -154,7 +152,7 @@
                 <div class="row detail2-row">
                     <div class="col-md-7">
                         <div class="table-first">
-                            <p>Upvoming Transaction History</p>
+                            <p>{{LANG.Upvoming_Transaction_History}}</p>
                             <!-- <div class="dropdown">
                                 <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown">
                                     Sort By : Recent
@@ -182,7 +180,7 @@
                                             <p>{{item?.invester_id}}</p>
                                         </td> -->
                                         <td class="invest">
-                                            <span>Total Amount to be Paid</span>
+                                            <span>{{LANG.Total_Amount_to_be_Paid}}</span>
                                             <p> SAR {{item?.total_expected}}</p>
                                         </td>
                                     </tr>
@@ -211,25 +209,23 @@
                         <div class="detail-right">
                             <div class="wallet-tab2">
                                 <div>
-                                    <p>Raised amount</p>
-
-
+                                    <p>{{LANG.Raised_amount}}</p>
                                 </div>
                                 <span>SR {{amount_data?.amount_raised}}</span>
                             </div>
                             <div class="amount-raised detail-right wallet-tab2">
-                                <p>Amount Raised Intrese</p>
+                                <p>{{LANG.Amount_Raised_Intrese}}</p>
                                 <span>SR {{amount_data?.amount_raised_intrest}}</span>
                             </div>
                             <div class="amount-raised detail-right wallet-tab2">
-                                <p>Final Amount</p>
+                                <p>{{LANG.Final_Amount}}</p>
                                 <span>SR {{TotalInvestment(amount_data?.amount_raised,amount_data?.amount_raised_intrest)}}</span>
 
                                 <!-- <div></div> -->
                                 <!-- <h1>SAR {{campaignName?.total_valuation}}</h1> -->
                             </div>
                             <div class="top-invest">
-                                <p>Monthly Installment</p>
+                                <p>{{LANG.monthly_instalment}}</p>
                                 <span>SR {{amount_data?.monthly_instalment}}</span>
                             </div>
                             <!-- <div class="amount-raised">
@@ -237,19 +233,20 @@
                                 <p>SR {{oppertunityDetailsList?.amount_paid}}</p>
                             </div> -->
                             <div class="amount-raised">
-                                <p>Amount paid</p>
+                                <p>{{LANG.amount_paid}</p>
                                 <p>SR {{amount_data?.amount_paid}}</p>
                             </div>
                             <div class="amount-raised">
+                                <p>{{LANG.amountYetToReceive}}</p>
                                 <p>Amount Yet to receive</p>
                                 <p>SR {{principleRemain()}}</p>
                             </div>
                             <div class="amount-raised total">
-                                <p>Due payment</p>
+                                <p>{{LANG.due_amount}}</p>
                                 <p>SR {{amount_data?.due_amount}}</p>
                             </div>
                             <div class=" button-amount" *ngIf="amount_data.due_ids!=null">
-                                <button class="btn" (click)="payNow()">PAY NOW</button>
+                                <button class="btn" (click)="payNow()">{{LANG.payNow}}</button>
                             </div>
                         </div>
                     </div>
@@ -286,16 +283,16 @@
                                         <td class="detail-name">
                                             <img src="../../../../assets/images/contact_image.png" alt="">
                                             <div class="date-name">
-                                                <h4> Withdraw on</h4>
-                                                <p>Date : {{item?.created_on}}</p>
+                                                <h4> {{LANG.Withdraw_on}}</h4>
+                                                <p>{{LANG.Date}} : {{item?.created_on}}</p>
                                             </div>
                                         </td>
                                         <td class="invest">
-                                            <span>Transaction ID</span>
+                                            <span>{{LANG.Transaction_ID}}</span>
                                             <p>{{transactionID}}</p>
                                         </td>
                                         <td class="invest">
-                                            <span>Debited Amount</span>
+                                            <span>{{LANG.debit_amount}}</span>
                                             <p> SAR {{item?.debit_amount}}</p>
                                         </td>
                                         <!-- </div> -->
@@ -326,18 +323,16 @@
                         <div class="detail-right">
                             <div class="wallet-tab2">
                                 <div>
-                                    <p>Invested </p>
-
-
+                                    <p>{{LANG.invested}} </p>
                                 </div>
                                 <span>SR {{investorWalletDetails?.invested}}</span>
                             </div>
                             <div class="amount-raised detail-right wallet-tab2">
-                                <p>Profit</p>
+                                <p>{{LANG.Profit}}</p>
                                 <span>SR {{investorWalletDetails?.profit}}</span>
                             </div>
                             <div class="amount-raised detail-right wallet-tab2">
-                                <p>Final Reciveable</p>
+                                <p>{{LANG.Final_Reciveable}}</p>
                                 <span>SR {{TotalInvestment(investorWalletDetails?.invested,investorWalletDetails?.profit)}}</span>
 
                                 <!-- <div></div> -->
@@ -345,7 +340,7 @@
                             </div>
                             <div class="top-invest">
                                 <div class="amount-raised">
-                                    <p>Recieved Amount</p>
+                                    <p>{{LANG.Recieved_Amount}}</p>
                                     <p>SR {{investorWalletDetails?.recievable_amount}}</p>
                                 </div>
                                 <!-- <p>Monthly Installment</p>
@@ -360,19 +355,20 @@
                                 <p>SR {{amount_data?.amount_paid}}</p>
                             </div> -->
                             <div class="amount-raised">
-                                <p>Debited Amount</p>
+                                <p>{{LANG.debit_amount}}</p>
                                 <p>SR {{investorWalletDetails?.old_withdrawal}}</p>
                             </div>
                             <div class="amount-raised">
-                                <p>Amount yet to receive</p>
+                                <p>{{LANG.amountYetToReceive}}</p>
                                 <p>SR {{principleRemainInvestor()}}</p>
                             </div>
                             <div class="amount-raised total">
-                                <p>Withdrawl Amount</p>
+                                <!-- <p>Withdrawl Amount</p> -->
+                                <p>{{LANG.Withdrawl_Amount}}</p>
                                 <p>SR {{investorWalletDetails?.withdrawal}}</p>
                             </div>
                             <div class=" button-amount">
-                                <button class="btn" (click)="withdraw()" *ngIf="investorWalletDetails?.withdrawal>0">Withdraw</button>
+                                <button class="btn" (click)="withdraw()" *ngIf="investorWalletDetails?.withdrawal>0">{{LANG.withdraw}}</button>
                             </div>
                         </div>
                     </div>
@@ -402,7 +398,7 @@
                                         <td class="detail-name">
                                             <img src="../../../../assets/images/contact_image.png" alt="">
                                             <div class="date-name">
-                                                <h4>Profit Received</h4>
+                                                <h4>{{LANG.Profit_Received}}</h4>
                                                 <p>Due Date : {{item?.created_on}}</p>
                                             </div>
                                         </td>
@@ -411,7 +407,7 @@
                                             <p>{{item?.invester_id}}</p>
                                         </td> -->
                                         <td class="invest">
-                                            <span>Credited Amount</span>
+                                            <span>{{LANG.Credited_Amount}}</span>
                                             <p> SAR {{item?.credit_amount}}</p>
                                         </td>
                                     </tr>
@@ -440,18 +436,18 @@
                         <div class="detail-right">
                             <div class="wallet-tab2">
                                 <div>
-                                    <p>Invested </p>
+                                    <p>{{LANG.invested}} </p>
 
 
                                 </div>
                                 <span>SR {{investorWalletDetails?.invested}}</span>
                             </div>
                             <div class="amount-raised detail-right wallet-tab2">
-                                <p>Profit</p>
+                                <p>{{LANG.profit}}</p>
                                 <span>SR {{investorWalletDetails?.profit}}</span>
                             </div>
                             <div class="amount-raised detail-right wallet-tab2">
-                                <p>Final Reciveable</p>
+                                <p>{{LANG.Final_Reciveable}}</p>
                                 <span>SR {{TotalInvestment(investorWalletDetails?.invested,investorWalletDetails?.profit)}}</span>
 
                                 <!-- <div></div> -->
@@ -459,7 +455,7 @@
                             </div>
                             <div class="top-invest">
                                 <div class="amount-raised">
-                                    <p>Recieved Amount</p>
+                                    <p>{{LANG.Recieved_Amount}}</p>
                                     <p>SR {{investorWalletDetails?.recievable_amount}}</p>
                                 </div>
                                 <!-- <p>Monthly Installment</p>
@@ -474,19 +470,19 @@
                                 <p>SR {{amount_data?.amount_paid}}</p>
                             </div> -->
                             <div class="amount-raised">
-                                <p>Debited Amount</p>
+                                <p>{{LANG.debit_amount}}</p>
                                 <p>SR {{investorWalletDetails?.old_withdrawal}}</p>
                             </div>
                             <div class="amount-raised">
-                                <p>Amount yet to receive</p>
+                                <p>{{LANG.amountYetToReceive}}</p>
                                 <p>SR {{principleRemainInvestor()}}</p>
                             </div>
                             <div class="amount-raised total">
-                                <p>Withdrawl Amount</p>
+                                <p>{{LANG.Withdrawl_Amount}}</p>
                                 <p>SR {{investorWalletDetails?.withdrawal}}</p>
                             </div>
                             <div class=" button-amount">
-                                <button class="btn" (click)="withdraw()" *ngIf="investorWalletDetails?.withdrawal>0">Withdraw</button>
+                                <button class="btn" (click)="withdraw()" *ngIf="investorWalletDetails?.withdrawal>0">{{LANG.withdraw}}</button>
                             </div>
                         </div>
                     </div>

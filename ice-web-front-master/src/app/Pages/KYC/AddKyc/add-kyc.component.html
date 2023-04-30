@@ -2,13 +2,13 @@
     <div class="campaign-tab">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" routerLink="/add-kyc">Kyc Details</a>
+                <a class="nav-link active" data-toggle="tab" routerLink="/add-kyc">{{LANG.Kyc_Details}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " data-toggle="tab" routerLink="/my-profile">Edit Profile</a>
+                <a class="nav-link " data-toggle="tab" routerLink="/my-profile">{{LANG.Edit_Profile}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" routerLink="/campaign-list">View Opportunity</a>
+                <a class="nav-link" data-toggle="tab" routerLink="/campaign-list">{{LANG.View_Opportunity}}</a>
             </li>
         </ul>
     </div>
@@ -53,8 +53,8 @@
                     <div class="upload-sec" *ngIf="i == tab_index">
                         <div class="skip" *ngIf="i == 0">
                             <span class="status">{{LANG.Status}}: <span class="text-success"
-                                    *ngIf="disabled_inputs;else pending">Approved</span>
-                                <ng-template #pending><span class="text-warning">Pending</span></ng-template>
+                                    *ngIf="disabled_inputs;else pending">{{LANG.Approved}}</span>
+                                <ng-template #pending><span class="text-warning">{{LANG.Pending}}</span></ng-template>
                             </span>
                         </div>
                         <div class="skip link" *ngIf="i == 0 && user_type == '2'">
@@ -104,7 +104,8 @@
                                             (keyup.enter)="verifyCrNumber(fields.value)">
                                         <span class="error"
                                             *ngIf="fields.required">{{LANG.This_field_is_required}}</span>
-                                        <a (click)="verifyCrNumber(fields.value)" class="pointer" hidden>verify</a>
+                                        <a (click)="verifyCrNumber(fields.value)" class="pointer"
+                                            hidden>{{LANG.verify}}</a>
                                     </div>
 
                                     <div class="form-group col-md-6"
@@ -269,9 +270,8 @@
                                         </select>
                                         <span class="error"
                                             *ngIf="fields.required">{{LANG.This_field_is_required}}</span>
-                                            <br /><br />
-                                        <a (click)="checkYaqeenService()" class="pointer">Check
-                                            Data</a>
+                                        <br /><br />
+                                        <a (click)="checkYaqeenService()" class="pointer">{{LANG.Check_Data}}</a>
                                     </div>
                                     <div class="form-group col-md-6"
                                         *ngIf="identityStr != '1' && fields.type == field_types.Date &&  fields.id == 136 &&  fields.id != 112 && fields.id != 113&& fields.id != 114&& fields.id != 115 && fields.id != 116 && fields.id != 135 && fields.id != 137 && fields.id != 138">
@@ -282,8 +282,7 @@
                                         <span class="error"
                                             *ngIf="fields.required">{{LANG.This_field_is_required}}</span>
                                         <br />
-                                        <a (click)="checkYaqeenService()" class="pointer">Check
-                                            Data</a>
+                                        <a (click)="checkYaqeenService()" class="pointer">{{LANG.Check_Data}}</a>
                                     </div>
                                     <div class="form-group col-md-6" *ngIf="fields.id == 137 || fields.id == 138">
                                         <label>{{fields.title}}</label>
@@ -423,8 +422,9 @@
                         </ng-container>
 
                         <div class="buttons">
-                            <button class="btn back" *ngIf="i != 0" (click)="back(i)">Back</button>
-                            <button class="btn next" (click)="next(i)" *ngIf="i != kyc_form.length-1">Next</button>
+                            <button class="btn back" *ngIf="i != 0" (click)="back(i)">{{LANG.Back}}</button>
+                            <button class="btn next" (click)="next(i)"
+                                *ngIf="i != kyc_form.length-1">{{LANG.Next}}</button>
                         </div>
 
                     </div>

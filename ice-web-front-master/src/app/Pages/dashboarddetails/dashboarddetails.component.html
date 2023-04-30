@@ -7,13 +7,13 @@
         <div class="campaign-tab">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" routerLink="/add-kyc">Kyc Details</a>
+                    <a class="nav-link" data-toggle="tab" routerLink="/add-kyc">{{LANG.Kyc_Details}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" routerLink="/my-profile">Edit Profiel</a>
+                    <a class="nav-link" data-toggle="tab" routerLink="/my-profile">{{LANG.Edit_Profiel}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" routerLink="/add-campaign" *ngIf="profileDetails.kyc_approved_status==1"> Add Opportunity</a>
+                    <a class="nav-link" data-toggle="tab" routerLink="/add-campaign" *ngIf="profileDetails.kyc_approved_status==1"> {{LANG.Add_Opportunity}}</a>
                 </li>
             </ul>
         </div>
@@ -32,7 +32,7 @@
                     <!-- <i class='bx bx-cart-alt cart'></i>
         </div> -->
                     <div class="col-md-3">
-                        <div class="box-topic">Number of Oppertunity</div>
+                        <div class="box-topic">{{LANG.Number_of_Oppertunity}}</div>
 
                         <div class="box">
 
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="box-topic">Total Amount Raised</div>
+                        <div class="box-topic">{{LANG.Total_Amount_Raised}}</div>
                         <div class="box">
                             <div class="right-side">
                                 <div class="number">{{roundOF(dashDetailsList.total_amount_raised != null ? dashDetailsList.total_amount_raised:0)}}</div>
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="box-topic">Total Repayment</div>
+                        <div class="box-topic">{{LANG.Total_Repayment}}</div>
 
                         <div class="box">
                             <div class="right-side">
@@ -75,7 +75,7 @@
                     </div>
                     <div>
                         <div>&nbsp;</div>
-                        <button class="btn add-opportunity" routerLink="/add-campaign" *ngIf="profileDetails.kyc_approved_status==1">Add Opportuniy</button>
+                        <button class="btn add-opportunity" routerLink="/add-campaign" *ngIf="profileDetails.kyc_approved_status==1">{{LANG.Add_Opportunity}}</button>
                     </div>
                 </div>
 
@@ -97,7 +97,7 @@
                                     <!-- <img src="../../../assets/images/banner.png" alt="" class="img-size"> -->
                                     <img src="../../../assets/images/bank_img.jpg" alt="" class="img-size">
                                 </div>
-                                <div class="box-topic">Account Number</div>
+                                <div class="box-topic">{{LANG.account_number}}</div>
                                 <div class="number">{{profileDetails.account_number!= null ? profileDetails.account_number:0}}</div>
                                 <!-- <div class="indicator">
                   <i class='bx bx-up-arrow-alt'></i>
@@ -111,15 +111,15 @@
 
 
                         <div class="box">
-                            <div class="box-topic">Profile Info</div>
+                            <div class="box-topic">{{LANG.Profile_Info}}</div>
 
                             <div class="profile-right">
                                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
 
                                 <div class="right-side">
-                                    <div class="box-topic">Name:{{profileDetails?.first_name}}{{profileDetails?.last_name}}</div>
-                                    <div class="box-topic box-topic-i"><i class="fa fa-envelope-o" aria-hidden="true"></i>Email ID:{{profileDetails?.email}}</div>
-                                    <div class="box-topic box-topic-i"><i class="fa fa-phone" aria-hidden="true"></i>Contact Number:{{profileDetails?.mobile_number}}</div>
+                                    <div class="box-topic">{{LANG.Name}}:{{profileDetails?.first_name}}{{profileDetails?.last_name}}</div>
+                                    <div class="box-topic box-topic-i"><i class="fa fa-envelope-o" aria-hidden="true"></i>{{LANG.Email_ID}}:{{profileDetails?.email}}</div>
+                                    <div class="box-topic box-topic-i"><i class="fa fa-phone" aria-hidden="true"></i>{{LANG.Contact_Number}}:{{profileDetails?.mobile_number}}</div>
 
                                     <!-- <div class="indicator">
                     <i class='bx bx-up-arrow-alt'></i>
@@ -151,13 +151,13 @@
             <div class="campaign-tab">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" routerLink="/add-kyc">Kyc Details</a>
+                        <a class="nav-link" data-toggle="tab" routerLink="/add-kyc">{{LANG.Kyc_Details}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" routerLink="/my-profile">Edit Profiel</a>
+                        <a class="nav-link" data-toggle="tab" routerLink="/my-profile">{{LANG.Edit_Profiel}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" routerLink="/campaign-list">View Opportunity</a>
+                        <a class="nav-link" data-toggle="tab" routerLink="/campaign-list">{{LANG.View_Opportunity}}</a>
                     </li>
                 </ul>
             </div>
@@ -177,7 +177,7 @@
                     <!-- <i class='bx bx-cart-alt cart'></i>
           </div> -->
                     <div class="col-md-3">
-                        <div class="box-topic">Number of Investment</div>
+                        <div class="box-topic">{{LANG.Number_of_Investment}}</div>
 
                         <div class="box">
                             <div class="right-side">
@@ -191,7 +191,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="box-topic">Total Amount Invested</div>
+                        <div class="box-topic">{{LANG.Total_Amount_Invested}</div>
 
                         <div class="box">
                             <div class="right-side">
@@ -205,7 +205,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="box-topic">Total Profit</div>
+                        <div class="box-topic">{{LANG.Total_Profit}}</div>
 
                         <div class="box">
                             <div class="right-side">
@@ -238,7 +238,7 @@
                                     <!-- <img src="../../../assets/images/banner.png" alt="" class="img-size"> -->
                                     <img src="../../../assets/images/bank_img.jpg" alt="" class="img-size">
                                 </div>
-                                <div class="box-topic">Account Number</div>
+                                <div class="box-topic">{{LANG.Account_Number}}</div>
                                 <div class="number">{{profileDetails.account_number != null ? profileDetails.account_number:0}}</div>
                                 <!-- <div class="indicator">
                     <i class='bx bx-up-arrow-alt'></i>
@@ -252,13 +252,13 @@
 
 
                         <div class="box">
-                            <div class="box-topic">Profile Info</div>
+                            <div class="box-topic">{{LANG.Profile_Info}}</div>
                             <div class="profile-right">
                                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                                 <div class="right-side">
-                                    <div class="box-topic">Name:{{profileDetails?.first_name}}{{profileDetails?.last_name}}</div>
-                                    <div class="box-topic box-topic-i"><i class="fa fa-envelope-o" aria-hidden="true"></i>Email ID:{{profileDetails?.email}}</div>
-                                    <div class="box-topic  box-topic-i"><i class="fa fa-phone" aria-hidden="true"></i>Contact Number:{{profileDetails?.mobile_number}}</div>
+                                    <div class="box-topic">{{LANG.Name}}:{{profileDetails?.first_name}}{{profileDetails?.last_name}}</div>
+                                    <div class="box-topic box-topic-i"><i class="fa fa-envelope-o" aria-hidden="true"></i>{{LANG.Email_ID}}:{{profileDetails?.email}}</div>
+                                    <div class="box-topic  box-topic-i"><i class="fa fa-phone" aria-hidden="true"></i>{{LANG.Contact_Number}}:{{profileDetails?.mobile_number}}</div>
 
                                     <!-- <div class="indicator">
                       <i class='bx bx-up-arrow-alt'></i>
