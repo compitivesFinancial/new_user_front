@@ -52,9 +52,10 @@ export class StatementsService{
 		return this.api.get(this.url,"");
     }
 
-    getPageDetails(id:string){
+    getPageDetails(id:string,data:Object){
+       
         this.url = `get_page_by_id/${id}`;
-		return this.api.get(this.url,"");
+		return this.api.post(this.url,data);
     }
 
 

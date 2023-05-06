@@ -12,10 +12,17 @@ export class QuickLinkComponent implements OnInit {
   public id:string="";
   public details:any={};
   LANG:any=""
+  users:any={};
   constructor(private statement:StatementsService,private route:ActivatedRoute,private shared:SharedService) {
     this.shared.languageChange.subscribe((path:any)=>{
       this.changeLanguage();
     })
+    const user_data=btoa(btoa("user_info_web"));
+    if(localStorage.getItem(user_data) != undefined){
+     
+      this.users=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
+      
+    }
     this.changeLanguage();
     this.route.queryParams
       .subscribe(
@@ -42,7 +49,12 @@ export class QuickLinkComponent implements OnInit {
   
 
   getPageDetails(){
-    this.statement.getPageDetails(this.id).subscribe((data:any)=>{
+    const mydata={
+      "id": this.id,
+      'user_id':this.users.id
+      // "country_code": this.country_code
+    }
+    this.statement.getPageDetails(this.id,mydata).subscribe((data:any)=>{
       if(data.status){
         this.details=data.response;
       }
