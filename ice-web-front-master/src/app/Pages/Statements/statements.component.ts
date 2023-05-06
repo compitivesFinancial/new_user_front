@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
+import { SharedService } from 'src/app/Shared/Services/shared.service';
 import { StatementsService } from 'src/app/Shared/Services/statements.service';
+import { environment } from 'src/environments/environment';
 declare const $:any;
 @Component({
   selector: 'app-statements',
@@ -12,14 +14,26 @@ export class StatementsComponent implements OnInit {
   borrower_statement:any=[];
   subscriptions:Subscription[]=[];
   user_data:any={};
+  LANG: any = "";
 
-  constructor(private statmentsService:StatementsService,private toast:ToastrService) { 
+  constructor(private shared: SharedService,private statmentsService:StatementsService,private toast:ToastrService) { 
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
       this.user_data=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
     }
+    this.subscriptions.push(this.shared.languageChange.subscribe((path: any) => {
+      this.changeLanguage();
+    }))
+    this.changeLanguage();
   }
-
+  changeLanguage() {
+    if (localStorage.getItem("arabic") == "true" && localStorage.getItem("arabic") != null) {
+      this.LANG = environment.arabic_translations;
+    }
+    else {
+      this.LANG = environment.english_translations;
+    }
+  }
   ngOnInit(): void {
     this.getStatements()
   }

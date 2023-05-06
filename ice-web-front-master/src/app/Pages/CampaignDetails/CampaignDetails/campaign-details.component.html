@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="submit-button" *ngIf="user_data?.role_type == 2">
-                <button class="btn" (click)="openInvestModal()">INVEST</button>
+                <button class="btn" (click)="openInvestModal()">{{LANG.Invest}}</button>
             </div>
         </div>
         <div class="row">
@@ -40,7 +40,7 @@
                 <div class="row invest-row">
                     <div class="col-md-6">
                         <div class="invest">
-                            <p>Investers</p>
+                            <p>{{LANG.Investers}}</p>
                             <h6>123</h6>
                         </div>
                     </div>
@@ -52,25 +52,25 @@
                     </div> -->
                     <div class="col-md-6">
                         <div class="invest">
-                            <p>Price Per Share</p>
+                            <p>{{LANG.Price_Per_Share}}</p>
                             <h6>SAR {{campaign_details?.share_price}}</h6>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="invest">
-                            <p>Valuation</p>
+                            <p>{{LANG.Valuation}}</p>
                             <h6>SAR {{campaign_details?.total_valuation}}</h6>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="invest">
-                            <p>Min Investment</p>
+                            <p>{{LANG.Min_Investment}}</p>
                             <h6>SAR {{campaign_details?.min_investment}}</h6>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="invest">
-                            <p>Max Investment</p>
+                            <p>{{LANG.Max_Investment}}</p>
                             <h6>SAR {{campaign_details?.max_investment}}</h6>
                         </div>
                     </div>
@@ -80,19 +80,19 @@
         <div class="row allocation">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#about">About</a>
+                    <a class="nav-link active" data-toggle="tab" href="#about">{{LANG.About}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " data-toggle="tab" href="#team">Team</a>
+                    <a class="nav-link " data-toggle="tab" href="#team">{{LANG.Team}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " data-toggle="tab" href="#term">Terms</a>
+                    <a class="nav-link " data-toggle="tab" href="#term">{{LANG.Terms}}</a>
                 </li>
             </ul>
         </div>
         <!-- <div class="tab-content">
             <div class="tab-pane active " id="about">
-                
+
             </div>
         </div> -->
     </div>
@@ -101,7 +101,7 @@
     <div class="container">
         <div class="fund-allocation tab-content">
             <div class="funds-all tab-pane active" id="about">
-                <h2>Reasons to Invest</h2>
+                <h2>{{LANG.Reasons_to_Invest}}</h2>
                 <p>{{campaign_details?.reason_to_invest}}</p>
             </div>
             <div class="funds-all tab-pane" id="team">
@@ -118,9 +118,9 @@
                     </div>
                 </div>
             </div>
-           
+
             <div class="funds-all tab-pane" id="term">
-                <h2>Terms</h2>
+                <h2>{{LANG.Terms}}</h2>
                 <p>{{campaign_details?.terms}}</p>
             </div>
         </div>
@@ -133,7 +133,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="reject">Invest</h5>
+          <h5 class="modal-title" id="reject">{{LANG.Invest}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -141,16 +141,16 @@
         <div class="modal-body">
             <div class="row">
                     <div class="form-group col-md-12">
-                        <label>Enter Amount</label>
+                        <label>{{LANG.Enter_Amount}}</label>
                         <input type="text" class="form-control" placeholder="Amount"  name="amount" [(ngModel)]="amount" />
-                    </div>                
+                    </div>
             </div>
         </div>
         <div class="modal-footer submit-button">
           <!-- <button type="button" class="btn btn-secondary loader-btn" data-dismiss="modal" [disabled]="load">Close</button> -->
-          <button type="button" class="btn" *ngIf="!load" (click)="invest()">Invest</button>
+          <button type="button" class="btn" *ngIf="!load" (click)="invest()" data-dismiss="modal">{{LANG.Invest}}</button>
           <button type="button" *ngIf="load" class="btn"><loader></loader></button>
-          
+
 
         </div>
       </div>

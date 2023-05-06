@@ -1,30 +1,48 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { SharedService } from 'src/app/Shared/Services/shared.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-dashboard-payment',
-  templateUrl: './dashboard-payment.component.html',
-  styleUrls: ['./dashboard-payment.component.css']
+    selector: 'app-dashboard-payment',
+    templateUrl: './dashboard-payment.component.html',
+    styleUrls: ['./dashboard-payment.component.css']
 })
 export class DashboardPaymentComponent implements OnInit {
-public requestId:any
-  constructor(public route:ActivatedRoute) { }
+    subscriptions: Subscription[] = [];
+    public requestId: any
+    LANG: any = {};
+    
+    constructor(public route: ActivatedRoute, private shared: SharedService) {
+        this.subscriptions.push(this.shared.languageChange.subscribe((path: any) => {
+            this.changeLanguage();
+        }))
+        this.changeLanguage();
+    }
+    changeLanguage() {
+        if (localStorage.getItem("arabic") == "true" && localStorage.getItem("arabic") != null) {
+            this.LANG = environment.arabic_translations;
+        }
+        else {
+            this.LANG = environment.english_translations;
+        }
+    }
+    ngOnInit(): void {
+        const script = document.createElement('script');
+        script.src = 'https://test-anb.mtf.gateway.mastercard.com/api/rest/version/69/merchant/1050/session.js';
+        document.head.appendChild(script);
+        // <style id="antiClickjack">body{display:none !important;}</style>
+        const style = document.createElement('style');
+        style.id = 'antiClickjack'
+        style.innerHTML = 'body{display:none !important;}'
+        document.head.appendChild(style);
 
-  ngOnInit(): void {
-    const script = document.createElement('script');
-    script.src = 'https://test-anb.mtf.gateway.mastercard.com/api/rest/version/69/merchant/1050/session.js';
-    document.head.appendChild(script);
-    // <style id="antiClickjack">body{display:none !important;}</style>
-    const style = document.createElement('style');
-    style.id = 'antiClickjack'
-    style.innerHTML='body{display:none !important;}'
-    document.head.appendChild(style);
-   
-    this.requestId = atob(this.route.snapshot.params['id']);
-    console.log(this.requestId,'id is ere')
-    const scriptPaymentSession = document.createElement('script');
-    scriptPaymentSession.type="text/javascript"
-    scriptPaymentSession.innerHTML=`
+        this.requestId = atob(this.route.snapshot.params['id']);
+        console.log(this.requestId, 'id is ere')
+        const scriptPaymentSession = document.createElement('script');
+        scriptPaymentSession.type = "text/javascript"
+        scriptPaymentSession.innerHTML = `
     console.log(${this.requestId})
     if (self === top) {
       var antiClickjack = document.getElementById("antiClickjack");
@@ -145,16 +163,16 @@ public requestId:any
           PaymentSession.updateSessionFromForm(paymentType);
       }
   }`
-    document.body.appendChild(scriptPaymentSession);
+        document.body.appendChild(scriptPaymentSession);
 
-  
-  }
-  
 
-  pay(){
+    }
 
-  }
 
-  
+    pay() {
+
+    }
+
+
 
 }

@@ -4,18 +4,18 @@
         <div class="investor-tab">
             <ul class="nav nav-tabs" *ngIf="user_data.role_type == 2">
                 <li class="nav-item" (click)="changeTabs(1)">
-                    <a class="nav-link active" data-toggle="tab" href="#newest">All Opportunities</a>
+                    <a class="nav-link active" data-toggle="tab" href="#newest">{{LANG.All_Opportunities}}</a>
                 </li>
                 <li class="nav-item" (click)="changeTabs(2)">
-                    <a class="nav-link" data-toggle="tab" href="#trending">My Opportunities</a>
+                    <a class="nav-link" data-toggle="tab" href="#trending">{{LANG.My_Opportunities}}</a>
                 </li>
                 <li class="nav-item" (click)="changeTabs(3)">
-                    <a class="nav-link" data-toggle="tab" href="#returns">Closed Opportunities</a>
+                    <a class="nav-link" data-toggle="tab" href="#returns">{{LANG.Closed_Opportunities}}</a>
                 </li>
             </ul>
             <ul class="nav nav-tabs" *ngIf="user_data.role_type == 3">
                 <li class="nav-item" (click)="changeTabs(1)">
-                    <a class="nav-link active" data-toggle="tab" href="#newest">All Opportunities</a>
+                    <a class="nav-link active" data-toggle="tab" href="#newest">{{LANG.All_Opportunities}}</a>
                     <!-- <a class="nav-link active" data-toggle="tab" href="#newest">Active Opportunities</a> -->
                 </li>
                  <!--<li class="nav-item" (click)="changeTabs(3)">
@@ -33,22 +33,24 @@
                                 <div>
                                     <div class="carousel-content" >
                                         <div class="caro-img carousel-slide">
-                                            <img  src="{{list.campaign_images[0].image}}" class="w-100" alt="" >
+                                            <!-- <img  src="{{list.campaign_images[0].image}}" class="w-100" alt="" > -->
+                                            <img  src="assets/images/add-img.png" class="w-100" alt="" >
                                             <!-- <span>2 days left</span> -->
                                         </div>
                                         <div class="pad-carousel">
                                             <h6 >{{list.tagline}}</h6>
                                             <p>{{list.reason_to_invest}}</p>
-                                            
+
                                             <div class="d-flex justify-content-between ">
                                                 <div class="fund-rate">
-                                                    <h5>SAR {{list.raised}} </h5>
-                                                    <p>Pledged Of SAR {{list.total_valuation}} Goal</p>
+                                                    <h5>{{list.raised}} </h5><br/>
+                                                    <p>{{LANG.Pledged_Of_SAR}} {{list.total_valuation}}</p>
                                                 </div>
                                                 <div class="fund-investers">
-                                                    <h4>Investers</h4>
+                                                    <!-- <h6>{{LANG.Investers}}</h6> -->
+<br/>
                                                     <p>{{list.investers}}</p>
-                                                    <!-- <button class="btn btn-primary custom" (click)="navTo(list)">View Details</button> -->
+                                                    <button class="btn btn-primary custom" (click)="navTo(list)">View Details</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -58,7 +60,7 @@
                         </div>
                         <ng-container *ngIf="campaign_list.length == 0 && data_loaded">
                             <div class="col-md-12 pb-5 pl-3">
-                                <h3>Sorry, No data to display!</h3>
+                                <h3>{{LANG.Sorry_No_data_to_display}}</h3>
                             </div>
                         </ng-container>
                     </div>

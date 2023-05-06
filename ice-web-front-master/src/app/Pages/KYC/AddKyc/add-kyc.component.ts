@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CampaignService } from 'src/app/Shared/Services/campaign.service';
 import { FieldType } from 'src/app/Shared/Enums';
@@ -20,14 +20,17 @@ import { MaritalStatus } from 'src/app/Shared/Models/marital-status';
 import { Education } from 'src/app/Shared/Models/education';
 import { JobStatus } from 'src/app/Shared/Models/job-status';
 import { lookupService } from 'dns';
-
+import { Console } from 'console';
+import { YaqeenService } from 'src/app/Shared/Services/yaqeen.service';
+import { YaqeenData } from 'src/app/Shared/Models/YaqeenData';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-add-kyc',
   templateUrl: './add-kyc.component.html',
   styleUrls: ['./add-kyc.component.css']
 })
-export class AddKycComponent implements OnInit {
+export class AddKycComponent implements OnInit, OnChanges {
   err: boolean = false;
   load: boolean = false;
   kyc_form: any = [];
@@ -52,6 +55,10 @@ export class AddKycComponent implements OnInit {
   crEntityNumber: any
 
   //added By Qaysar For updating the page with dynamic list
+  public yaqeenArName: any = ''
+  public yaqeenEnName: any = ''
+  // yaqeenArName: Subject<string> = new BehaviorSubject<string>(``);
+  // yaqeenEnName: Subject<string> = new BehaviorSubject<string>(``);
   identityList: Identity[] = [];
   genderList: Gender[] = [];
   banksList: Bank[] = [];
@@ -59,11 +66,45 @@ export class AddKycComponent implements OnInit {
   maritalStatusList: MaritalStatus[] = [];
   educationList: Education[] = [];
   jobStatusList: JobStatus[] = [];
+  yearsHijri: number[] = [];
+  monthsHijri: string[] = [];
+  days: number[] = [];
+
+  identityStr: string = '';
+  genderStr: string = '';
+  banksStr: string = '';
+  fundUseStr: string = '';
+  maritalStatusStr: string = '';
+  educationStr: string = '';
+  jobStatusStr: string = '';
+  yearsHStr: string = '';
+  monthStr: string = '';
+  dayStr: string = '';
+  yaqeenIdNumber: any = '';
+  public yaqeenRes: any;
+  yaqeenData?: YaqeenData;
+  // yageenRes: any;
+  iqamaDOB: any | undefined;
+
+  status: boolean = false;
+  birthDateG: string = '';
+  familyName: string = '';
+  familyNameT: string = '';
+  fatherName: string = '';
+  fatherNameT: string = '';
+  firstName: string = '';
+  firstNameT: string = '';
+  grandFatherName: string = '';
+  grandFatherNameT: string = '';
+  nationalityDescAr: string = '';// for iqama only
+  sexDescAr: string = '';
+  idExpirationDate: string = '';
+  subTribeName: string = '';// for sudi only
+  //End add by qaysar
 
 
 
-
-  constructor(private campaign_service: CampaignService, private shared: SharedService, private loginService: LoginService, private route: ActivatedRoute, private toast: ToastrService, private router: Router, private lkservice: LkServiceService) {
+  constructor(private campaign_service: CampaignService, private shared: SharedService, private loginService: LoginService, private route: ActivatedRoute, private toast: ToastrService, private router: Router, private lkservice: LkServiceService, private yaqeenService: YaqeenService) {
     const user_data = btoa(btoa("user_info_web"));
     if (localStorage.getItem(user_data) != undefined) {
       this.user_data = JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
@@ -91,13 +132,17 @@ export class AddKycComponent implements OnInit {
     }))
     this.changeLanguage();
 
-    this.getIdentityList() ;
-    this.getGenderList() ;
+    this.getIdentityList();
+    this.getGenderList();
     this.getBanksList();
-    this.getFundList() ;
+    this.getFundList();
     this.getMaritalStatusList();
-    this.getEducationList() ;
+    this.getEducationList();
     this.getJobStatusList();
+    this.getYearsHijri();
+    this.getMonthsHijri();
+    this.getDays();
+
   }
 
   ngOnInit(): void {
@@ -109,6 +154,11 @@ export class AddKycComponent implements OnInit {
     this.getProfileDetails();
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    // changes.prop contains the old and the new value...
+    console.log("Changes detected");
+  }
+
   changeLanguage() {
     if (localStorage.getItem("arabic") == "true" && localStorage.getItem("arabic") != null) {
       this.LANG = environment.arabic_translations;
@@ -118,6 +168,32 @@ export class AddKycComponent implements OnInit {
     }
   }
   //added By Qaysar For updating the page with dynamic list
+  onChangeIdentity() {
+    this.yaqeenArName = '';
+    this.yaqeenEnName = '';
+    this.yearsHStr = '';
+    this.monthStr = '';
+    this.dayStr = '';
+    this.yaqeenIdNumber = '';
+    this.iqamaDOB = '';
+
+  }
+  resetYaqeenData() {
+    this.status = false;
+    this.birthDateG = '';
+    this.familyName = '';
+    this.familyNameT = '';
+    this.fatherName = '';
+    this.fatherNameT = '';
+    this.firstName = '';
+    this.firstNameT = '';
+    this.grandFatherName = '';
+    this.grandFatherNameT = '';
+    this.nationalityDescAr = '';// for iqama only
+    this.sexDescAr = '';
+    this.idExpirationDate = '';
+    this.subTribeName = '';// for sudi only
+  }
   getIdentityList() {
     this.identityList = this.lkservice.getIdentityList();
   }
@@ -138,6 +214,128 @@ export class AddKycComponent implements OnInit {
   }
   getJobStatusList() {
     this.jobStatusList = this.lkservice.getJobStatusList();
+  }
+  getYearsHijri() {
+    this.yearsHijri = this.lkservice.getYearsHijri();
+  }
+  getMonthsHijri() {
+    this.monthsHijri = this.lkservice.getMonthsHijri();
+  }
+  getDays() {
+    this.days = this.lkservice.getDays();
+  }
+  /*************************************************************************************************************/
+
+  checkYaqeenService() {
+    let hasData = false;
+    if (this.identityStr != null && this.identityStr != '' && this.identityStr != undefined) {
+      if (this.identityStr == '1') {
+        if (this.yaqeenIdNumber == null || this.yaqeenIdNumber == '' || this.yaqeenIdNumber.length < 10 || this.yearsHStr == null || this.yearsHStr == '' || this.yearsHStr == undefined || this.monthStr == null || this.monthStr == '' || this.monthStr == undefined || this.dayStr == null || this.dayStr == '' || this.dayStr == undefined) {
+          this.errorHandler(1);
+          alert("please fill Identity Type and the ID number and birthdate in Hijri to retrieve tha data");
+          console.log(`the error says ${this.err}`);
+          if (this.err) return;
+        } else {
+          this.getYaqeenSaudiData();
+          hasData = true;
+        }
+      } else if (this.yaqeenIdNumber == null || this.yaqeenIdNumber == '' || this.yaqeenIdNumber.length < 10 || this.iqamaDOB == null || this.iqamaDOB == '' || this.iqamaDOB == undefined) {
+        this.errorHandler(1);
+        alert("please fill Identity Type and the ID number and birthdate to retrieve tha data");
+        console.log(`the error says ${this.err}`);
+        if (this.err) return;
+      } else {
+        console.log(`the Date Of birth iqama service ${this.iqamaDOB}`)
+        const monthYear = new Date(this.iqamaDOB).getFullYear().toString() + '-' + (new Date(this.iqamaDOB).getMonth() + 1).toString().slice(-2);
+        console.log(`the Date Of birth iqama service ${monthYear}`)
+        this.getYaqeenIqamaData(monthYear);
+        hasData = true;
+      }
+
+    } else {
+      alert("please fill Identity Type and the ID number and birthdate in Hijri to retrieve tha data");
+    }
+  }
+
+  /*************************************************************************************************************/
+  getYaqeenSaudiData() {
+    let yearMonth = `${this.yearsHStr}-${this.monthStr}`;
+    this.subscriptions.push(this.yaqeenService.getYaqeenSaudiData(this.yaqeenIdNumber, yearMonth).subscribe((res: any) => {
+      if (res.status) {
+        this.yaqeenRes = res.response;
+        const hasData = this.getSafe(() => res.response.personBasicInfo.birthDateG);
+        console.log(`THE VLUE NOT EXIST ${hasData}`);
+        if (hasData === 'undefined') {
+          this.toast.error("The Id number not exist ");
+          return;
+        }
+        this.yaqeenData = new YaqeenData(
+          res.status,
+          res.response.personBasicInfo.birthDateG,
+          res.response.personBasicInfo.familyName,
+          res.response.personBasicInfo.familyNameT,
+          res.response.personBasicInfo.fatherName,
+          res.response.personBasicInfo.fatherNameT,
+          res.response.personBasicInfo.firstName,
+          res.response.personBasicInfo.firstNameT,
+          res.response.personBasicInfo.grandFatherName,
+          res.response.personBasicInfo.grandFatherNameT,
+          '',
+          res.response.personBasicInfo.sexDescAr,
+          res.response.personIdInfo.idExpirationDate,
+          res.response.personBasicInfo.subTribeName
+        );
+        this.yaqeenArName = this.yaqeenData.firstName + ' ' + this.yaqeenData.fatherName + ' ' + this.yaqeenData.grandFatherName + ' ' + this.yaqeenData.familyName;
+        this.yaqeenEnName = this.yaqeenData.firstNameT + ' ' + this.yaqeenData.fatherNameT + ' ' + this.yaqeenData.grandFatherNameT + ' ' + this.yaqeenData.familyNameT;
+        this.toast.success("verified")
+      } else {
+        this.toast.error("Not Verified ")
+      }
+    }));
+  }
+
+  /*************************************************************************************************************/
+  getYaqeenIqamaData(yearMonth: any) {
+    this.subscriptions.push(this.yaqeenService.getYaqeenIqamaData(this.yaqeenIdNumber, yearMonth).subscribe((res: any) => {
+      if (res.status) {
+        const hasData = this.getSafe(() => res.response.personBasicInfo.birthDateG);
+        console.log(`THE VLUE NOT EXIST ${hasData}`);
+        if (hasData === 'undefined') {
+          this.toast.error("The Id number not exist ");
+          return;
+        }
+        this.yaqeenData = new YaqeenData(
+          res.status,
+          res.response.personBasicInfo.birthDateG,
+          res.response.personBasicInfo.familyName,
+          res.response.personBasicInfo.familyNameT,
+          res.response.personBasicInfo.fatherName,
+          res.response.personBasicInfo.fatherNameT,
+          res.response.personBasicInfo.firstName,
+          res.response.personBasicInfo.firstNameT,
+          res.response.personBasicInfo.grandFatherName,
+          res.response.personBasicInfo.grandFatherNameT,
+          res.response.personBasicInfo.nationalityDescAr,
+          res.response.personBasicInfo.sexDescAr,
+          res.response.personIdInfo.idExpirationDate,
+          ``
+        );
+        this.yaqeenArName = this.yaqeenData.firstName + ' ' + this.yaqeenData.fatherName + ' ' + this.yaqeenData.grandFatherName + ' ' + this.yaqeenData.familyName;
+        this.yaqeenEnName = this.yaqeenData.firstNameT + ' ' + this.yaqeenData.fatherNameT + ' ' + this.yaqeenData.grandFatherNameT + ' ' + this.yaqeenData.familyNameT;
+        this.toast.success("Verified")
+      } else {
+        this.toast.error("Not Verified ")
+      }
+    }));
+  }
+
+  getSafe<T>(func: () => T): T {
+    try {
+      return func()
+    } catch {
+      const str: string = 'undefined' as string;
+      return str as unknown as T;
+    }
   }
   //end add By Qaysar For updating the page with dynamic list
 
@@ -172,6 +370,26 @@ export class AddKycComponent implements OnInit {
             if (fields.id == 100) {
               fields.value = this.user_data?.name;
             }
+            //start add by qaysar 04-05
+            if (fields.id == 131) {
+              this.identityStr = fields.value;
+            }
+            if (fields.id == 132) {
+              this.yearsHijri = fields.value;
+            }
+            if (fields.id == 133) {
+              this.monthStr = fields.value;
+            }
+            if (fields.id == 134) {
+              this.dayStr = fields.value;
+            }
+            if (fields.id == 135) {
+              this.yaqeenIdNumber = fields.value;
+            }
+            if (fields.id == 136) {
+              this.iqamaDOB = fields.value;
+            }
+            //end add by qaysar 04-05
           })
         })
       })
@@ -254,7 +472,6 @@ export class AddKycComponent implements OnInit {
     //   this.toast.warning("Verify CR Number")
     //   return
     //   }
-
     if (this.disabled_inputs) {
       this.tab_index = index + 1;
       window.scrollTo({
@@ -277,6 +494,70 @@ export class AddKycComponent implements OnInit {
   }
 
   addKYCDetails(index: number) {
+
+    if (this.yaqeenData?.firstName != '' || this.yaqeenData != null) {
+      this.kyc_form[index].info_type.map((data: any) => {
+        data.detail.map((fields: any) => {
+          // console.log(fields.id);
+          //Added By Qaysar For Yaqeen Service Data
+          if (fields.id == 131 && fields.value == null) {
+            fields.value = this.identityStr
+          }
+          if (fields.id == 132 && fields.value == null) {
+            fields.value = this.yearsHStr
+          }
+          if (fields.id == 133 && fields.value == null) {
+            fields.value = this.monthStr
+          }
+
+          if (fields.id == 134 && fields.value == null) {
+            fields.value = this.dayStr
+          }
+
+          if (fields.id == 135 && fields.value == null) {
+            fields.value = this.yaqeenIdNumber
+          }
+          if (fields.id == 136 && fields.value == null) {
+            fields.value = this.iqamaDOB
+          }
+
+          if (fields.id == 137 && fields.value == null) {
+            fields.value = this.yaqeenArName
+          }
+          if (fields.id == 138 && fields.value == null) {
+            fields.value = this.yaqeenEnName
+          }
+          console.log(`the value for sield ID is ${fields.id} and the fields value is ${fields.value}`);
+        })
+      })
+    }
+
+
+
+    this.kyc_form[index].info_type.map((data: any) => {
+
+      data.detail.map((fields: any) => {
+        // console.log(fields.id);
+
+        if (fields.id == 112 && fields.value == null) {
+          fields.value = this.crname
+        }
+        if (fields.id == 113 && fields.value == null) {
+          fields.value = this.crEntityNumber
+        }
+        if (fields.id == 114 && fields.value == null) {
+          fields.value = this.businessType
+        }
+
+        if (fields.id == 115 && fields.value == null) {
+          fields.value = this.issueDate
+        }
+
+        if (fields.id == 116 && fields.value == null) {
+          fields.value = this.expiryDate
+        }
+      })
+    })
     if (this.tab_index == this.kyc_form.length - 1) {
       this.kyc_form[index].info_type.map((data: any) => {
 
@@ -403,8 +684,6 @@ export class AddKycComponent implements OnInit {
           }
         }
         // console.log(fields.id);
-
-
       });
       if (!this.err) {
         this.post_data.push.apply(this.post_data, data.detail);
@@ -416,26 +695,33 @@ export class AddKycComponent implements OnInit {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return !re.test(email)
   }
-public verifyCR:any
-verfyimg:boolean = false
-  verifyCrNumber(number:any){
-    this.campaign_service.verifyCrNumber(number).subscribe((res:any)=>{
+  public verifyCR: any
+  verfyimg: boolean = false
+  verifyCrNumber(number: any) {
+    this.campaign_service.verifyCrNumber(number).subscribe((res: any) => {
       let status = res.status
       this.verifyCR = res.response
-        if(status){
-        this.toast.success("verified")        
+      if (status) {
+        this.toast.success("verified")
         this.crname = this.verifyCR.crName
         this.crEntityNumber = this.verifyCR.crEntityNumber
         this.issueDate = this.verifyCR.issueDate
         this.expiryDate = this.verifyCR.expiryDate
         this.businessType = this.verifyCR.businessType.name
-        
+
       }
-      else{
+      else {
         this.toast.error("not veriied")
       }
 
     })
   }
-
+  change(event: any) {
+    let crName = event.target.value;
+    if (crName.length === 10) {
+      console.log(`the value from user is ${event.target.value}`);
+      this.verifyCrNumber(crName);
+    }
+  }
 }
+

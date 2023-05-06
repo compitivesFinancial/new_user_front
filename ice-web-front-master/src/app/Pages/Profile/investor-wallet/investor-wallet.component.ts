@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
+import { SharedService } from 'src/app/Shared/Services/shared.service';
 import { StatementsService } from 'src/app/Shared/Services/statements.service';
+import { environment } from 'src/environments/environment';
 declare const $:any;
 @Component({
   selector: 'app-investor-wallet',
@@ -11,6 +13,7 @@ declare const $:any;
 export class InvestorWalletComponent implements OnInit {
   wallet_statement:any=[];
   subscriptions:Subscription[]=[];
+  LANG:any={};
   user_data:any={};
   data_loaded:boolean=false;
   borrower_statement_details:any=[];
@@ -19,15 +22,26 @@ export class InvestorWalletComponent implements OnInit {
   data_loaded_investor:boolean=false;
   data_loaded_borrower:boolean=false;
 
-  constructor(private statmentsService:StatementsService,private toast:ToastrService) { 
+  constructor(private statmentsService:StatementsService,private toast:ToastrService,private shared:SharedService) { 
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
       this.user_data=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
     }
+    this.subscriptions.push(this.shared.languageChange.subscribe((path:any)=>{
+      this.changeLanguage();
+    }))
+    this.changeLanguage();
   }
 
   
-
+  changeLanguage(){
+    if(localStorage.getItem("arabic") == "true" && localStorage.getItem("arabic") != null) {
+        this.LANG=environment.arabic_translations;
+    }
+    else {
+        this.LANG=environment.english_translations;
+    }
+  }
   ngOnInit(): void {
     if(this.user_data.role_type == 2){
       this.getInvestorWallet();

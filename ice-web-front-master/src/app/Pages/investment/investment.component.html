@@ -1,10 +1,10 @@
 <div class="campaign-tab">
     <ul class="nav nav-tabs" *ngIf="user_data.role_type==3">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#total">Total Opportunities</a>
+            <a class="nav-link active" data-toggle="tab" href="#total">{{LANG.Total_Opportunities}}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#closed" (click)="closedOpertunity()">Closed  Opportunities</a>
+            <a class="nav-link" data-toggle="tab" href="#closed" (click)="closedOpertunity()">{{LANG.Closed_Opportunities}}</a>
         </li>
     </ul>
     <div class="tab-content">
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="campaign-last">
-                        <p>Investers</p>
+                        <p>{{LANG.Investers}}</p>
                         <h6>{{details?.investers}}</h6>
                         <!-- <div class="counting">
                             <p>Closing In</p>
@@ -68,22 +68,22 @@
                             <p>{{details.reason_to_invest}}</p>
                             <div class="sar-rup">
                                 <h4>{{details.total_investment}}SAR</h4>
-                                <p>{{percantageInvestment(details.total_investment,details.total_valuation)}}% Funded</p>
+                                <p>{{percantageInvestment(details.total_investment,details.total_valuation)}}% {{LANG.Funded}}</p>
                             </div>
                             <div class="progress">
                                 <div class="progress-bar" [style.width.%]="percantageInvestment(details.total_investment,details.total_valuation)"></div>
                             </div>
                             <div class="pledged">
-                                <p>Pledged Of SAR {{details?.total_valuation}} Goal</p>
+                                <p>{{LANG.Pledged_Of_SAR}} {{details?.total_valuation}} {{LANG.Goal}}</p>
                             </div>
                         </div>
                     </div>
                     <div class="campaign-last">
-                        <p>Investers</p>
+                        <p>{{LANG.Investers}}s</p>
                         <h6>{{details?.investor}}</h6>
                         <div class="counting">
-                            <p>Fundin Status</p>
-                            <div class="coming-counting" id="coming_soon">Closedp</div>
+                            <p>{{LANG.Fundin_Status}}</p>
+                            <div class="coming-counting" id="coming_soon">{{LANG.Closedp}}</div>
                         </div>
                     </div>
                     <button class="btn right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
@@ -97,16 +97,16 @@
 
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#total" (click)="openOppertunity()">Total Opportunities</a>
+                    <a class="nav-link active" data-toggle="tab" href="#total" (click)="openOppertunity()">{{LANG.Total_Opportunities}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#closed" (click)="closedOpertunity()">Closed  Opportunities</a>
+                    <a class="nav-link" data-toggle="tab" href="#closed" (click)="closedOpertunity()">{{LANG.Closed_Opportunities}}</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="total" *ngIf="openOPpertunityInvester==true">
                     <div class="col-md-7 mx-auto">
-                        <h5>Total Invested</h5>
+                        <h5>{{LANG.Total_Invested}}</h5>
                         <!-- <div class="campaign-tab-detail" *ngFor="let details of totalDetails">
                         <div class="tempest">
                             <span class="image-flo"><img src="assets/images/flower-1.png" alt=""></span>
@@ -133,12 +133,12 @@
                                         <div class="progress-bar" [style.width.%]="percantageInvestment(details.raised,details.total_valuation)"></div>
                                     </div>
                                     <div class="pledged">
-                                        <p>Pledged Of SAR {{details.raised}} Goal</p>
+                                        <p>{{LANG.Pledged_Of_SAR}} {{details.raised}} {{LANG.Goal}}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="campaign-last">
-                                <p>Investors</p>
+                                <p>{{LANG.Investers}}</p>
                                 <h6>{{details?.investers}}</h6>
                                 
                             </div>
@@ -150,7 +150,7 @@
                 </div>
                 <div class="tab-pane active" id="closed" *ngIf="closedOPpertunityInvester==true">
                     <div class="col-md-7 mx-auto">
-                        <h5>Closed investment</h5>
+                        <h5>{{LANG.Closed_investment}}</h5>
 
                         <div>
                             <div class="campaign-tab-detail" *ngFor="let details of closedInvestedDetails">
@@ -167,7 +167,7 @@
                                             <div class="progress-bar" [style.width.%]="percantageInvestment(details.total_investment,details.raised)"></div>
                                         </div> -->
                                         <div class="pledged">
-                                            <p>Pledged Of SAR {{details?.total_valuation}} Goal</p>
+                                            <p>{{LANG.Pledged_Of_SAR}} {{details?.total_valuation}} {{LANG.Goal}}</p>
                                         </div>
                                     </div>
                                 </div>

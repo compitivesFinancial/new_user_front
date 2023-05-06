@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CampaignService } from 'src/app/Shared/Services/campaign.service';
+import { SharedService } from 'src/app/Shared/Services/shared.service';
 import { StatementsService } from 'src/app/Shared/Services/statements.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   templateUrl: './campaign-list.component.html',
@@ -17,18 +19,32 @@ export class CampaignListComponent implements OnInit {
   data_loaded:boolean=false;
   user_data:any={};
   type:number=1;
-  constructor(private campaignService:CampaignService,private router:Router,private statmentsService:StatementsService) {
+  LANG:any={};
+
+
+  constructor(private campaignService:CampaignService,private router:Router,private statmentsService:StatementsService,private shared:SharedService) {
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
       this.user_data=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
     }
+    this.subscriptions.push(this.shared.languageChange.subscribe((path:any)=>{
+      this.changeLanguage();
+    }))
+    this.changeLanguage();
   }
 
   ngOnInit(): void {
 
     this.getcampaigns();
   }
-
+  changeLanguage(){
+    if(localStorage.getItem("arabic") == "true" && localStorage.getItem("arabic") != null) {
+        this.LANG=environment.arabic_translations;
+    }
+    else {
+        this.LANG=environment.english_translations;
+    }
+  }
   getcampaigns(user_id?:number){
     this.subscriptions.push(this.campaignService.getCampaignList(user_id).subscribe((res:any)=>{
       if(res){

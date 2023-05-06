@@ -260,7 +260,7 @@ $("#carousel-3").owlCarousel({
   }
 
   investMentOppertunity(){
-    this.campaignService.investmentOppertunity().subscribe((res:any)=>{
+    this.campaignService.investmentOppertunityQaysar().subscribe((res:any)=>{
       this.investmentOppertunityList =res.response
       console.log(this.investmentOppertunityList);
       

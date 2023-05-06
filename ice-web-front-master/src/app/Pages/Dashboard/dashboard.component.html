@@ -108,7 +108,8 @@
                     </div>
                 </div>
                 <div class="col-9">
-                <img   src="{{opertunityDetailList.campaign_images[0].image}}" class="w-100 add-img-wrapper" alt="" />
+                <!-- <img   src="{{opertunityDetailList.campaign_images[0].image}}" class="w-100 add-img-wrapper" alt="" /> -->
+                <img   src="assets/images/add-img.png" class="w-100 add-img-wrapper" alt="" />
             </div>
                 <!-- <div *ngFor="let img of campaign_images">
                     <ng-image-slider #nav [images]="{{img.image}}" [infinite]="true" [autoSlide]="5" [imageSize]="{width: '50%', height: 200}" slideImage="1"></ng-image-slider>
@@ -134,25 +135,25 @@
                 <div class="row invest-row">
                     <div class="col-md-6">
                         <div class="invest">
-                            <p>Investers</p>
+                            <p>{{LANG.Investers}}</p>
                             <h6>{{opertunityDetailList.investers}}</h6>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="invest">
-                            <p>Raised</p>
+                            <p>{{LANG.Raised}}</p>
                             <h6>SAR {{opertunityDetailList.raised}}</h6>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="invest">
-                            <p>Price Per Share</p>
+                            <p>{{LANG.Price_Per_Share}}</p>
                             <h6>SAR {{opertunityDetailList.share_price}}</h6>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="invest">
-                            <p>Valuation</p>
+                            <p>{{LANG.Valuation}}</p>
                             <h6>SAR {{opertunityDetailList.total_valuation}}</h6>
                         </div>
                     </div>
@@ -164,34 +165,34 @@
                     </div> -->
                     <div class="col-md-6">
                         <div class="invest">
-                            <p>Max Investment</p>
+                            <p>{{LANG.Max_Investment}}</p>
                             <h6>SAR {{opertunityDetailList.max_investment}}</h6>
                         </div>
                     </div>
                     <br>
-                    <button class="btn btn-primary" *ngIf="user_data.role_type==2" data-toggle="modal" data-target="#investmentModal"> Investment</button>
+                    <button class="btn btn-primary" *ngIf="user_data.role_type==2" data-toggle="modal" data-target="#investmentModal"> {{LANG.investment}}</button>
                     <!-- Button trigger modal -->
                 </div>
-  
+
   <!-- Modal -->
   <div class="modal fade" id="investmentModal" tabindex="-1" role="dialog" aria-labelledby="investmentModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">{{LANG.Modal_title}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
             <form [formGroup]="amountForm">
-            <title>Amount:</title>
+            <title>{{LANG.Amount}}:</title>
             <input type="text" placeholder="Enter the amount" formControlName="amount">
             </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="close">Close</button>
-          <button type="button" class="btn btn-primary"   (click)="onPay()">Pay</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{LANG.Close}}</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal"  (click)="onPay()">{{LANG.Pay}}</button>
         </div>
       </div>
     </div>
@@ -199,7 +200,7 @@
 
   <!-- Button trigger modal -->
 
-  
+
   <!-- Modal -->
   <div class="modal fade" id="mastercardModal" tabindex="-1" role="dialog" aria-labelledby="mastercardModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -210,16 +211,15 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        
-            
+
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" >Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{LANG.Close}}</button>
+          <button type="button" class="btn btn-primary" >{{LANG.Save_changes}}</button>
         </div>
       </div>
     </div>
   </div>
-                
+
                 <!-- <div class="border-wrapper">
                     <h6>Documents</h6>
                     <div class="document-sec">
@@ -252,25 +252,25 @@
         <div class="row allocation">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#about">About</a>
+                    <a class="nav-link active" data-toggle="tab" href="#about">{{LANG.About}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " data-toggle="tab" href="#allocation">Allocation</a>
+                    <a class="nav-link " data-toggle="tab" href="#allocation">{{LANG.Allocation}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " data-toggle="tab" href="#team">Team</a>
+                    <a class="nav-link " data-toggle="tab" href="#team">{{LANG.Team}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " data-toggle="tab" href="#update">Updates</a>
+                    <a class="nav-link " data-toggle="tab" href="#update">{{LANG.Updates}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " data-toggle="tab" href="#term">Terms</a>
+                    <a class="nav-link " data-toggle="tab" href="#term">{{LANG.Terms}}</a>
                 </li>
             </ul>
         </div>
         <!-- <div class="tab-content">
                     <div class="tab-pane active " id="about">
-                        
+
                     </div>
                 </div> -->
     </div>
@@ -279,15 +279,15 @@
     <div class="container">
         <div class="fund-allocation">
             <div class="funds-all" id="about">
-                <h2>Reasons to Invest</h2>
-                <p>{{opertunityDetailList.reason_to_invest}}</p>          
+                <h2>{{LANG.Reasons_to_Invest}}</h2>
+                <p>{{opertunityDetailList.reason_to_invest}}</p>
             </div>
             <div class="funds-all " id="allocation">
                 <h2>Funds allocation</h2>
                {{opertunityDetailList.investment_planning}}
             </div>
             <div class="funds-all " id="team">
-                <h2>Team</h2>
+                <h2>{{LANG.Team}}</h2>
                 <div class="col-md-11">
                     <div class="row" *ngFor="let team of teams">
                         <div class="col-md-6">
@@ -339,7 +339,7 @@
                 </div>
             </div> -->
             <div class="funds-all " id="team">
-                <h2>Terms</h2>
+                <h2>{{LANG.Terms}}</h2>
                 <p>{{opertunityDetailList.terms}}</p>
             </div>
         </div>

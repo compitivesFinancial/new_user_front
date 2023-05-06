@@ -28,9 +28,9 @@ export class DashboardComponent implements OnInit {
   public campaign_images:any
   public amountForm:FormGroup
   public cardDetailsForm:any
-  
 
-  constructor(private loginService:LoginService,private campaignService:CampaignService,public dashboardService:DashboardService,private route:ActivatedRoute, private formBuilder: FormBuilder, public router:Router,private toast:ToastrService) { 
+
+  constructor(private loginService:LoginService,private campaignService:CampaignService,public dashboardService:DashboardService,private route:ActivatedRoute, private formBuilder: FormBuilder, public router:Router,private toast:ToastrService) {
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
       this.user_data=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit {
     }
     this.getProfileDetails();
     this.getDashboardDetails();
-    
+
     this.requestId = atob(this.route.snapshot.params['id']);
     if(this.requestId!=null ){
       this.getOpertunityDetails()
@@ -81,18 +81,18 @@ export class DashboardComponent implements OnInit {
       if(res.status){
         this.user_info=res.response
       }
-      
+
     }))
-    
+
   }
 
   getDashboardDetails(type?:number){
     const data={user_id:this.user_data.id}
     this.subscriptions.push(this.campaignService.investorDashboard(data,type).subscribe((res:any)=>{
       this.dashboard_data=res.response.data
-      
+
     }))
-    
+
   }
 
   getOpertunityDetails(type?:number){
@@ -101,7 +101,7 @@ export class DashboardComponent implements OnInit {
       this.teams = res.response.campaign.team
       this.campaign_images = res.response.campaign.campaign_images
     })
-  } 
+  }
 onPaydetails:any
   onPay(){
     if (this.amountForm.valid){
@@ -111,7 +111,7 @@ onPaydetails:any
         'campaign_id':this.requestId
 
       }
-
+      console.log(`#################### Qaysar Log for on Pay details ####################`);
       this.dashboardService.onPay(data).subscribe((res:any)=>{
         this.onPaydetails= res.response.session_id
         this.toast.success(res.response.message)
@@ -119,7 +119,7 @@ onPaydetails:any
 
         console.log(this.onPaydetails);
         // this.router.navigateByUrl(`payment/${btoa(this.onPaydetails)}`)
-        
+
       })
     }
   }
@@ -198,9 +198,9 @@ details()
 });
 }
 
-  
- 
 
- 
+
+
+
 
 }

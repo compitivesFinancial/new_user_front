@@ -4,14 +4,10 @@ import SHA1 from 'sha1';
 @Injectable({providedIn: 'root'})
 export class configServiceComponent{
 
-  	HOST : string = "http://localhost/admin_laravel/web_api/public/api/";
+  	HOST : string = "http://localhost/cfc/admin_laravel/web_api/public/api/";
 	ADMIN_HOST : string = "http://localhost/cfc/admin_laravel/admin/public/api/";
-	// HOST : string = "http://127.0.0.1:8000/api/";//
-	// ADMIN_HOST : string = "http://127.0.0.1:8000/api/";
-
-
-	// HOST : string = "http://15.206.96.54/web_api/public/api/";
-	// ADMIN_HOST : string = "http://15.206.96.54/admin/public/api/";
+	//  HOST : string = "http://www.atam-mena.com/web_api/public/api/";
+	//  ADMIN_HOST : string = "http://www.atam-mena.com/admin/public/api/";
 	
 
 
@@ -37,12 +33,4 @@ export class configServiceComponent{
 		let finalAuth = SHA1(this.HOST + routeUrl +"|"+ this.USERNAME +"|"+ this.PASSWORD);
 		return finalAuth
 	}
-
-
-
-
-
-
-
-
 }

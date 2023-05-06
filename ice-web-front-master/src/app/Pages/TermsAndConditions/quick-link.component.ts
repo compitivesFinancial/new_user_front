@@ -13,6 +13,9 @@ export class QuickLinkComponent implements OnInit {
   users:any={};
   public details:any={};
   LANG:any=""
+
+
+  
   constructor(private statement:StatementsService,private route:ActivatedRoute,private shared:SharedService) {
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
