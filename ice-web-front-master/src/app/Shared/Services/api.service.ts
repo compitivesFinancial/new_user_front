@@ -17,7 +17,27 @@ export class apiServiceComponent {
 		this.url = this.config.getHOST();
 	}
 
-	getHeaders(url: string) {
+	getHeadersInvest(url: string,data:any) {
+		this.authHeader = this.config.getAuthHeaders(url);
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Accept-Language': 'en',
+			'crossDomain': 'true',
+      'amount':data.amount,
+      'campaign':data.campaign,
+      'invester':data.invester
+		});
+		const token = localStorage.getItem("token")
+		if (token) {
+			headers = headers.set('Authorization', `Bearer ${token}`);
+		}
+		if (localStorage.getItem("arabic") == "true") {
+			headers = headers.set('Accept-Language', "ar");
+		}
+		return headers;
+	}
+
+  getHeaders(url: string) {
 		this.authHeader = this.config.getAuthHeaders(url);
 		let headers = new HttpHeaders({
 			'Content-Type': 'application/json',
@@ -85,6 +105,16 @@ export class apiServiceComponent {
 		this.type = "POST";
 		this.PAYLOAD_DATA = data1;
 		let headers = this.getHeaders(url);
+		let _url = this.url + url;
+		let data = JSON.stringify(data1);
+		return this.http.post(_url, data, { headers: headers, withCredentials: true })
+			.pipe(map((response: Object) => response),
+				catchError(this._errorHandler));
+	}
+  postPayInves(url: string, data1: any) {
+		this.type = "POST";
+		this.PAYLOAD_DATA = data1;
+		let headers = this.getHeadersInvest(url,data1);
 		let _url = this.url + url;
 		let data = JSON.stringify(data1);
 		return this.http.post(_url, data, { headers: headers, withCredentials: true })

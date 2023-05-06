@@ -20,16 +20,19 @@ export class DashboardService {
 
   onPay(data:any){
     this.url ="invest"
-    return this.api.post(this.url,data)
+    return this.api.postPayInves(this.url,data)
   }
-
+  // onPay(data:any,amount:string,campaign:string,investor:string){
+  //   // this.url ="invest"
+  //   return this.api.postPayInves(data,amount,campaign,investor);
+  // }
 //   on2Pay(data:any){
 //     this.url = "https://test-anb.mtf.gateway.mastercard.com/api/rest/version/69/merchant/1050/session"
 //     let headers= new HttpHeaders()
 //     headers=headers.set
-// (    
+// (
 //     'Authorization', 'Basic bWVyY2hhbnQuMTA1MDo5MTRhYzgwYzZhOTA5MGRkYjBiNDM4ZmNhMGRhM2EyMA=='
-// )    
+// )
 //     return this.http.post(this.url,data,{headers})
 //   }
 

@@ -107,8 +107,8 @@ onPaydetails:any
     if (this.amountForm.valid){
       let data = {
         'amount':this.amountForm.value.amount,
-        'invester_id':this.user_data.id,
-        'campaign_id':this.requestId
+        'invester':`${this.user_data.id}`,
+        'campaign':this.requestId
 
       }
       console.log(`#################### Qaysar Log for on Pay details ####################`);
@@ -119,7 +119,7 @@ onPaydetails:any
 
         console.log(this.onPaydetails);
         // this.router.navigateByUrl(`payment/${btoa(this.onPaydetails)}`)
-
+        this.amountForm.value.amount = ''
       })
     }
   }
