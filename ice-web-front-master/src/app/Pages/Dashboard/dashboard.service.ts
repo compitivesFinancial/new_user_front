@@ -46,4 +46,9 @@ investorDashDetails(data:any){
   this.url= "investordashboard"
   return this.api.post(this.url,data)
 }
+
+getBankAccountNumber(){
+  this.url= "account_number"
+  return this.api.get(this.url,'')
+}
 }

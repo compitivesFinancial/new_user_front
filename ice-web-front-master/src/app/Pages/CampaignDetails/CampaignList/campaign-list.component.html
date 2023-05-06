@@ -33,22 +33,24 @@
                                 <div>
                                     <div class="carousel-content" >
                                         <div class="caro-img carousel-slide">
-                                            <img  src="{{list.campaign_images[0].image}}" class="w-100" alt="" >
+                                            <!-- <img  src="{{list.campaign_images[0].image}}" class="w-100" alt="" > -->
+                                            <img  src="assets/images/add-img.png" class="w-100" alt="" >
                                             <!-- <span>2 days left</span> -->
                                         </div>
                                         <div class="pad-carousel">
                                             <h6 >{{list.tagline}}</h6>
                                             <p>{{list.reason_to_invest}}</p>
-                                            
+
                                             <div class="d-flex justify-content-between ">
                                                 <div class="fund-rate">
-                                                    <h5>SAR {{list.raised}} </h5>
-                                                    <p>Pledged Of SAR {{list.total_valuation}} Goal</p>
+                                                    <h5>{{list.raised}} </h5><br/>
+                                                    <p>{{LANG.Pledged_Of_SAR}} {{list.total_valuation}}</p>
                                                 </div>
                                                 <div class="fund-investers">
-                                                    <h4>{{LANG.Investers}}</h4>
+                                                    <!-- <h6>{{LANG.Investers}}</h6> -->
+<br/>
                                                     <p>{{list.investers}}</p>
-                                                    <!-- <button class="btn btn-primary custom" (click)="navTo(list)">View Details</button> -->
+                                                    <button class="btn btn-primary custom" (click)="navTo(list)">View Details</button>
                                                 </div>
                                             </div>
                                         </div>

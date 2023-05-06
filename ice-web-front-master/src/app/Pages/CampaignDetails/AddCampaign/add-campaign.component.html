@@ -43,11 +43,11 @@
             <div class="add-image" [class.mb-0]="errors?.campaign_image_error">
                 <input style="display: none" type="file" (change)="changeImageFile($event)" id="file_type_campaign" multiple>
                 <span *ngFor="let data of campaign_images;"><img src="{{data.image}}" class=""></span>
-                <span (click)="showFileInput('file_type_campaign')"><i class="fa fa-plus"></i>{{LANG.Add_image}}</span>
+                <span (click)="showFileInput('file_type_campaign')"><i class="fa fa-plus"></i>{{LANG.Upload_Files}}</span>
             </div>
             <span class="error mt-2 mb-5" *ngIf="errors?.campaign_image_error">{{LANG.This_field_is_required}}</span>
 
-            
+
             <h5>{{LANG.Fundraise_Opportunity_details}}</h5>
             <div class="row campaign-row">
                 <div class="form-group col-md-12">
@@ -126,8 +126,8 @@
                     <button class="btn head-button-wrap start w-100">PREVIEW CAMPAIGN</button>
                 </div> -->
                 <div class="col-md-6 submit-button text-center" >
-                    <button class="btn" [class.loading]="load" (click)="addCampaign()"> 
-                        
+                    <button class="btn" [class.loading]="load" (click)="addCampaign()">
+
                         <ng-container *ngIf="load;else noLoader;">
                             <loader></loader>
                         </ng-container>

@@ -46,15 +46,15 @@
                                       <input type="text" placeholder="enter the amount" class="form-control" [(ngModel)]="amount">
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">{{LANG.close}}</button>
-                                      <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="addmoney()">{{LANG.Save_changes}}</button>
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">{{LANG.Close}}</button>
+                                      <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="addmoney()">{{LANG.Save}}</button>
                                     </div>
                                   </div>
                                 </div>
                               </div>
 
 
-                            
+
                         </div>
                         <div *ngIf="user_data.role_type==3" class="col-md-8 wallet-right">
                             <!-- <div class="col-md-8 wallet-right"> -->
@@ -65,7 +65,7 @@
                                         <div class="chart-container">
                                             <div class="chart" data-percent="13" data-bar-color="#00C48A">
                                                 <span class="percent" data-after="%">{{details?.total_paid}}</span>
-                                                
+
                                             </div>
                                             <circle-progress
                                            [percent]="getPercent(details?.total_paid,details?.total_raised)"
@@ -149,7 +149,7 @@
                                             <td class="detail-name">
                                                 <img src="assets/images/flower-1.png" alt="">
                                                 <div class="date-name">
-                                                    <h4>Installment paid</h4>  
+                                                    <h4>Installment paid</h4>
                                                     <p>Date : {{item?.invested_date}}</p>
                                                 </div>
                                             </td>
@@ -171,7 +171,7 @@
                                                 <div class="chart-container">
                                                     <div class="chart" data-percent="13" data-bar-color="#00C48A">
                                                         <span class="percent" data-after="%">{{details?.old_withdrawal}}</span>
-                                                        
+
                                                     </div>
                                            <circle-progress
                                            [percent]="getPercent(details?.old_withdrawal,details?.amount_invested)"
@@ -183,10 +183,10 @@
                                            [animation]="true"
                                            [animationDuration]="300"
                                            ></circle-progress>
-                                           <!-- <div class="chart" data-percent="13" data-bar-color="#00C48A">
+                                           <div class="chart" data-percent="13" data-bar-color="#00C48A">
                                             <span class="percent" data-after="%">{{details?.old_withdrawal}}</span>
-                                            
-                                        </div>  -->
+
+                                        </div>
                                            <p>{{LANG.Amount_Received}}</p>
                                                 </div>
                                                 <div class="right-2">
@@ -247,7 +247,7 @@
 
 <!-- Button trigger modal -->
 
-  
+
   <!-- Modal -->
 
 

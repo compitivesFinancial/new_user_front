@@ -46,11 +46,11 @@ export class UserCampaignListComponent implements OnInit {
       this.campaign_list=res.response;
       this.data_loaded=true;
       console.log(res)
-      setTimeout(() => {   
+      setTimeout(() => {
         $('#borrowers').DataTable({
           ordering: false,
           responsive: true,
-          
+
         });
       }, 100);
     }))

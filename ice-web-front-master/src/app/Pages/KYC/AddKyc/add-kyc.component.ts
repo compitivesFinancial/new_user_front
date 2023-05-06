@@ -83,7 +83,7 @@ export class AddKycComponent implements OnInit, OnChanges {
   yaqeenIdNumber: any = '';
   public yaqeenRes: any;
   yaqeenData?: YaqeenData;
-  yageenRes: any;
+  // yageenRes: any;
   iqamaDOB: any | undefined;
 
   status: boolean = false;
@@ -370,6 +370,26 @@ export class AddKycComponent implements OnInit, OnChanges {
             if (fields.id == 100) {
               fields.value = this.user_data?.name;
             }
+            //start add by qaysar 04-05
+            if (fields.id == 131) {
+              this.identityStr = fields.value;
+            }
+            if (fields.id == 132) {
+              this.yearsHijri = fields.value;
+            }
+            if (fields.id == 133) {
+              this.monthStr = fields.value;
+            }
+            if (fields.id == 134) {
+              this.dayStr = fields.value;
+            }
+            if (fields.id == 135) {
+              this.yaqeenIdNumber = fields.value;
+            }
+            if (fields.id == 136) {
+              this.iqamaDOB = fields.value;
+            }
+            //end add by qaysar 04-05
           })
         })
       })
@@ -475,38 +495,67 @@ export class AddKycComponent implements OnInit, OnChanges {
 
   addKYCDetails(index: number) {
 
+    if (this.yaqeenData?.firstName != '' || this.yaqeenData != null) {
+      this.kyc_form[index].info_type.map((data: any) => {
+        data.detail.map((fields: any) => {
+          // console.log(fields.id);
+          //Added By Qaysar For Yaqeen Service Data
+          if (fields.id == 131 && fields.value == null) {
+            fields.value = this.identityStr
+          }
+          if (fields.id == 132 && fields.value == null) {
+            fields.value = this.yearsHStr
+          }
+          if (fields.id == 133 && fields.value == null) {
+            fields.value = this.monthStr
+          }
+
+          if (fields.id == 134 && fields.value == null) {
+            fields.value = this.dayStr
+          }
+
+          if (fields.id == 135 && fields.value == null) {
+            fields.value = this.yaqeenIdNumber
+          }
+          if (fields.id == 136 && fields.value == null) {
+            fields.value = this.iqamaDOB
+          }
+
+          if (fields.id == 137 && fields.value == null) {
+            fields.value = this.yaqeenArName
+          }
+          if (fields.id == 138 && fields.value == null) {
+            fields.value = this.yaqeenEnName
+          }
+          console.log(`the value for sield ID is ${fields.id} and the fields value is ${fields.value}`);
+        })
+      })
+    }
+
+
+
     this.kyc_form[index].info_type.map((data: any) => {
+
       data.detail.map((fields: any) => {
         // console.log(fields.id);
-        //Added By Qaysar For Yaqeen Service Data
-        if (fields.id == 131 && fields.value == null) {
-          fields.value = this.identityStr
+
+        if (fields.id == 112 && fields.value == null) {
+          fields.value = this.crname
         }
-        if (fields.id == 132 && fields.value == null) {
-          fields.value = this.yearsHStr
+        if (fields.id == 113 && fields.value == null) {
+          fields.value = this.crEntityNumber
         }
-        if (fields.id == 133 && fields.value == null) {
-          fields.value = this.monthStr
+        if (fields.id == 114 && fields.value == null) {
+          fields.value = this.businessType
         }
 
-        if (fields.id == 134 && fields.value == null) {
-          fields.value = this.dayStr
+        if (fields.id == 115 && fields.value == null) {
+          fields.value = this.issueDate
         }
 
-        if (fields.id == 135 && fields.value == null) {
-          fields.value = this.yaqeenIdNumber
+        if (fields.id == 116 && fields.value == null) {
+          fields.value = this.expiryDate
         }
-        if (fields.id == 136 && fields.value == null) {
-          fields.value = this.iqamaDOB
-        }
-
-        if (fields.id == 137 && fields.value == null) {
-          fields.value = this.yaqeenArName
-        }
-        if (fields.id == 138 && fields.value == null) {
-          fields.value = this.yaqeenEnName
-        }
-        // End Add By qaysar 
       })
     })
     if (this.tab_index == this.kyc_form.length - 1) {
@@ -564,7 +613,6 @@ export class AddKycComponent implements OnInit, OnChanges {
 
   }
   add() {
-    // if (this.verifyCR == null && this.verifyCR == '' && this.yaqeenRes == null && this.yaqeenRes == '') {
     if (this.verifyCR == null && this.verifyCR == '') {
       return
     }
@@ -572,7 +620,6 @@ export class AddKycComponent implements OnInit, OnChanges {
       const data = {
         "field": this.post_data,
         "crnumber": this.verifyCR
-        // ,"yaqeenRes": this.yaqeenRes
       }
       this.subscriptions.push(this.campaign_service.addKyc(data).subscribe((res: any) => {
         this.load = false;
@@ -638,7 +685,7 @@ export class AddKycComponent implements OnInit, OnChanges {
         }
         // console.log(fields.id);
       });
-      if (this.err) {
+      if (!this.err) {
         this.post_data.push.apply(this.post_data, data.detail);
       }
     })

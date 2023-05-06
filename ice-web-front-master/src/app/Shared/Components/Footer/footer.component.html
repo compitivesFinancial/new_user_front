@@ -32,7 +32,7 @@
                         <a >Privacy Notice </a>
                         <a >Security </a>
                         <a >Terms Of Service</a>
-                        <a > Secondary Market Terms</a> 
+                        <a > Secondary Market Terms</a>
                         <a >Introduction Terms</a>
                     </div>
                     <div class="col-md-2 col-6">
@@ -58,7 +58,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-6">
-                <h5>Invest</h5>
+                <h5>{{LANG.Investment}}</h5>
                 <div *ngFor="let item of investfooterDetails">
                     <a (click)="goToDetails(item)" *ngIf="item.type === 1">{{item.title}}</a>
                 </div>
@@ -69,10 +69,10 @@
                 <!-- <a >Due Diligence Charter</a> -->
             </div>
             <div class="col-md-3 col-6">
-                <h5>Raise</h5>
+                <h5>{{LANG.Raise}}</h5>
                 <div *ngFor="let item of investfooterDetails">
                     <a (click)="goToDetails(item)" *ngIf="item.type === 2">{{item.title}}</a>
-                </div>                
+                </div>
                 <!-- <a >From The Crowd</a>
                 <a >From Private Investor</a>
                 <a >Secondary Liquidity</a>
@@ -80,8 +80,8 @@
                 <a >Partnnership</a> -->
             </div>
             <div class="col-md-3 col-6">
-                <h5>Legal</h5>
-                <!-- <a >Risk Warnings</a>    
+                <h5>{{LANG.Legal}}</h5>
+                <!-- <a >Risk Warnings</a>
                 <a >Privacy Notice</a>
                 <a >User Agreement</a>
                 <a >Secondary Market Terms</a>
@@ -95,7 +95,7 @@
                 <!-- <a >Legal</a> -->
             </div>
             <div class="col-md-3 col-6">
-                <h5>Compp.</h5>
+                <h5>{{LANG. Competitiveness_Financial}}</h5>
                 <div *ngFor="let item of investfooterDetails">
                     <a (click)="goToDetails(item)" *ngIf="item.type === 4">{{item.title}}</a>
                 </div>

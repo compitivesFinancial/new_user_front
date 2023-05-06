@@ -108,7 +108,8 @@
                     </div>
                 </div>
                 <div class="col-9">
-                <img   src="{{opertunityDetailList.campaign_images[0].image}}" class="w-100 add-img-wrapper" alt="" />
+                <!-- <img   src="{{opertunityDetailList.campaign_images[0].image}}" class="w-100 add-img-wrapper" alt="" /> -->
+                <img   src="assets/images/add-img.png" class="w-100 add-img-wrapper" alt="" />
             </div>
                 <!-- <div *ngFor="let img of campaign_images">
                     <ng-image-slider #nav [images]="{{img.image}}" [infinite]="true" [autoSlide]="5" [imageSize]="{width: '50%', height: 200}" slideImage="1"></ng-image-slider>
@@ -172,7 +173,7 @@
                     <button class="btn btn-primary" *ngIf="user_data.role_type==2" data-toggle="modal" data-target="#investmentModal"> {{LANG.investment}}</button>
                     <!-- Button trigger modal -->
                 </div>
-  
+
   <!-- Modal -->
   <div class="modal fade" id="investmentModal" tabindex="-1" role="dialog" aria-labelledby="investmentModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -190,8 +191,8 @@
             </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="close">{{LANG.Close}}</button>
-          <button type="button" class="btn btn-primary"   (click)="onPay()">{{LANG.Pay}}</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{LANG.Close}}</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal"  (click)="onPay()">{{LANG.Pay}}</button>
         </div>
       </div>
     </div>
@@ -199,7 +200,7 @@
 
   <!-- Button trigger modal -->
 
-  
+
   <!-- Modal -->
   <div class="modal fade" id="mastercardModal" tabindex="-1" role="dialog" aria-labelledby="mastercardModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -210,8 +211,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        
-            
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">{{LANG.Close}}</button>
           <button type="button" class="btn btn-primary" >{{LANG.Save_changes}}</button>
@@ -219,7 +219,7 @@
       </div>
     </div>
   </div>
-                
+
                 <!-- <div class="border-wrapper">
                     <h6>Documents</h6>
                     <div class="document-sec">
@@ -270,7 +270,7 @@
         </div>
         <!-- <div class="tab-content">
                     <div class="tab-pane active " id="about">
-                        
+
                     </div>
                 </div> -->
     </div>
@@ -280,7 +280,7 @@
         <div class="fund-allocation">
             <div class="funds-all" id="about">
                 <h2>{{LANG.Reasons_to_Invest}}</h2>
-                <p>{{opertunityDetailList.reason_to_invest}}</p>          
+                <p>{{opertunityDetailList.reason_to_invest}}</p>
             </div>
             <div class="funds-all " id="allocation">
                 <h2>Funds allocation</h2>

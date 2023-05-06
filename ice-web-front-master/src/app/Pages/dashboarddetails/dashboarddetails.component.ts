@@ -14,6 +14,10 @@ export class DashboarddetailsComponent implements OnInit {
   subscriptions: Subscription[] = [];
   user_data: any = {};
   LANG: any = {};
+  public dashDetailsList: any = ''
+  public profileDetails: any  = ''
+  public invesorDashDetails: any= ''
+
 
   constructor(public dashBoardService: DashboardService, private shared: SharedService) {
     const user_data = btoa(btoa("user_info_web"));
@@ -37,16 +41,14 @@ export class DashboarddetailsComponent implements OnInit {
     if (this.user_data.role_type == 2) {
       this.investorDashdetails()
       this.profile()
+      this.profileAcountNumber()
     }
     if (this.user_data.role_type == 3) {
       this.dashDetails()
       this.profile()
+      this.profileAcountNumber()
     }
   }
-  public dashDetailsList: any
-  public profileDetails: any
-  public invesorDashDetails: any
-
   dashDetails() {
     let data = {
       'user_id': this.user_data.id
@@ -72,6 +74,13 @@ export class DashboarddetailsComponent implements OnInit {
 
     })
   }
+
+  profileAcountNumber() {
+    this.dashBoardService.getBankAccountNumber().subscribe((res: any) => {
+      this.profileDetails.account_number= res.response.account_number;
+    })
+  }
+
   spreadO: any
   investorDashdetails() {
     let data = {
@@ -80,9 +89,6 @@ export class DashboarddetailsComponent implements OnInit {
     this.dashBoardService.investorDashDetails(data).subscribe((res: any) => {
       this.invesorDashDetails = res.response.data
       // const numberClone = this.invesorDashDetails.total_investment
-
-
-
     })
 
   }

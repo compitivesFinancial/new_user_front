@@ -37,12 +37,12 @@ export class LoginService{
     logout(){
         this.url = "logout";
         let query=""
-		return this.api.post(this.url, query);   
+		return this.api.post(this.url, query);
     }
 
     search(data:Object){
         this.url = "search";
-		return this.api.post(this.url, data);   
+		return this.api.post(this.url, data);
     }
 
     loginWithOtp(data:object){
@@ -75,17 +75,23 @@ export class LoginService{
         return this.api.get(this.url,"")
     }
 
+    termsandConditionOutside(){
+        // this.url = "get_page_by_idoutside/3"
+        //Change By Qaysar To check The data return from API
+        this.url = "get_page_by_id_outside/3"
+        return this.api.get(this.url,"")
+    }
     profileEdit(data:any){
         this.url ="borrower_profile_update"
         return this.api.post(this.url,data)
-    }   
+    }
 
     changePassword(data:any){
         this.url ="borrower_password_update"
         return this.api.post(this.url,data)
-    }   
+    }
 
-    
 
-    
+
+
 }

@@ -77,7 +77,7 @@ export class CampaignDetailsComponent implements OnInit {
       "campaign_id": this.campaign_details?.id,
       "user_id": this.user_data.id
     }
-    
+
     this.subscriptions.push(this.campaignService.invest(data).subscribe((res:any)=>{
       this.load=false;
       if(res.status){
@@ -104,9 +104,9 @@ export class CampaignDetailsComponent implements OnInit {
       if(res.status){
           this.user_details=res.response
       }
-      
+
     }))
-    
+
   }
 
 }

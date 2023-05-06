@@ -13,7 +13,8 @@
                     <a class="nav-link" data-toggle="tab" routerLink="/my-profile">{{LANG.Edit_Profiel}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" routerLink="/add-campaign" *ngIf="profileDetails.kyc_approved_status==1"> {{LANG.Add_Opportunity}}</a>
+                    <a class="nav-link" data-toggle="tab" routerLink="/add-campaign"
+                        *ngIf="profileDetails.kyc_approved_status==1"> {{LANG.Add_Opportunity}}</a>
                 </li>
             </ul>
         </div>
@@ -32,12 +33,14 @@
                     <!-- <i class='bx bx-cart-alt cart'></i>
         </div> -->
                     <div class="col-md-3">
-                        <div class="box-topic">{{LANG.Number_of_Oppertunity}}</div>
+                        <!-- <div class="box-topic">Number_of_Oppertunity</div> -->
+                        <div class="box-topic">عدد الفرص</div>
 
                         <div class="box">
 
                             <div class="right-side">
-                                <div class="number">{{dashDetailsList.active_opportunity!= null? dashDetailsList.active_opportunity:0}}</div>
+                                <div class="number">{{dashDetailsList.active_opportunity!= null?
+                                    dashDetailsList.active_opportunity:0}}</div>
                                 <!-- <div class="indicator">
               <i class='bx bx-up-arrow-alt'></i>
               <span class="text">Up from yesterday</span>
@@ -47,10 +50,12 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="box-topic">{{LANG.Total_Amount_Raised}}</div>
+                        <!-- <div class="box-topic">Total_Amount_Raised</div> -->
+                        <div class="box-topic">اجمالي التمويل</div>
                         <div class="box">
                             <div class="right-side">
-                                <div class="number">{{roundOF(dashDetailsList.total_amount_raised != null ? dashDetailsList.total_amount_raised:0)}}</div>
+                                <div class="number">{{roundOF(dashDetailsList.total_amount_raised != null ?
+                                    dashDetailsList.total_amount_raised:0)}}</div>
                                 <!-- <div class="indicator">
               <i class='bx bx-up-arrow-alt'></i>
               <span class="text">Up from yesterday</span>
@@ -60,11 +65,12 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="box-topic">{{LANG.Total_Repayment}}</div>
-
+                        <!-- <div class="box-topic">Total_Repayment</div> -->
+                        <div class="box-topic">اجمالي السداد</div>
                         <div class="box">
                             <div class="right-side">
-                                <div class="number">{{roundOF(dashDetailsList.amount_repayment != null ? dashDetailsList.amount_repayment:0)}}</div>
+                                <div class="number">{{roundOF(dashDetailsList.amount_repayment != null ?
+                                    dashDetailsList.amount_repayment:0)}}</div>
                                 <!-- <div class="indicator">
               <i class='bx bx-down-arrow-alt down'></i>
               <span class="text">Down From Today</span>
@@ -75,7 +81,8 @@
                     </div>
                     <div>
                         <div>&nbsp;</div>
-                        <button class="btn add-opportunity" routerLink="/add-campaign" *ngIf="profileDetails.kyc_approved_status==1">{{LANG.Add_Opportunity}}</button>
+                        <button class="btn add-opportunity" routerLink="/add-campaign"
+                            *ngIf="profileDetails.kyc_approved_status==1">إضافة فرصة</button>
                     </div>
                 </div>
 
@@ -97,8 +104,9 @@
                                     <!-- <img src="../../../assets/images/banner.png" alt="" class="img-size"> -->
                                     <img src="../../../assets/images/bank_img.jpg" alt="" class="img-size">
                                 </div>
-                                <div class="box-topic">{{LANG.account_number}}</div>
-                                <div class="number">{{profileDetails.account_number!= null ? profileDetails.account_number:0}}</div>
+                                <div class="box-topic">رقم الحساب</div>
+                                <div class="number">{{profileDetails.account_number!= null ?
+                                    profileDetails.account_number:0}}</div>
                                 <!-- <div class="indicator">
                   <i class='bx bx-up-arrow-alt'></i>
                   <span class="text">Up from yesterday</span>
@@ -111,15 +119,19 @@
 
 
                         <div class="box">
-                            <div class="box-topic">{{LANG.Profile_Info}}</div>
-
+                            <!-- <div class="box-topic">Profile_Info</div> -->
+                            <div class="box-topic">البيانات الشخصية</div>
                             <div class="profile-right">
                                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
 
                                 <div class="right-side">
-                                    <div class="box-topic">{{LANG.Name}}:{{profileDetails?.first_name}}{{profileDetails?.last_name}}</div>
-                                    <div class="box-topic box-topic-i"><i class="fa fa-envelope-o" aria-hidden="true"></i>{{LANG.Email_ID}}:{{profileDetails?.email}}</div>
-                                    <div class="box-topic box-topic-i"><i class="fa fa-phone" aria-hidden="true"></i>{{LANG.Contact_Number}}:{{profileDetails?.mobile_number}}</div>
+                                    <div class="box-topic">
+                                        الاسم:{{profileDetails?.first_name}}{{profileDetails?.last_name}}</div>
+                                    <div class="box-topic box-topic-i"><i class="fa fa-envelope-o"
+                                            aria-hidden="true"></i>البريد الالكتروني:{{profileDetails?.email}}</div>
+                                    <div class="box-topic box-topic-i"><i class="fa fa-phone"
+                                            aria-hidden="true"></i>رقم التلفون:{{profileDetails?.mobile_number}}
+                                    </div>
 
                                     <!-- <div class="indicator">
                     <i class='bx bx-up-arrow-alt'></i>
@@ -148,19 +160,19 @@
 
     <section class="home-section full-width">
         <!-- <div class="campaign-tab"> -->
-            <div class="campaign-tab">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" routerLink="/add-kyc">{{LANG.Kyc_Details}}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" routerLink="/my-profile">{{LANG.Edit_Profiel}}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" routerLink="/campaign-list">{{LANG.View_Opportunity}}</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="campaign-tab">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" routerLink="/add-kyc">{{LANG.Kyc_Details}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" routerLink="/my-profile">{{LANG.Edit_Profiel}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" routerLink="/campaign-list">{{LANG.View_Opportunity}}</a>
+                </li>
+            </ul>
+        </div>
         <!-- </div> -->
         <div class="container">
             <div class="home-content ">
@@ -177,11 +189,12 @@
                     <!-- <i class='bx bx-cart-alt cart'></i>
           </div> -->
                     <div class="col-md-3">
-                        <div class="box-topic">{{LANG.Number_of_Investment}}</div>
-
+                        <!-- Number_of_Investment -->
+                        <div class="box-topic">عدد الاستثمارات</div>
                         <div class="box">
                             <div class="right-side">
-                                <div class="number">{{invesorDashDetails.number_of_investment != null ? invesorDashDetails.number_of_investment:0}}</div>
+                                <div class="number">{{invesorDashDetails.number_of_investment != null ?
+                                    invesorDashDetails.number_of_investment:0}}</div>
                                 <!-- <div class="indicator">
                 <i class='bx bx-up-arrow-alt'></i>
                 <span class="text">Up from yesterday</span>
@@ -191,11 +204,13 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="box-topic">{{LANG.Total_Amount_Invested}</div>
+                        <!-- Total_Amount_Invested -->
+                        <div class="box-topic">إجمالي مبالغ الاستثمار</div>
 
                         <div class="box">
                             <div class="right-side">
-                                <div class="number">{{roundOF(invesorDashDetails.total_investment !=null ? invesorDashDetails.total_investment :0)}}</div>
+                                <div class="number">{{roundOF(invesorDashDetails.total_investment !=null ?
+                                    invesorDashDetails.total_investment :0)}}</div>
                                 <!-- <div class="indicator">
                 <i class='bx bx-up-arrow-alt'></i>
                 <span class="text">Up from yesterday</span>
@@ -205,11 +220,12 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="box-topic">{{LANG.Total_Profit}}</div>
+                        <div class="box-topic">إجمالي الربح</div>
 
                         <div class="box">
                             <div class="right-side">
-                                <div class="number">{{roundOF(invesorDashDetails.total_profit != null ? invesorDashDetails.total_profit:0)}}</div>
+                                <div class="number">{{roundOF(invesorDashDetails.total_profit != null ?
+                                    invesorDashDetails.total_profit:0)}}</div>
                                 <!-- <div class="indicator">
                 <i class='bx bx-down-arrow-alt down'></i>
                 <span class="text">Down From Today</span>
@@ -238,8 +254,10 @@
                                     <!-- <img src="../../../assets/images/banner.png" alt="" class="img-size"> -->
                                     <img src="../../../assets/images/bank_img.jpg" alt="" class="img-size">
                                 </div>
-                                <div class="box-topic">{{LANG.Account_Number}}</div>
-                                <div class="number">{{profileDetails.account_number != null ? profileDetails.account_number:0}}</div>
+                                <!-- Account_Number -->
+                                <div class="box-topic">رقم الحساب</div>
+                                <div class="number">{{profileDetails.account_number != null ?
+                                    profileDetails.account_number:0}}</div>
                                 <!-- <div class="indicator">
                     <i class='bx bx-up-arrow-alt'></i>
                     <span class="text">Up from yesterday</span>
@@ -252,13 +270,17 @@
 
 
                         <div class="box">
-                            <div class="box-topic">{{LANG.Profile_Info}}</div>
+                            <!-- <div class="box-topic">Profile_Info</div> -->
+                            <div class="box-topic">البيانات الشخصية</div>
                             <div class="profile-right">
                                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                                 <div class="right-side">
-                                    <div class="box-topic">{{LANG.Name}}:{{profileDetails?.first_name}}{{profileDetails?.last_name}}</div>
-                                    <div class="box-topic box-topic-i"><i class="fa fa-envelope-o" aria-hidden="true"></i>{{LANG.Email_ID}}:{{profileDetails?.email}}</div>
-                                    <div class="box-topic  box-topic-i"><i class="fa fa-phone" aria-hidden="true"></i>{{LANG.Contact_Number}}:{{profileDetails?.mobile_number}}</div>
+                                    <div class="box-topic">
+                                        الاسم:{{profileDetails?.first_name}}{{profileDetails?.last_name}}</div>
+                                    <div class="box-topic box-topic-i"><i class="fa fa-envelope-o"
+                                            aria-hidden="true"></i>البريد الالكتروني:{{profileDetails?.email}}</div>
+                                    <div class="box-topic  box-topic-i"><i class="fa fa-phone"
+                                            aria-hidden="true"></i>رقم التواصل:{{profileDetails?.mobile_number}}</div>
 
                                     <!-- <div class="indicator">
                       <i class='bx bx-up-arrow-alt'></i>

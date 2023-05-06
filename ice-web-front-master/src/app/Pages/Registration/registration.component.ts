@@ -30,7 +30,7 @@ export class RegistrationComponent implements OnInit {
   password:string="";
   confirm_password:string="";
   mobile_number:string="";
-  country_code: string="+966"; 
+  country_code: string="+966";
   role_type:string="3";
   subscriptions:Subscription[]=[]
   terms:boolean=false;
@@ -66,7 +66,7 @@ export class RegistrationComponent implements OnInit {
     // else{
     //     this.router.navigate(['/login']);
     // }
-    
+
   }
   public requestId:any
   orderby:any
@@ -75,7 +75,7 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm = this.fb.group({
       reportInjury: [this.LANG.Individual, [Validators.required]]
     })
-    
+
     // this.requestId = ;
     // console.log((this.route.snapshot.params['type']));
     this.route.queryParams
@@ -109,7 +109,7 @@ export class RegistrationComponent implements OnInit {
       this.load=true;
       this.registerUser();
       return
-      
+
     }
 }
 
@@ -139,8 +139,8 @@ resetError(){
     const data:registration_data={
         "country_code": this.country_code,
         "mobile_number": this.mobile_number,
-        "email": this.email,       
-        "username": this.user_name,       
+        "email": this.email,
+        "username": this.user_name,
         // "name": `${this.first_name} ${this.last_name}`,
         "name": `${this.first_name}`,
         "password": this.loginService.encryptPassword(this.password),
@@ -165,7 +165,7 @@ resetError(){
             return
         }
         this.toast.warning(result.response.message,"")
-        
+
       },respagesError => {
         this.load=false;
         const error = this.error.getError(respagesError);
@@ -180,8 +180,8 @@ valueonChange:any
 onItemchange(value:any){
   this.valueonChange= value.target.value
   console.log(this.valueonChange);
-  
-  
+
+
 }
 
 
@@ -203,7 +203,7 @@ registerErrorHandler(){
   this.mobileErrorHandler();
 
     if(this.email == "" || this.email == undefined){
-      this.registration_error.email_id=true; 
+      this.registration_error.email_id=true;
       this.err=true;
     }
 
@@ -221,38 +221,38 @@ registerErrorHandler(){
 
    mobileErrorHandler(){
     if(this.mobile_number == ""  || this.mobile_number == undefined){
-      this.registration_error.mobile_number=true;	
+      this.registration_error.mobile_number=true;
       this.err=true;
     }
     if(this.country_code == "+966"){
       const re=/^([0]{1}[5]{1}[0-9]*)$/
       const re1=/^([5]{1}[0-9]*)$/
       if(!this.registration_error.mobile_number && !re.test(this.mobile_number) && !re1.test(this.mobile_number)){
-        this.registration_error.mobile_number_valid=true;	
+        this.registration_error.mobile_number_valid=true;
         this.err=true;
       }
-  
+
       if(!this.registration_error.mobile_number && re.test(this.mobile_number) && this.mobile_number.length != 10){
         this.registration_error.mobile_number_valid=true;
-        this.err=true;	
+        this.err=true;
       }
-  
+
       if(!this.registration_error.mobile_number && re1.test(this.mobile_number) && this.mobile_number.length != 9){
         this.registration_error.mobile_number_valid=true;
-        this.err=true;	
+        this.err=true;
       }
       return
     }
     if(this.country_code == "+91"){
       if(this.registration_error.mobile_number == false && this.mobile_number.length != 10){
         this.registration_error.mobile_number_valid=true;
-        this.err=true;	
+        this.err=true;
       }
       return
     }
     if(this.registration_error.mobile_number == false && (this.mobile_number.length < 8 || this.mobile_number.length > 10)){
       this.registration_error.mobile_number_valid=true;
-      this.err=true;	
+      this.err=true;
     }
   }
 
@@ -268,21 +268,21 @@ registerErrorHandler(){
 
     this.checkPasswordValidation();
 
-    
+
 
     if(this.confirm_password == "" || this.confirm_password == undefined){
-      this.registration_error.confirm_password=true;	
+      this.registration_error.confirm_password=true;
       this.err=true;
     }
 
 
     if(!this.registration_error.password && this.confirm_password == ""){
-      this.registration_error.confirm_password=true;	
+      this.registration_error.confirm_password=true;
       this.err=true;
     }
 
     if(this.password != this.confirm_password && !this.registration_error.confirm_password){
-        this.registration_error.password_match=true;	
+        this.registration_error.password_match=true;
         this.err=true;
     }
   }
@@ -298,38 +298,38 @@ registerErrorHandler(){
         return true
     }
     return
-  } 
+  }
 
   checkPasswordValidation(){
-    
+
     var lowerCaseLetters = /[a-z]/g;
-    if(this.password.match(lowerCaseLetters)) {  
+    if(this.password.match(lowerCaseLetters)) {
       this.registration_error.password_lower_case=false;
     } else {
       this.registration_error.password_lower_case=true;
 
     }
-    
+
     // Validate capital letters
     var upperCaseLetters = /[A-Z]/g;
-    if(this.password.match(upperCaseLetters)) {  
+    if(this.password.match(upperCaseLetters)) {
       this.registration_error.password_upper_case=false;
 
     } else {
       this.registration_error.password_upper_case=true;
 
     }
-  
+
     // Validate numbers
     var numbers = /[0-9]/g;
-    if(this.password.match(numbers)) {  
+    if(this.password.match(numbers)) {
       this.registration_error.password_number=false;
 
     } else {
       this.registration_error.password_number=true;
 
     }
-    
+
     if(this.password.length >= 8) {
       this.registration_error.password_length=false;
 
@@ -378,7 +378,7 @@ registerErrorHandler(){
       input.type = "password";
       icon.classList.remove("fa-eye-slash");
       icon.classList.add("fa-eye");
-    } 
+    }
   }
 
   onlyNumbers(event:any){
@@ -386,13 +386,19 @@ registerErrorHandler(){
     if ((keycode < 48 || keycode > 57) && keycode !== 13 || keycode == 46) {
       event.preventDefault();
       return false;
-    } 
-    return   
+    }
+    return
   }
 
   public termsandconditionborower:any
+
   termsCondition(){
     this.loginService.termsandCondition().subscribe((res:any)=>{
+      this.termsandconditionborower = res.response
+    })
+  }
+  termsConditionOutside(){
+    this.loginService.termsandConditionOutside().subscribe((res:any)=>{
       this.termsandconditionborower = res.response
     })
   }

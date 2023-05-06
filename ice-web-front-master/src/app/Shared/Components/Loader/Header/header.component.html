@@ -22,12 +22,12 @@
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" routerLink="/investment">Investment
+                        <a class="nav-link" routerLink="/investment">{{LANG.Investment}}
                             <span class="hov-border"></span>
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" routerLink="/setting">Setting
+                        <a class="nav-link" routerLink="/setting">{{LANG.Settings}}
                             <span class="hov-border"></span>
                         </a>
                     </li>
@@ -53,7 +53,7 @@
                     <li class="nav-item">
                         <a class=" btn btn-primary" (click)="goToLogin('2')">{{LANG.Register_as_Investor}}
                             <span class="hov-border"></span>
-    
+
                         </a>
                     </li>
                 </ng-template>
@@ -73,23 +73,23 @@
                         <li class="nav-item dropdown">
                             <button class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                                <span class="hidden-md-down ml-3">{{user_data?.name}} &nbsp;</span>
+                                <span class="hidden-md-down ml-10">{{user_data?.name}} &nbsp;</span>
                             </button>
                             <div class="dropdown-menu animated flipInY head-drop">
                                 <!-- <button class="dropdown-item cursor-pointer" routerLink="/my-profile">My Profile</button>
                                 <button class="dropdown-item cursor-pointer" (click)="logout()">{{LANG.LOGOUT}}</button> -->
                                 <div class="row drop-row">
                                     <div class="col-md-6">
-                                        <h5>My Opportunities</h5>
-                                        <a routerLink="/my-profile/user-campaigns">Opportunity List</a>
+                                        <h5>{{LANG.My_Opportunities}}</h5>
+                                        <a routerLink="/my-profile/user-campaigns">{{LANG.Opportunity_List}}</a>
                                         <!-- <a href="#">Push Updates</a>
                                         <a href="#">Push Updates</a> -->
                                     </div>
                                     <div class="col-md-6">
-                                        <h5>Profile</h5>
-                                        <a routerLink="/my-profile" routerLinkActive="active" >Edit Profile</a>
+                                        <h5>{{LANG.MyProfile}}</h5>
+                                        <a routerLink="/my-profile" routerLinkActive="active" >{{LANG.Edit_Profile}}</a>
                                         <!-- <a href="#">Bank Details</a> -->
-                                        <a routerLink="/kyc-details" routerLinkActive="active">KYC Details</a>
+                                        <a routerLink="/kyc-details" routerLinkActive="active">{{LANG.Kyc_Details}}</a>
                                     </div>
                                     <!-- <div class="col-md-6">
                                         <h5>My Documents</h5>
@@ -97,13 +97,13 @@
                                         <a href="#">Shares Sheet</a>
                                     </div> -->
                                     <div class="col-md-6">
-                                        <h5>Account</h5>
+                                        <h5>{{LANG.Account}}</h5>
                                         <!-- <a href="#">Settings</a> -->
-                                        <a (click)="logout()">Sign Out</a>
+                                        <a (click)="logout()">{{LANG.Sign_Out}}</a>
                                     </div>
                                     <div class="col-md-6">
-                                        <h5>Wallet</h5>
-                                        <a href="#">Payments</a>
+                                        <h5>{{LANG.Wallet}}</h5>
+                                        <a href="#">{{LANG.Payments}}</a>
                                     </div>
                                 </div>
 
