@@ -21,12 +21,12 @@ export class HeaderComponent implements OnInit {
   logo:string="assets/images/main-logo.png";
   logo_1:string="assets/images/main-logo1.png";
 
-  constructor(private shared:SharedService,private router:Router,private toast:ToastrService) { 
+  constructor(private shared:SharedService,private router:Router,private toast:ToastrService) {
     this.subscriptions.push(this.shared.currentUserStatus.subscribe(user=>this.logged_in=user));
     this.subscriptions.push(this.shared.currentUserData.subscribe(user=>{this.user_data=user}));
     if(localStorage.getItem('logged_in') != undefined){
       this.logged_in=true;
-      this.shared.changeUserStatus(true); 
+      this.shared.changeUserStatus(true);
     }
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
