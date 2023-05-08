@@ -8,7 +8,7 @@ export class configServiceComponent{
 	ADMIN_HOST : string = "http://localhost/cfc/admin_laravel/admin/public/api/";
 	//  HOST : string = "http://www.atam-mena.com/web_api/public/api/";
 	//  ADMIN_HOST : string = "http://www.atam-mena.com/admin/public/api/";
-	
+
 
 
 

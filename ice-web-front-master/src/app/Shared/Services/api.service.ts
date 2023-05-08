@@ -23,6 +23,7 @@ export class apiServiceComponent {
 			'Content-Type': 'application/json',
 			'Accept-Language': 'en',
 			'crossDomain': 'true',
+			'city_id': '4',
       'amount':data.amount,
       'campaign':data.campaign,
       'invester':data.invester

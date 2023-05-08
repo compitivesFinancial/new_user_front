@@ -19,9 +19,9 @@ export class QuickLinkComponent implements OnInit {
     })
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
-     
+
       this.users=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
-      
+
     }
     this.changeLanguage();
     this.route.queryParams
@@ -46,19 +46,40 @@ export class QuickLinkComponent implements OnInit {
         this.LANG=environment.english_translations;
     }
   }
-  
 
-  getPageDetails(){
-    const mydata={
-      "id": this.id,
-      'user_id':this.users.id
+
+  // getPageDetails_old(){
+  //   const mydata={
+  //     "id": this.id,
+  //     'user_id':this.users.id
+  //     // "country_code": this.country_code
+  //   }
+  //   this.statement.getPageDetails(this.id,mydata).subscribe((data:any)=>{
+  //     if(data.status){
+  //       this.details=data.response;
+  //     }
+  //   })
+  // }
+  getPageDetails() {
+    const mydata = {
+      id: this.id,
+      user_id: this.users.id,
       // "country_code": this.country_code
+    };
+
+    if (this.users.id == null || this.users.id == 'undefined' || this.users.id == '') {
+      this.statement.getPageOutDetails(this.id, mydata).subscribe((data: any) => {
+        if (data.status) {
+          this.details = data.response;
+        }
+      });
+    } else {
+      this.statement.getPageDetails(this.id, mydata).subscribe((data: any) => {
+        if (data.status) {
+          this.details = data.response;
+        }
+      });
     }
-    this.statement.getPageDetails(this.id,mydata).subscribe((data:any)=>{
-      if(data.status){
-        this.details=data.response;
-      }
-    })
   }
 
 }

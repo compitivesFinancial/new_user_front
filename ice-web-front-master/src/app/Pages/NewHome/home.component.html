@@ -2,13 +2,13 @@
 
 
 <section class="col-md-12 sec1 " *ngFor="let data of home_data?.section0">
-    <video id="myVideo" src="{{data.s}}" class="w-100" playsinline loop autoplay [muted]="true">
+    <video id="myVideo" src="{{data.image}}" class="w-100" playsinline loop autoplay [muted]="true">
         <source src="" type="">
     </video>
 
     <div class="sec1-cont ">
         <div class="black">
-           
+
            <h2  >{{data.title}}</h2>
             <p>{{data.description}}</p>
             <!-- <button class="btn login hov-btn"><span>START FUNDRAISER</span></button> -->
@@ -257,7 +257,7 @@
             <div>
                 <div class="carousel-content" >
                     <div class="caro-img carousel-slide">
-                        <img  src="{{list.campaign_images[0].image}}" class="w-100" alt="" >
+                        <img  src="assets/images/add-img.png" class="w-100" alt="" >
                         <!-- <span>2 days left</span> -->
                     </div>
                     <div class="pad-carousel">
@@ -408,7 +408,7 @@
             <div class="item">
                 <div class="carousel-content" *ngFor="let list of upcomingInvestmentOppertunityList">
                     <div class="caro-img">
-                        <img src="{{list.campaign_images[0].image}}" class="w-100" alt="">
+                        <img src="assets/images/add-img.png" class="w-100" alt="">
                         <!-- <span>2 days left</span> -->
                     </div>
                     <div class="pad-carousel" >

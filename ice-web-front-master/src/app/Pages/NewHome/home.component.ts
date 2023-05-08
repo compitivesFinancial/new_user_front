@@ -29,7 +29,7 @@ export class NewHomeComponent implements OnInit {
   investmentOppertunityList:any
   public upcomingInvestmentOppertunityList:any
 
-  constructor(private campaignService:CampaignService,private shared:SharedService,private toast:ToastrService,private error:errorHandlerService, public router:Router) { 
+  constructor(private campaignService:CampaignService,private shared:SharedService,private toast:ToastrService,private error:errorHandlerService, public router:Router) {
     this.subscriptions.push(this.shared.languageChange.subscribe((path:any)=>{
       this.changeLanguage();
       // this.getProducts();
@@ -114,7 +114,7 @@ $("#carousel-3").owlCarousel({
           return item.product_attribute_detail.length > 0 && item.product_attribute_detail.length <= 15
         })
         this.product_list=this.product_list.splice(0,4)
-        
+
       }
     }))
   }
@@ -168,12 +168,12 @@ $("#carousel-3").owlCarousel({
   this.mobileErrorHandler();
 
     if(this.email == "" || this.email == undefined){
-      this.form_error.email_id=true; 
+      this.form_error.email_id=true;
       this.err=true;
     }
 
     if(this.message == "" || this.message == undefined){
-      this.form_error.message=true; 
+      this.form_error.message=true;
       this.err=true;
     }
 
@@ -191,12 +191,12 @@ $("#carousel-3").owlCarousel({
 
    mobileErrorHandler(){
     if(this.mobile_number == ""  || this.mobile_number == undefined){
-      this.form_error.mobile_number=true;	
+      this.form_error.mobile_number=true;
       this.err=true;
     }
     if(this.form_error.mobile_number == false && this.mobile_number.length != 10){
       this.form_error.mobile_number_valid=true;
-      this.err=true;	
+      this.err=true;
     }
   }
 
@@ -227,7 +227,7 @@ $("#carousel-3").owlCarousel({
           return
       }
       this.toast.warning(result.response.message,"")
-      
+
     },respagesError => {
       this.load=false;
       const error = this.error.getError(respagesError);
@@ -255,15 +255,15 @@ $("#carousel-3").owlCarousel({
     if ((keycode < 48 || keycode > 57) && keycode !== 13 || keycode == 46) {
       event.preventDefault();
       return false;
-    } 
-    return   
+    }
+    return
   }
 
   investMentOppertunity(){
     this.campaignService.investmentOppertunityQaysar().subscribe((res:any)=>{
       this.investmentOppertunityList =res.response
       console.log(this.investmentOppertunityList);
-      
+
     })
   }
 
@@ -271,8 +271,8 @@ $("#carousel-3").owlCarousel({
     this.campaignService.upcomingInvesmentOppertunity().subscribe((res:any)=>{
       this.upcomingInvestmentOppertunityList = res.response
       console.log(this.upcomingInvestmentOppertunityList);
-      
-      
+
+
     })
   }
 
@@ -281,7 +281,7 @@ $("#carousel-3").owlCarousel({
     if(list!= null ){
       // console.log('iner')
       // console.log(this.router);
-      
+
       this.router.navigateByUrl(`/dashboard/${btoa(list.id)}`)
     }
   }
@@ -289,5 +289,5 @@ $("#carousel-3").owlCarousel({
   percantageInvestment(a:any,b:any){
     return(`${(a/b)*100}`)
   }
-  
+
 }

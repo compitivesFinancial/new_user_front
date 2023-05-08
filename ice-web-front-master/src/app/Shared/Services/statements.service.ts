@@ -35,7 +35,7 @@ export class StatementsService{
 
     payLoan(data:Object){
         this.url = "payloan";
-		return this.api.post(this.url, data); 
+		return this.api.post(this.url, data);
     }
 
     getInvestorWallet(data:Object){
@@ -53,15 +53,18 @@ export class StatementsService{
     }
 
     getPageDetails(id:string,data:Object){
-       
+
         this.url = `get_page_by_id/${id}`;
 		return this.api.post(this.url,data);
     }
 
+    getPageOutDetails(id: string, data: Object) {
+      this.url = `get_page_by_id_outside/${id}`;
+      return this.api.get(this.url,'');
+    }
 
-   
 
-    
 
-    
+
+
 }
