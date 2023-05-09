@@ -45,12 +45,14 @@
                                                 <div class="fund-rate">
                                                     <h5>{{list.raised}} </h5><br/>
                                                     <p>{{LANG.Pledged_Of_SAR}} {{list.total_valuation}}</p>
+                                                    <h5>{{LANG.Close_Date}}</h5>
+                                                    <p>{{list.close_date != null ? list.close_date:'Not Entered yet'}}</p>
                                                 </div>
                                                 <div class="fund-investers">
                                                     <!-- <h6>{{LANG.Investers}}</h6> -->
 <br/>
                                                     <p>{{list.investers}}</p>
-                                                    <button class="btn btn-primary custom" (click)="navTo(list)">View Details</button>
+                                                    <button class="btn btn-primary custom" (click)="navTo(list)">{{LANG.View_Details}}</button>
                                                 </div>
                                             </div>
                                         </div>

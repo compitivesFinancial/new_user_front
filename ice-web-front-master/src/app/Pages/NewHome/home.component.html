@@ -276,8 +276,8 @@
                                 <p>{{list.close_date != null ? list.close_date:'----'}}</p>
                             </div>
                             <div class="fund-investers">
-                                <h4>{{LANG.Investers}}</h4>
-                                <p>{{list.investers}}</p>
+                                <!-- <h4>{{LANG.Investers}}</h4>
+                                <p>{{list.investers}}</p> -->
                                 <button class="btn btn-primary custom" (click)="navTo(list)">{{LANG.View_Details}}</button>
                             </div>
                         </div>
@@ -424,10 +424,10 @@
                                 <h5>SAR {{list.raised}} </h5>
                                 <p>{{LANG.Pledged_Of_SAR}} {{list.total_valuation}} {{LANG.Goal}}</p>
                             </div>
-                            <div class="fund-investers">
+                            <!-- <div class="fund-investers">
                                 <h4>{{LANG.Investers}}</h4>
                                 <p>{{list.investers}}</p>
-                            </div>
+                            </div> -->
                         </div>
                         <button class="btn btn-primary" (click)="navTo(list)">{{LANG.View_Details}}</button>
                     </div>
