@@ -15,7 +15,7 @@ export class UserCampaignDetailsComponent implements OnInit {
   data_loaded:boolean=false;
   id:string="";
   LANG:any={};
-  
+
   constructor(private statmentsService:StatementsService,private route:ActivatedRoute ,private shared:SharedService) {
     this.subscriptions.push(this.route.queryParams
       .subscribe(
@@ -47,7 +47,7 @@ export class UserCampaignDetailsComponent implements OnInit {
       this.campaign_details=res.response;
       this.data_loaded=true;
       console.log(res)
-      
+
     }))
   }
 

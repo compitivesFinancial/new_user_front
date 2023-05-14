@@ -17,6 +17,7 @@ import { SettingComponent } from './Pages/setting/setting.component';
 // import { NgImageSliderModule } from 'ng-image-slider/public_api';
 import { DashboarddetailsComponent } from './Pages/dashboarddetails/dashboarddetails.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { SukukPositComponent } from './Pages/sukuk/sukuk-posit/sukuk-posit.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     InvestmentComponent,
     SettingComponent,
     DashboarddetailsComponent,
+    SukukPositComponent,
   ],
   imports: [
     BrowserModule,

@@ -615,7 +615,7 @@ export const environment = {
     "Goal": "",
     "Fundin_Status": "حالة التمويل",
     "Closedp": "مغلقة",
-    "Total_Invested": "إجمالي الاصتثمار",
+    "Total_Invested": "إجمالي الاستثمار",
     "Closed_investment": "الاستثمارات المغلقة",
     "PREVIEW": "استعراض",
     "Back": "رجوع",

@@ -21,7 +21,7 @@ const ChildRoutes: Routes = [
     path: 'my-profile/user-campaigns',
     component:UserCampaignListComponent
   },
-  
+
   ]
 
 @NgModule({

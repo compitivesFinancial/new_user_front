@@ -71,18 +71,18 @@
                                     <div class="form-group col-md-6"
                                         *ngIf="fields.type == field_types.Email || fields.type == field_types.Mobile || fields.type == field_types.Characters || fields.type == field_types.Number && fields.id != 112 && fields.id != 113 && fields.id != 114 && fields.id != 115 && fields.id != 116 && fields.id != 135  && fields.id != 137 && fields.id != 138">
                                         <label
-                                            *ngIf="fields.title !='crName' && fields.title !='businessType' && fields.id !=138 && fields.id !=137">{{fields.title}}</label>
+                                            *ngIf="fields.id !='112' && fields.id !='114' && fields.id !=138 && fields.id !=137">{{fields.title}}</label>
                                         <input type="text"
-                                            *ngIf="fields.title !='crName' && fields.title !='businessType' && fields.id !=138 && fields.id !=137"
+                                            *ngIf="fields.id !='112' && fields.id !='114' && fields.id !=138 && fields.id !=137"
                                             class="form-control" placeholder="{{fields.title}}"
                                             name="field{{i}}{{j}}{{k}}" [(ngModel)]="fields.value"
                                             (keypress)="onlyNumbers($event,fields)"
                                             [maxLength]="fields.type == field_types.Mobile ? '10' : '50'"
                                             [disabled]="disabled_inputs || fields.id == 6 || fields.id == 8 || fields.id == 100">
                                         <span class="error"
-                                            *ngIf="fields.required && fields.title !='crName' && fields.title !='businessType' && fields.id !=138 && fields.id !=137">{{LANG.This_field_is_required}}</span>
+                                            *ngIf="fields.required && fields.id !='112' && fields.id !='114' && fields.id !=138 && fields.id !=137">{{LANG.This_field_is_required}}</span>
                                         <span class="error"
-                                            *ngIf="fields.invalid && fields.title !='crName' && fields.title !='businessType' && fields.id !=138 && fields.id !=137">{{fields.error_message}}</span>
+                                            *ngIf="fields.invalid && fields.id !='112' && fields.id !='114' && fields.id !=138 && fields.id !=137">{{fields.error_message}}</span>
 
                                     </div>
                                     <div class="form-group col-md-6"
@@ -322,11 +322,10 @@
                                         <input style="display: none" type="file" (change)="changeImage($event,fields)"
                                             id="fileInput{{i}}{{j}}{{k}}" [disabled]="disabled_inputs">
                                         <span *ngIf="fields.value">
-                                            <img src="{{fields.value}}" class=""
-                                                *ngIf="fields.ext != 'pdf' && fields.ext != 'docx'">
-                                            <img src="assets/images/pdf-logo.png" class="" *ngIf="fields.ext == 'pdf'">
-                                            <img src="assets/images/words-logo.png" class=""
-                                                *ngIf="fields.ext == 'docx'">
+                                          <a href="{{fields.value}}" target="_blank">  <img src="../../../../assets/images/open_file.png" alt="Open File"></a>
+                                            <!-- <img src="{{fields.value}}" class="" *ngIf="fields.ext != 'pdf' && fields.ext != 'docx'">
+                                            <img src="../../../../assets/images/pdf-logo.png" class="" *ngIf="fields.ext == 'pdf'">
+                                            <img src="../../../../assets/images/words-logo.png" class="" *ngIf="fields.ext == 'docx'"> -->
                                             <ng-container *ngIf="fields.progress && fields.progress !== 100">
                                                 <div class="text-center mt-2">
                                                     <progress max="100" [value]="fields.progress"></progress>

@@ -375,7 +375,7 @@ export class AddKycComponent implements OnInit, OnChanges {
               this.identityStr = fields.value;
             }
             if (fields.id == 132) {
-              this.yearsHijri = fields.value;
+              this.yearsHStr = fields.value;
             }
             if (fields.id == 133) {
               this.monthStr = fields.value;

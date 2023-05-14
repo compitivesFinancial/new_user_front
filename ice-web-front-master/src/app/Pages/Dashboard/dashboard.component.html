@@ -1,137 +1,25 @@
-<!-- <section class="container-fluid "> -->
-<!-- <div class="container"> -->
-<!-- <div class="row">
-            <div class="col-md-12">
-                <div class="personal-info mt-4 mb-4 position-relative">
-                    <div class="skip text-center cursor-pointer" routerLink="/kyc-details">
-                        <div>
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                        </div>
-                        <a>{{LANG.Settings}}</a>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <h5>{{LANG.Personal_info}}</h5>
-                    </div>
-                    <div class="d-flex main">
-                        <div class="img">
-                            <a><i class="fa fa-user-circle" aria-hidden="true"></i> </a>
-                        </div>
-                        <div class="others">
-                            <div class="d-flex detail">
-                                <a><i class="fa fa-user"></i></a>
-                                <h6>{{user_info.first_name}} {{user_info.last_name}}</h6>
-                            </div>
-                            <div class="d-flex detail">
-                                <a><i class="fa fa-envelope"></i></a>
-                                <h6>{{user_info.email}}</h6>
-                            </div>
-                            <div class="d-flex detail">
-                                <a><i class="fa fa-phone"></i></a>
-                                <h6>{{user_info.country_code}}{{user_info.mobile_number}}</h6>
-                            </div>
-                        </div>
-
-
-
-
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-<!-- <div class="sec6-first sec6-second pt-5 text-center py-4"> -->
-<!-- <h3 class="fund">{{LANG.Saudi_top_crowdfunding_platform}}</h3>
-            <p>{{LANG.We_Know_Your_Needs_Trusted_By}}</p> -->
-<!-- </div> -->
-<!-- <div class="col-md-8 project mx-auto">
-            <div class="row project-row" *ngIf="user_data.role_type == 2">
-                <div class="col-md-4 col-6">
-                    <div class="count">
-                        <h4>{{dashboard_data.number_of_investment}}</h4>
-                        <p>{{LANG.No_Of_Investments}}</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-6">
-                    <div class="count count1">
-                        <h4>{{dashboard_data.total_investment| number:'1.2'}} SAR</h4>
-                        <p>{{LANG.Total_Investments}}</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-6">
-                    <div class="count count2">
-                        <h4>{{dashboard_data.total_profit | number:'1.2'}} SAR</h4>
-                        <p>{{LANG.Total_Profit}}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row project-row" *ngIf="user_data.role_type == 3">
-                <div class="col-md-4 col-6">
-                    <div class="count">
-                        <h4>{{dashboard_data.no_of_opportunity}}</h4>
-                        <p>{{LANG.No_Of_Opportunities}}</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-6">
-                    <div class="count count1">
-                        <h4>{{dashboard_data.active_opportunity}}</h4>
-                        <p>{{LANG.Active_Opportunities}}</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-6">
-                    <div class="count count2">
-                        <h4>{{dashboard_data.rejected_opportunity}}</h4>
-                        <p>{{LANG.Rejected_Opportunities}}</p>
-                    </div>
-                </div>
-            </div>
-        </div> -->
 <section class="container-fluid weather sec6 bg-white">
     <div class="container">
-        <!-- <div class="row campaign-row-btn"> -->
-
-        <!-- <div class=" submit-button">
-                    <button class="btn "> PUBLISH CAMPAIGN</button>
-                </div> -->
-        <!-- </div> -->
         <div class="row">
             <div class="col-md-8  rate-left">
                 <div class="campaign-blue ">
-                    <!-- <span class="black-img "><img src="assets/images/lotus.png" alt=""></span> -->
                     <div>
                         <h2>{{opertunityDetailList.tagline}}</h2>
-                        <!-- <h6>Controlling the Cost of Weather</h6> -->
-                        <!-- <div>
-                            <span class="globe-img"><img src="assets/images/globe.png" alt="">www.weatherflow.temp</span>
-                            <span class="globe-img"><img src="assets/images/map.png" alt="">Riyadh, Saudi Arabia</span>
-                        </div> -->
                     </div>
                 </div>
                 <div class="col-9">
                 <!-- <img   src="{{opertunityDetailList.campaign_images[0].image}}" class="w-100 add-img-wrapper" alt="" /> -->
                 <img   src="assets/images/add-img.png" class="w-100 add-img-wrapper" alt="" />
             </div>
-                <!-- <div *ngFor="let img of campaign_images">
-                    <ng-image-slider #nav [images]="{{img.image}}" [infinite]="true" [autoSlide]="5" [imageSize]="{width: '50%', height: 200}" slideImage="1"></ng-image-slider>
-                </div> -->
                 <p>{{opertunityDetailList.company_bio}}</p>
             </div>
             <div class="col-md-4 rate-right">
                 <div class="rate">
                     <div>
                         <h4>SAR {{opertunityDetailList.total_valuation}}</h4>
-                        <!-- <p>75% Funded</p> -->
                     </div>
-                    <span><i class="fa fa-heart-o"></i></span>
+                    <!-- <span><i class="fa fa-heart-o"></i></span> -->
                 </div>
-                <!-- <div class="progress1">
-                    <p>Pledged Of SAR 6,000 Goal</p>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                            <span class="sr-only">70% Complete</span>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="row invest-row">
                     <div class="col-md-6">
                         <div class="invest">
@@ -157,12 +45,6 @@
                             <h6>SAR {{opertunityDetailList.total_valuation}}</h6>
                         </div>
                     </div>
-                    <!-- <div class="col-md-6">
-                        <div class="invest">
-                            <p>SAR 120M</p>
-                            <h6>SAR 2,000</h6>
-                        </div>
-                    </div> -->
                     <div class="col-md-6">
                         <div class="invest">
                             <p>{{LANG.Max_Investment}}</p>
@@ -174,178 +56,137 @@
                     <!-- Button trigger modal -->
                 </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="investmentModal" tabindex="-1" role="dialog" aria-labelledby="investmentModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">{{LANG.Modal_title}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form [formGroup]="amountForm">
-            <title>{{LANG.Amount}}:</title>
-            <input type="text" placeholder="Enter the amount" formControlName="amount">
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{LANG.Close}}</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onPay()">{{LANG.Pay}}</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Button trigger modal -->
-
-
-  <!-- Modal -->
-  <div class="modal fade" id="mastercardModal" tabindex="-1" role="dialog" aria-labelledby="mastercardModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{LANG.Close}}</button>
-          <button type="button" class="btn btn-primary" >{{LANG.Save_changes}}</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-                <!-- <div class="border-wrapper">
-                    <h6>Documents</h6>
-                    <div class="document-sec">
-                        <div class="doc-img">
-                            <img src="assets/images/document-1.svg" alt="" />
-                            <div>
-                                <p>Company profile.pdf</p>
-                                <span>12.8 Mb</span>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <img src="assets/images/download-icon.svg" alt="">
-                        </a>
+                <!-- Modal -->
+                <div class="modal fade" id="investmentModal" tabindex="-1" role="dialog" aria-labelledby="investmentModal" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">{{LANG.Modal_title}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                          <form [formGroup]="amountForm">
+                          <title>{{LANG.Amount}}:</title>
+                          <input type="text" placeholder="Enter the amount" formControlName="amount">
+                          </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{LANG.Close}}</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onPay()">{{LANG.Pay}}</button>
+                      </div>
                     </div>
-                    <div class="document-sec">
-                        <div class="doc-img">
-                            <img src="assets/images/document-2.svg" alt="" />
-                            <div>
-                                <p>Valuation.Xls</p>
-                                <span>12.8 Mb</span>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <img src="assets/images/download-icon.svg" alt="">
-                        </a>
+                  </div>
+                </div>
+
+                <!-- Button trigger modal -->
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="mastercardModal" tabindex="-1" role="dialog" aria-labelledby="mastercardModal" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{LANG.Close}}</button>
+                        <button type="button" class="btn btn-primary" >{{LANG.Save_changes}}</button>
+                      </div>
                     </div>
-                </div> -->
+                  </div>
+                </div>
             </div>
         </div>
         <div class="row allocation">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#about">{{LANG.About}}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " data-toggle="tab" href="#allocation">{{LANG.Allocation}}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " data-toggle="tab" href="#team">{{LANG.Team}}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " data-toggle="tab" href="#update">{{LANG.Updates}}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " data-toggle="tab" href="#term">{{LANG.Terms}}</a>
-                </li>
-            </ul>
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link" id="nav-sukuk-tab" data-toggle="tab" href="#nav-sukuk" role="tab" aria-controls="nav-sukuk" aria-selected="false">Sukuk Posit</a>
+              <a class="nav-item nav-link active" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="true">{{LANG.About}}</a>
+              <a class="nav-item nav-link" id="nav-allocation-tab" data-toggle="tab" href="#nav-allocation" role="tab" aria-controls="nav-allocation" aria-selected="false">{{LANG.Allocation}}</a>
+              <a class="nav-item nav-link" id="nav-team-tab" data-toggle="tab" href="#nav-team" role="tab" aria-controls="nav-team" aria-selected="false">{{LANG.Team}}</a>
+              <a class="nav-item nav-link" id="nav-updates-tab" data-toggle="tab" href="#nav-updates" role="tab" aria-controls="nav-updates" aria-selected="false">{{LANG.Updates}}</a>
+              <a class="nav-item nav-link" id="nav-terms-tab" data-toggle="tab" href="#nav-terms" role="tab" aria-controls="nav-terms" aria-selected="false">{{LANG.Terms}}</a>
+              <a class="nav-item nav-link" id="nav-campainAttach-tab" data-toggle="tab" href="#nav-campainAttach" role="tab" aria-controls="nav-campainAttach" aria-selected="false">Campaign Attachements</a>
+            </div>
+          </nav>
         </div>
-        <!-- <div class="tab-content">
-                    <div class="tab-pane active " id="about">
-
-                    </div>
-                </div> -->
-    </div>
-</section>
-<section class="container-fluid invest-sec">
-    <div class="container">
-        <div class="fund-allocation">
-            <div class="funds-all" id="about">
-                <h2>{{LANG.Reasons_to_Invest}}</h2>
-                <p>{{opertunityDetailList.reason_to_invest}}</p>
-            </div>
-            <div class="funds-all " id="allocation">
-                <h2>Funds allocation</h2>
-               {{opertunityDetailList.investment_planning}}
-            </div>
-            <div class="funds-all " id="team">
-                <h2>{{LANG.Team}}</h2>
-                <div class="col-md-11">
-                    <div class="row" *ngFor="let team of teams">
-                        <div class="col-md-6">
-                            <div class="team-img">
-                                <img src={{team.img}} alt="" />
-                                <h4>{{team.name}}</h4>
-                                <!-- <span>Founder</span> -->
-                            </div>
-                        </div>
-                        <!-- <div class="col-md-6">
-                            <div class="team-img">
-                                <img src="assets/images/add-img.png" alt="" />
-                                <h4>Carl Kayle</h4>
-                                <span>Founder & CEO</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="team-img">
-                                <img src="assets/images/add-img.png" alt="" />
-                                <h4>Samantha bore</h4>
-                                <span>Marketing head</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="team-img">
-                                <img src="assets/images/add-img.png" alt="" />
-                                <h4>David Somein</h4>
-                                <span>Tech. Genie</span>
-                            </div>
-                        </div> -->
-                    </div>
+        <br/>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+            <p>About Tab content Here.</p>
+          </div>
+          <div class="tab-pane fade" id="nav-allocation" role="tabpanel" aria-labelledby="nav-allocation-tab">
+            <p>Allocation Tab Content here .</p>
+          </div>
+          <div class="tab-pane fade" id="nav-team" role="tabpanel" aria-labelledby="nav-team-tab">
+            <p>Team Tab content here .</p>
+          </div>
+          <div class="tab-pane fade" id="nav-updates" role="tabpanel" aria-labelledby="nav-updates-tab">
+            <p>Updates Tab content here .</p>
+          </div>
+          <div class="tab-pane fade" id="nav-terms" role="tabpanel" aria-labelledby="nav-terms-tab">
+            <p>Terms Tab content here .</p>
+          </div>
+          <div class="tab-pane fade" id="nav-campainAttach" role="tabpanel" aria-labelledby="nav-campainAttach-tab">
+            <div class="col-md-7">
+              <!-- <div class="table-first">
+                <p>Campaign Attachements Tab content here .</p>
+              </div> -->
+              <div class="table-responsive table-section">
+                    <table class="table table-borderless ">
+                        <tbody>
+                            <tr *ngFor="let attach of campaignAttachements">
+                                <td class="detail-name">
+                                  <span>ID</span>
+                                    <div class="date-name">
+                                        <h4>{{attach.id}}</h4>
+                                    </div>
+                                </td>
+                                <td class="invest">
+                                  <span>Compaign</span>
+                                  <div class="date-name">
+                                    <h4>{{attach.campaign_id}} - {{opertunityDetailList.tagline}}</h4>
+                                </div>
+                              </td>
+                              <td class="invest">
+                                <span>Status</span>
+                                <div class="date-name">
+                                  <h4>{{attach.status == 'A'?LANG.Approved:LANG.Pending}}</h4>
+                              </div>
+                              </td>
+                              <td  class="invest">
+                                <span>Attachment</span>
+                                <div class="add-image span img ">
+                                  <a href="{{attach.attachment}}" target="_blank">
+                                      <!-- <img src="../../../../assets/images/open_file.png" alt="Open File"> -->
+                                      <img src="assets/images/flower-1.png" class="" *ngIf="attach.ext != 'pdf' && attach.ext != 'docx'">
+                                      <img src="assets/images/pdf-logoS.png" class="" *ngIf="attach.ext == 'pdf'">
+                                      <img src="assets/images/flower-1.png" class="" *ngIf="attach.ext == 'docx'">
+                                  </a>
+                                </div>
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-first">
+                  <h4>{{campaignAttachements.message}}</h4>
                 </div>
             </div>
-            <!-- <div class="funds-all ">
-                <h2>Updates</h2>
-                <div class="batch">
-                    <img src="assets/images/batch.png" alt="" />
-                    <div>
-                        <h5>Phase one of production is completed</h5>
-                        <p>Etiam At Fringilla Lacus, Vel Aliquet Lectus. Fusce Placerat Congue Nibh, Non Ullamcorper Ante Fringilla A. Aenean Congue, Odio Ac Vestibulum Maximus, Ligula Elit Volutpat Nibh, At Ullamcorper Odio Orci Eget Augue.</p>
-                    </div>
-                </div>
-                <div class="batch">
-                    <img src="assets/images/batch.png" alt="" />
-                    <div>
-                        <h5>Funds received for phase 2</h5>
-                        <p>Etiam At Fringilla Lacus, Vel Aliquet Lectus. Fusce Placerat Congue Nibh, Non Ullamcorper Ante Fringilla A. Aenean Congue, Odio Ac Vestibulum Maximus, Ligula Elit Volutpat Nibh, At Ullamcorper Odio Orci Eget Augue.</p>
-                    </div>
-                </div>
-            </div> -->
-            <div class="funds-all " id="team">
-                <h2>{{LANG.Terms}}</h2>
-                <p>{{opertunityDetailList.terms}}</p>
-            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-sukuk" role="tabpanel" aria-labelledby="nav-sukuk-tab">
+           <app-sukuk-posit></app-sukuk-posit>
+          </div>
         </div>
     </div>
 </section>
-
-
-<!-- </div> -->
-<!-- </section> -->
+<br/>
+<br/>
+<br/>
+<br/>

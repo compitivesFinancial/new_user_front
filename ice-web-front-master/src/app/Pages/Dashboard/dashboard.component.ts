@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
   public campaign_images:any
   public amountForm:FormGroup
   public cardDetailsForm:any
+  public campaignAttachements:any = '';
 
 
   constructor(private loginService:LoginService,private campaignService:CampaignService,public dashboardService:DashboardService,private route:ActivatedRoute, private formBuilder: FormBuilder, public router:Router,private toast:ToastrService) {
@@ -53,7 +54,9 @@ export class DashboardComponent implements OnInit {
       this.requestId = atob(this.route.snapshot.params['id']);
       if(this.requestId!=null ){
         this.getOpertunityDetails(1)
+        this.getCampaignAttachments();
       }
+      // localStorage.setItem("opertunitiyDetail", this.opertunityDetailList);
       return
     }
     this.getProfileDetails();
@@ -61,9 +64,10 @@ export class DashboardComponent implements OnInit {
 
     this.requestId = atob(this.route.snapshot.params['id']);
     if(this.requestId!=null ){
-      this.getOpertunityDetails()
+      this.getOpertunityDetails();
+      // localStorage.setItem("opertunitiyDetail", this.opertunityDetailList);
     }
-
+    this.getCampaignAttachments();
   }
 
   changeLanguage(){
@@ -100,6 +104,7 @@ export class DashboardComponent implements OnInit {
       this.opertunityDetailList = res.response.campaign
       this.teams = res.response.campaign.team
       this.campaign_images = res.response.campaign.campaign_images
+      localStorage.setItem("opertunitiyDetail", JSON.stringify(this.opertunityDetailList));
     })
   }
 onPaydetails:any
@@ -199,7 +204,12 @@ details()
 }
 
 
+getCampaignAttachments(){
+  this.subscriptions.push(this.campaignService.getCampainAttachement(this.requestId).subscribe((res:any)=>{
+    this.campaignAttachements=res.response
+  }))
 
+}
 
 
 
