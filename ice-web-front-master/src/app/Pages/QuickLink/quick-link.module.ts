@@ -21,7 +21,7 @@ const ChildRoutes: Routes = [
     path: 'quick-link',
     component:QuickLinkComponent
   },
-  
+
   ]
 
 @NgModule({

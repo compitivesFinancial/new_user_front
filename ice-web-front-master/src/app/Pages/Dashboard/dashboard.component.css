@@ -116,10 +116,17 @@
     background: #F5F5F5;
 }
 
-.add-img-wrapper {
+/* .add-img-wrapper {
     margin-top: 33px;
+} */
+.w-100 {
+  width: 70%!important;
 }
-
+.add-img-wrapper {
+  border-radius: 114px;
+  height: 180px;
+  object-fit: fill;
+}
 .invest-row {
     padding-bottom: 34px;
 }

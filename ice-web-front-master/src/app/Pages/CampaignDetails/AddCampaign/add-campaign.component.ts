@@ -74,7 +74,7 @@ export class AddCampaignComponent implements OnInit {
       this.add();
     }
   }
- 
+
   errorHandler(){
     if(this.campaign_details.tagline == "" || this.campaign_details.tagline == undefined){
       this.errors.tagline=true;
@@ -113,7 +113,7 @@ export class AddCampaignComponent implements OnInit {
       this.errors.terms=true;
       this.err=true;
     }
-    
+
     if(this.campaign_images.length == 0){
       this.errors.campaign_image_error=true;
       this.err=true;
@@ -182,16 +182,16 @@ export class AddCampaignComponent implements OnInit {
           continue
         }
 
-        
+
 
         let reader = new FileReader();
         reader.onload = (e: any) => {
           this.campaign_images.push({ image: e.target.result, "file": files[i],"extension" :ext});
-          
-        } 
+
+        }
         reader.readAsDataURL(files[i]);
         this.errors.campaign_image_error=false;
-      
+
       }
     }
     return
@@ -240,7 +240,7 @@ add(){
     "investment_planning": this.campaign_details.investment_planning,
     "terms": this.campaign_details.terms,
     "introduce_team": this.campaign_details.introduce_team,
-   
+
   }
   this.subscriptions.push(this.campaign_service.addCampaign(data).subscribe((res:any)=>{
     this.load=false;
@@ -258,9 +258,9 @@ onlyNumbers(event:any){
   if ((keycode < 48 || keycode > 57) && keycode !== 13 || keycode == 46) {
     event.preventDefault();
     return false;
-  } 
-  
-  return   
+  }
+
+  return
 }
 
 }

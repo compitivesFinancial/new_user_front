@@ -17,7 +17,9 @@ import { SettingComponent } from './Pages/setting/setting.component';
 // import { NgImageSliderModule } from 'ng-image-slider/public_api';
 import { DashboarddetailsComponent } from './Pages/dashboarddetails/dashboarddetails.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
-import { SukukPositComponent } from './Pages/sukuk/sukuk-posit/sukuk-posit.component';
+import { InvestmentagreementComponent } from './Pages/docs/investmentagreement/investmentagreement.component';
+import { DatePipe } from '@angular/common';
+// import { SukukPositComponent } from './Pages/documents/docs-posit/sukuk-posit.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { SukukPositComponent } from './Pages/sukuk/sukuk-posit/sukuk-posit.compo
     InvestmentComponent,
     SettingComponent,
     DashboarddetailsComponent,
-    SukukPositComponent,
+    InvestmentagreementComponent,
+    // SukukPositComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,11 +50,11 @@ import { SukukPositComponent } from './Pages/sukuk/sukuk-posit/sukuk-posit.compo
       outerStrokeColor: "#78C000",
       innerStrokeColor: "#C7E596",
       animationDuration: 300,
-      
-    }) 
+
+    })
     //  NgImageSliderModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

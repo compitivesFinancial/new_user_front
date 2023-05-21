@@ -10,137 +10,39 @@ import { authGuard } from './Shared/Services/authGuard.service';
 import { noLoggedIn } from './Shared/Services/noLoggedIn';
 
 const routes: Routes = [
-  {
-    path:'',
-    component:NewHomeComponent,
-    pathMatch:'full',
-  },
-  {
-    path:'dashboard',
-    component:DashboarddetailsComponent,
-    canActivate:[authGuard]
-  },
-  // {
-  //   path:'new-home',
-  //   component:NewHomeComponent,
-  // },
-  {
-    path:'dashboard/:id',
-    component:DashboardComponent,
-    canActivate:[authGuard]
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/Login/login.module').then(m => m.LoginModule),
-    canActivate:[noLoggedIn]
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/dashboard-payment/dashboard-payment/dashboard-payment.module').then(m => m.DashboardPaymentModule),
-    canActivate:[authGuard]
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/Registration/registration.module').then(m => m.RegistrationModule),
-    canActivate:[noLoggedIn]
-
-  },
-  {
-    path: 'payment/:id',
-component:DashboardPaymentComponent,
-    canActivate:[authGuard]
-
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/investment/investment.module').then(m => m.InvestmentModule),
-    canActivate:[authGuard]
-
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/setting/setting.module').then(m => m.SettingModule),
-    canActivate:[authGuard]
-
-  },
-
-  {
-    path: '',
-    loadChildren: () => import('./Pages/KYC/AddKyc/add-kyc.module').then(m => m.AddKYCModule),
-    canActivate:[authGuard]
-
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/CampaignDetails/AddCampaign/add-campaign.module').then(m => m.AddCampaignModule),
-    canActivate:[authGuard]
-
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/CampaignDetails/CampaignList/campaign-list.module').then(m => m.CampiagnListModule),
-
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/Thankyou/thank-you.module').then(m => m.ThankYouModule),
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/CampaignDetails/CampaignDetails/campaign-details.module').then(m => m.CampaignDetailsModule),
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/Statements/statements.module').then(m => m.StatementsModule),
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/Profits/profits.module').then(m => m.ProfitsModule),
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/Profile/profile.module').then(m => m.profileModule),
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/Profile/investor-wallet/investor-wallet.module').then(m => m.InvestorWalletModule),
-  },
-
-  {
-    path: '',
-    loadChildren: () => import('./Pages/QuickLink/quick-link.module').then(m => m.QuickLinkModule),
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/TermsAndConditions/quick-link.module').then(m => m.QuickLinkModule),
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/PrivacyPolicy/quick-link.module').then(m => m.QuickLinkModule),
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/CampaignDetails/UserCampaignDetails/user-campaign-details.module').then(m => m.UserCampaignDetailsModule),
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/Profile/ActiveWallet/ActiveWalletList/active-wallet-list.module').then(m => m.ActiveWalletListModule),
-  },
-  {
-    path: '',
-    loadChildren: () => import('./Pages/Profile/ActiveWallet/ActiveWalletDetails/active-wallet-details.module').then(m => m.ActiveWalletDetailsModule),
-  },
-  {
-      path: '**',
-      redirectTo:'/'
-    },
+  { path:'',component:NewHomeComponent,pathMatch:'full'},
+  { path:'dashboard',component:DashboarddetailsComponent, canActivate:[authGuard]},
+  // {path:'new-home',  component:NewHomeComponent, },
+  { path:'dashboard/:id', component:DashboardComponent, canActivate:[authGuard]},
+  { path: '', loadChildren: () => import('./Pages/Login/login.module').then(m => m.LoginModule), canActivate:[noLoggedIn]},
+  { path: '', loadChildren: () => import('./Pages/dashboard-payment/dashboard-payment/dashboard-payment.module').then(m => m.DashboardPaymentModule), canActivate:[authGuard]},
+  { path: '', loadChildren: () => import('./Pages/Registration/registration.module').then(m => m.RegistrationModule),canActivate:[noLoggedIn]},
+  { path: 'payment/:id',component:DashboardPaymentComponent, canActivate:[authGuard]},
+  { path: '', loadChildren: () => import('./Pages/investment/investment.module').then(m => m.InvestmentModule), canActivate:[authGuard]},
+  { path: '', loadChildren: () => import('./Pages/setting/setting.module').then(m => m.SettingModule),canActivate:[authGuard]},
+  { path: '', loadChildren: () => import('./Pages/KYC/AddKyc/add-kyc.module').then(m => m.AddKYCModule), canActivate:[authGuard]},
+  { path: '', loadChildren: () => import('./Pages/CampaignDetails/AddCampaign/add-campaign.module').then(m => m.AddCampaignModule), canActivate:[authGuard]},
+  { path: '', loadChildren: () => import('./Pages/CampaignDetails/CampaignList/campaign-list.module').then(m => m.CampiagnListModule), },
+  { path: '', loadChildren: () => import('./Pages/Thankyou/thank-you.module').then(m => m.ThankYouModule), },
+  { path: '', loadChildren: () => import('./Pages/CampaignDetails/CampaignDetails/campaign-details.module').then(m => m.CampaignDetailsModule),},
+  { path: '', loadChildren: () => import('./Pages/Statements/statements.module').then(m => m.StatementsModule), },
+  { path: '', loadChildren: () => import('./Pages/Profits/profits.module').then(m => m.ProfitsModule), },
+  { path: '', loadChildren: () => import('./Pages/Profile/profile.module').then(m => m.profileModule), },
+  { path: '', loadChildren: () => import('./Pages/Profile/investor-wallet/investor-wallet.module').then(m => m.InvestorWalletModule),},
+  { path: '', loadChildren: () => import('./Pages/QuickLink/quick-link.module').then(m => m.QuickLinkModule), },
+  { path: '', loadChildren: () => import('./Pages/TermsAndConditions/quick-link.module').then(m => m.QuickLinkModule), },
+  { path: '', loadChildren: () => import('./Pages/PrivacyPolicy/quick-link.module').then(m => m.QuickLinkModule), },
+  { path: '', loadChildren: () => import('./Pages/CampaignDetails/UserCampaignDetails/user-campaign-details.module').then(m => m.UserCampaignDetailsModule),},
+  { path: '', loadChildren: () => import('./Pages/Profile/ActiveWallet/ActiveWalletList/active-wallet-list.module').then(m => m.ActiveWalletListModule),},
+  { path: '', loadChildren: () => import('./Pages/Profile/ActiveWallet/ActiveWalletDetails/active-wallet-details.module').then(m => m.ActiveWalletDetailsModule),},
+  { path: '**', redirectTo:'/' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes,{
     scrollPositionRestoration: 'enabled'
   }),
-  
+
 ],
   exports: [RouterModule]
 })

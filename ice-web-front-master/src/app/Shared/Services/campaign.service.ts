@@ -100,10 +100,10 @@ export class CampaignService {
     this.url = 'footer';
     return this.api.get(this.url, '');
   }
-  // getFooter(){
-  //     this.url = "footer";
-  // 	return this.api.getFooter(this.url,"");
-  // }
+  getUserKycAddress(){
+      this.url = "get_UserKyc_Address";
+  	return this.api.get(this.url,"");
+  }
 
   getCampainAttachement(id: string) {
     this.url = `get_campaign_attachements/${id}`;

@@ -4,19 +4,28 @@
             <div class="col-md-8  rate-left">
                 <div class="campaign-blue ">
                     <div>
-                        <h2>{{opertunityDetailList.tagline}}</h2>
+                        <h2>{{opertunityDetailList?.tagline}}</h2>
                     </div>
                 </div>
                 <div class="col-9">
-                <!-- <img   src="{{opertunityDetailList.campaign_images[0].image}}" class="w-100 add-img-wrapper" alt="" /> -->
-                <img   src="assets/images/add-img.png" class="w-100 add-img-wrapper" alt="" />
+                <img   src="{{opertunityDetailList?.campaign_images[0].image}}" class="w-100 add-img-wrapper" alt="" />
+                  <!-- <img   src="assets/images/add-img.png" class="w-100 add-img-wrapper" alt="" /> -->
+                </div>
+                <br>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                      <span class="sr-only">70% Complete</span>
+                  </div>
+              </div>
+              <br>
+              <hr>
+                <!-- <p>{{opertunityDetailList?.company_bio}}</p> -->
             </div>
-                <p>{{opertunityDetailList.company_bio}}</p>
-            </div>
+
             <div class="col-md-4 rate-right">
                 <div class="rate">
                     <div>
-                        <h4>SAR {{opertunityDetailList.total_valuation}}</h4>
+                        <h4>SAR {{opertunityDetailList?.total_valuation}}</h4>
                     </div>
                     <!-- <span><i class="fa fa-heart-o"></i></span> -->
                 </div>
@@ -24,31 +33,31 @@
                     <div class="col-md-6">
                         <div class="invest">
                             <p>{{LANG.Investers}}</p>
-                            <h6>{{opertunityDetailList.investers}}</h6>
+                            <h6>{{opertunityDetailList?.investers}}</h6>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="invest">
                             <p>{{LANG.Raised}}</p>
-                            <h6>SAR {{opertunityDetailList.raised}}</h6>
+                            <h6>SAR {{opertunityDetailList?.raised}}</h6>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="invest">
                             <p>{{LANG.Price_Per_Share}}</p>
-                            <h6>SAR {{opertunityDetailList.share_price}}</h6>
+                            <h6>SAR {{opertunityDetailList?.share_price}}</h6>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="invest">
                             <p>{{LANG.Valuation}}</p>
-                            <h6>SAR {{opertunityDetailList.total_valuation}}</h6>
+                            <h6>SAR {{opertunityDetailList?.total_valuation}}</h6>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="invest">
                             <p>{{LANG.Max_Investment}}</p>
-                            <h6>SAR {{opertunityDetailList.max_investment}}</h6>
+                            <h6>SAR {{opertunityDetailList?.max_investment}}</h6>
                         </div>
                     </div>
                     <br>
@@ -57,24 +66,28 @@
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="investmentModal" tabindex="-1" role="dialog" aria-labelledby="investmentModal" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal fade" id="investmentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">{{LANG.Modal_title}}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" #closebutton class="close" data-dismiss="modal">&times;</button>
                       </div>
                       <div class="modal-body">
+                            <app-investmentagreement></app-investmentagreement>
                           <form [formGroup]="amountForm">
-                          <title>{{LANG.Amount}}:</title>
-                          <input type="text" placeholder="Enter the amount" formControlName="amount">
+                            <div class="control">
+                              <input type="checkbox" id="agreement" name="agreement" formControlName="agreement">
+                              <label style="margin-left: 10px;">I agree to the</label>
+                            </div>
+                            <span class="error" *ngIf="errors?.agreement">{{LANG.This_field_is_required}}</span>
+                            <input type="text" class="form-control" placeholder="{{LANG.Enter_the_Amount}}" name="amount" formControlName="amount"  (keypress)="onlyNumbers($event)" maxlength="4">
+                            <span class="error" *ngIf="errors?.amount">{{LANG.This_field_is_required}}</span>
                           </form>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{LANG.Close}}</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onPay()">{{LANG.Pay}}</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">{{LANG.Close}}</button>
+                    <button type="button" class="btn btn-primary" (click)="onPay()">{{LANG.Pay}}</button>
                       </div>
                     </div>
                   </div>
@@ -106,7 +119,7 @@
         <div class="row allocation">
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <a class="nav-item nav-link" id="nav-sukuk-tab" data-toggle="tab" href="#nav-sukuk" role="tab" aria-controls="nav-sukuk" aria-selected="false">Sukuk Posit</a>
+              <a class="nav-item nav-link" id="nav-sukuk-tab" data-toggle="tab" href="#nav-sukuk" role="tab" aria-controls="nav-sukuk" aria-selected="false" *ngIf="kycStatus">Sukuk Posit</a>
               <a class="nav-item nav-link active" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="true">{{LANG.About}}</a>
               <a class="nav-item nav-link" id="nav-allocation-tab" data-toggle="tab" href="#nav-allocation" role="tab" aria-controls="nav-allocation" aria-selected="false">{{LANG.Allocation}}</a>
               <a class="nav-item nav-link" id="nav-team-tab" data-toggle="tab" href="#nav-team" role="tab" aria-controls="nav-team" aria-selected="false">{{LANG.Team}}</a>
@@ -119,7 +132,8 @@
         <br/>
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-            <p>About Tab content Here.</p>
+            <!-- <p>About Tab Content here .</p> -->
+            <app-investmentagreement></app-investmentagreement>
           </div>
           <div class="tab-pane fade" id="nav-allocation" role="tabpanel" aria-labelledby="nav-allocation-tab">
             <p>Allocation Tab Content here .</p>
@@ -135,9 +149,6 @@
           </div>
           <div class="tab-pane fade" id="nav-campainAttach" role="tabpanel" aria-labelledby="nav-campainAttach-tab">
             <div class="col-md-7">
-              <!-- <div class="table-first">
-                <p>Campaign Attachements Tab content here .</p>
-              </div> -->
               <div class="table-responsive table-section">
                     <table class="table table-borderless ">
                         <tbody>
@@ -151,7 +162,7 @@
                                 <td class="invest">
                                   <span>Compaign</span>
                                   <div class="date-name">
-                                    <h4>{{attach.campaign_id}} - {{opertunityDetailList.tagline}}</h4>
+                                    <h4>{{attach.campaign_id}} - {{opertunityDetailList?.tagline}}</h4>
                                 </div>
                               </td>
                               <td class="invest">
@@ -181,7 +192,82 @@
             </div>
           </div>
           <div class="tab-pane fade" id="nav-sukuk" role="tabpanel" aria-labelledby="nav-sukuk-tab">
-           <app-sukuk-posit></app-sukuk-posit>
+            <div class="text-center">
+              <h3>
+              {{LANG.tar7_document_note_title_1_a}}
+              </h3>
+              <h4>{{LANG.tar7_document_note_title_1_b}}</h4>
+              <br />
+            </div>
+            <div class="border border-primary"> <br>
+              <dl class="row text-right">
+                <dd class="col-sm-12">
+                  <p dir="rtl">
+                    * {{LANG.tar7_document_note_1_1}} " {{campaginWithKyc?.company_name }} " {{LANG.tar7_document_note_1_2}}.
+                  </p>
+                </dd>
+                <dd class="col-sm-12">
+                  <p dir="rtl">
+                   * {{LANG.tar7_document_note_1_3}}({{ campaginWithKyc?.national_id}}). </p>
+                </dd>
+                <dd class="col-sm-12">
+                  <p dir="rtl">
+                    * {{LANG.tar7_document_note_1_3_1}} ({{campaginWithKyc?.net_sales}}) {{LANG.tar7_document_note_1_4}} {{campaginWithKyc?.net_sales_years}} {{LANG.tar7_document_note_1_5}} ({{campaginWithKyc?.net_profit}})  {{LANG.tar7_document_note_1_4}} {{campaginWithKyc?.net_profit_years}} {{LANG.tar7_document_note_1_6}}
+                  </p>
+                </dd>
+                <dd class="col-sm-12">
+                  <p dir="rtl">
+                    * {{LANG.tar7_document_note_1_7}} ({{campaginWithKyc?.cash_flow}}) {{LANG.tar7_document_note_1_8}} ({{campaginWithKyc?.return_on_assets}}) {{LANG.tar7_document_note_1_9}} ({{campaginWithKyc?.debt_of_assets}}) {{LANG.tar7_document_note_1_10}} ({{campaginWithKyc?.fin_statement_year}})
+                  </p>
+                </dd>
+                <dd class="col-sm-12">
+                  <p dir="rtl">
+                    * {{LANG.tar7_document_note_1_11}} ({{campaginWithKyc?.total_valuation}}) {{LANG.tar7_document_note_1_12}} ({{campaginWithKyc?.total_valuation}}) {{LANG.tar7_document_note_1_13}} ({{campaginWithKyc?.due_date}})   {{LANG.tar7_document_note_1_14}} ({{campaginWithKyc?.APR}}) {{LANG.tar7_document_note_1_15}} ({{ campaginWithKyc?.share_price}}) {{LANG.tar7_document_note_1_16}}
+                  </p>
+                </dd>
+                <dd class="col-sm-12">
+                  <p dir="rtl">
+                    * {{LANG.tar7_document_note_1_17}} (<a href='http://www.atam-mena.com/' target='_blank'>التنافسية المالية</a>)
+                  </p>
+                </dd>
+                <dd class="col-sm-12">
+                  <p dir="rtl">*{{LANG.tar7_document_note_1_18}} </p>
+                </dd>
+              </dl>
+            </div>
+            <hr />
+            <br />
+            <h2 style="color: red; text-align: center">{{LANG.tar7_document_note_title_2}}</h2>
+            <div class="border border-primary"><br/>
+              <dl class="row text-right">
+                <dd class="col-md-12">
+                  <p dir="rtl">* {{LANG.tar7_document_note_2_1}}</p>
+                  <p dir="rtl">* {{LANG.tar7_document_note_2_2}}</p>
+                </dd>
+              </dl>
+            </div>
+            <hr />
+            <br />
+            <h2 style="text-align: center">{{LANG.tar7_document_note_title_3}}</h2>
+            <div class="border border-primary">
+              <br/>
+              <dl class="row text-right">
+                <dd class="col-md-12">
+                  <p dir="rtl">*
+                    {{LANG.tar7_document_note_3_1_a}} {{ campaginWithKyc?.company_name }} {{LANG.tar7_document_note_3_1_b}}
+                  </p>
+                  <p dir="rtl">* {{LANG.tar7_document_note_3_2}} </p>
+                  <p dir="rtl">* {{LANG.tar7_document_note_3_3}}</p>
+                  <p dir="rtl">* {{LANG.tar7_document_note_3_4}}</p>
+                  <p dir="rtl">* {{LANG.tar7_document_note_3_5}} </p>
+                  <p dir="rtl">* {{LANG.tar7_document_note_3_6}}</p>
+                  <p dir="rtl">*
+                    {{LANG.this_document_prepared}} {{campaginWithKyc?.info_Statement_date_h}}   {{LANG.On_Date}} {{campaginWithKyc?.info_Statement_date_G}}
+                  </p>
+                </dd>
+              </dl>
+            </div>
+
           </div>
         </div>
     </div>

@@ -76,8 +76,8 @@ export class apiServiceComponent {
 		return this.http.get(_url, { headers: headers, withCredentials: true })
 			.pipe(map((response: Object) => response),
 				catchError(this._errorHandler));
-
 	}
+
 	getFooter(url: string, pagination: string): Observable<Footer[]> {
 		this.type = "GET";
 		this.PAYLOAD_DATA = pagination;
