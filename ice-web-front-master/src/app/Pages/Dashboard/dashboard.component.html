@@ -70,7 +70,7 @@
                   <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">{{LANG.Modal_title}}</h5>
+                        <h5 class="tab-header" id="exampleModalLongTitle">{{LANG.Modal_title}}</h5>
                         <button type="button" #closebutton class="close" data-dismiss="modal">&times;</button>
                       </div>
                       <div class="modal-body">
@@ -119,68 +119,101 @@
         <div class="row allocation">
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <a class="nav-item nav-link" id="nav-sukuk-tab" data-toggle="tab" href="#nav-sukuk" role="tab" aria-controls="nav-sukuk" aria-selected="false" *ngIf="kycStatus">Sukuk Posit</a>
-              <a class="nav-item nav-link active" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="true">{{LANG.About}}</a>
-              <a class="nav-item nav-link" id="nav-allocation-tab" data-toggle="tab" href="#nav-allocation" role="tab" aria-controls="nav-allocation" aria-selected="false">{{LANG.Allocation}}</a>
-              <a class="nav-item nav-link" id="nav-team-tab" data-toggle="tab" href="#nav-team" role="tab" aria-controls="nav-team" aria-selected="false">{{LANG.Team}}</a>
-              <a class="nav-item nav-link" id="nav-updates-tab" data-toggle="tab" href="#nav-updates" role="tab" aria-controls="nav-updates" aria-selected="false">{{LANG.Updates}}</a>
-              <a class="nav-item nav-link" id="nav-terms-tab" data-toggle="tab" href="#nav-terms" role="tab" aria-controls="nav-terms" aria-selected="false">{{LANG.Terms}}</a>
-              <a class="nav-item nav-link" id="nav-campainAttach-tab" data-toggle="tab" href="#nav-campainAttach" role="tab" aria-controls="nav-campainAttach" aria-selected="false">Campaign Attachements</a>
+              <a class="nav-item nav-link active" id="nav-team-tab" data-toggle="tab" href="#nav-team" role="tab" aria-controls="nav-team" aria-selected="true">{{LANG.Team}}</a>
+              <!-- <a class="nav-item nav-link" id="nav-updates-tab" data-toggle="tab" href="#nav-updates" role="tab" aria-controls="nav-updates" aria-selected="false">{{LANG.Updates}}</a> -->
+              <!-- <a class="nav-item nav-link" id="nav-terms-tab" data-toggle="tab" href="#nav-terms" role="tab" aria-controls="nav-terms" aria-selected="false">{{LANG.Terms}}</a> -->
+              <a class="nav-item nav-link" id="nav-campainAttach-tab" data-toggle="tab" href="#nav-campainAttach" role="tab" aria-controls="nav-campainAttach" aria-selected="false">{{LANG.Campaign_Attachements}}</a>
+              <a class="nav-item nav-link" id="nav-mustanad-tarh-tab" data-toggle="tab" href="#nav-mustanad-tarh" role="tab" aria-controls="nav-mustanad-tarh" aria-selected="false">{{LANG.MustanadAltarh}}</a>
+              <a class="nav-item nav-link" id="nav-invest_agree-tab" data-toggle="tab" href="#nav-invest_agree" role="tab" aria-controls="nav-invest_agree" aria-selected="false">{{LANG.Investment_Agreement}}</a>
+              <a class="nav-item nav-link" id="nav-prog-info-tab" data-toggle="tab" href="#nav-prog-info" role="tab" aria-controls="nav-prog-info" aria-selected="false">{{LANG.Program_Information}}</a>
             </div>
           </nav>
         </div>
         <br/>
         <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-            <!-- <p>About Tab Content here .</p> -->
+          <div class="tab-pane fade" id="nav-invest_agree" role="tabpanel" aria-labelledby="nav-invest_agree-tab">
             <app-investmentagreement></app-investmentagreement>
           </div>
-          <div class="tab-pane fade" id="nav-allocation" role="tabpanel" aria-labelledby="nav-allocation-tab">
-            <p>Allocation Tab Content here .</p>
+          <div class="tab-pane fade" id="nav-prog-info" role="tabpanel" aria-labelledby="nav-prog-info-tab">
+            <p class="tab-header">{{LANG.Program_Information}}</p>
+            <app-program-info></app-program-info>
           </div>
-          <div class="tab-pane fade" id="nav-team" role="tabpanel" aria-labelledby="nav-team-tab">
-            <p>Team Tab content here .</p>
+          <div class="tab-pane fade show active" id="nav-team" role="tabpanel" aria-labelledby="nav-team-tab">
+              <p class="tab-header">{{LANG.Team}}</p>
+              <div class="table-responsive table-section">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr *ngFor="let team of teams">
+                            <td>
+                              <div class="date-name">
+                                <span>{{LANG.ID}}</span>
+                              </div>
+                                   {{team.id}}
+                            </td>
+                            <td>
+                              <div class="date-name">
+                                <span>{{LANG.Name}}</span>
+                              </div>
+                                {{team.name}}
+                          </td>
+                          <td>
+                            <div class="detail-name">
+                              <span>{{LANG.Designation}}</span>
+                            </div>
+                              {{team.designation}}
+                          </td>
+                          <td>
+                            <span>{{LANG.Attachment}}</span>
+                            <div class="detail-name">
+                              <a href="{{team.image}}" target="_blank">
+                                  <img src="assets/images/flower-1.png">
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
           </div>
-          <div class="tab-pane fade" id="nav-updates" role="tabpanel" aria-labelledby="nav-updates-tab">
+          <!-- <div class="tab-pane fade" id="nav-updates" role="tabpanel" aria-labelledby="nav-updates-tab">
             <p>Updates Tab content here .</p>
           </div>
           <div class="tab-pane fade" id="nav-terms" role="tabpanel" aria-labelledby="nav-terms-tab">
             <p>Terms Tab content here .</p>
-          </div>
+          </div> -->
           <div class="tab-pane fade" id="nav-campainAttach" role="tabpanel" aria-labelledby="nav-campainAttach-tab">
-            <div class="col-md-7">
               <div class="table-responsive table-section">
-                    <table class="table table-borderless ">
+                    <table class="table table-striped">
                         <tbody>
                             <tr *ngFor="let attach of campaignAttachements">
-                                <td class="detail-name">
-                                  <span>ID</span>
-                                    <div class="date-name">
-                                        <h4>{{attach.id}}</h4>
-                                    </div>
-                                </td>
-                                <td class="invest">
-                                  <span>Compaign</span>
+                                <td>
                                   <div class="date-name">
-                                    <h4>{{attach.campaign_id}} - {{opertunityDetailList?.tagline}}</h4>
-                                </div>
+                                    <span>{{LANG.ID}}</span>
+                                   </div>
+                                      {{attach.id}}
+                                </td>
+                                <td>
+                                  <div class="date-name">
+                                    <span>Compaign</span>
+                                  </div>
+                                    {{attach.campaign_id}} - {{opertunityDetailList?.tagline}}
                               </td>
-                              <td class="invest">
-                                <span>Status</span>
+                              <td>
                                 <div class="date-name">
-                                  <h4>{{attach.status == 'A'?LANG.Approved:LANG.Pending}}</h4>
-                              </div>
+                                  <span>{{LANG.Status}}</span>
+                                </div>
+                                {{attach.status == 'A'?LANG.Approved:LANG.Pending}}
                               </td>
-                              <td  class="invest">
-                                <span>Attachment</span>
-                                <div class="add-image span img ">
+                              <td>
+                                <div class="date-name">
+                                <span>{{LANG.Attachment}}</span>
+                                </div>
                                   <a href="{{attach.attachment}}" target="_blank">
                                       <!-- <img src="../../../../assets/images/open_file.png" alt="Open File"> -->
                                       <img src="assets/images/flower-1.png" class="" *ngIf="attach.ext != 'pdf' && attach.ext != 'docx'">
                                       <img src="assets/images/pdf-logoS.png" class="" *ngIf="attach.ext == 'pdf'">
                                       <img src="assets/images/flower-1.png" class="" *ngIf="attach.ext == 'docx'">
                                   </a>
-                                </div>
                               </td>
                             </tr>
                         </tbody>
@@ -189,85 +222,10 @@
                 <div class="table-first">
                   <h4>{{campaignAttachements.message}}</h4>
                 </div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="nav-sukuk" role="tabpanel" aria-labelledby="nav-sukuk-tab">
-            <div class="text-center">
-              <h3>
-              {{LANG.tar7_document_note_title_1_a}}
-              </h3>
-              <h4>{{LANG.tar7_document_note_title_1_b}}</h4>
-              <br />
-            </div>
-            <div class="border border-primary"> <br>
-              <dl class="row text-right">
-                <dd class="col-sm-12">
-                  <p dir="rtl">
-                    * {{LANG.tar7_document_note_1_1}} " {{campaginWithKyc?.company_name }} " {{LANG.tar7_document_note_1_2}}.
-                  </p>
-                </dd>
-                <dd class="col-sm-12">
-                  <p dir="rtl">
-                   * {{LANG.tar7_document_note_1_3}}({{ campaginWithKyc?.national_id}}). </p>
-                </dd>
-                <dd class="col-sm-12">
-                  <p dir="rtl">
-                    * {{LANG.tar7_document_note_1_3_1}} ({{campaginWithKyc?.net_sales}}) {{LANG.tar7_document_note_1_4}} {{campaginWithKyc?.net_sales_years}} {{LANG.tar7_document_note_1_5}} ({{campaginWithKyc?.net_profit}})  {{LANG.tar7_document_note_1_4}} {{campaginWithKyc?.net_profit_years}} {{LANG.tar7_document_note_1_6}}
-                  </p>
-                </dd>
-                <dd class="col-sm-12">
-                  <p dir="rtl">
-                    * {{LANG.tar7_document_note_1_7}} ({{campaginWithKyc?.cash_flow}}) {{LANG.tar7_document_note_1_8}} ({{campaginWithKyc?.return_on_assets}}) {{LANG.tar7_document_note_1_9}} ({{campaginWithKyc?.debt_of_assets}}) {{LANG.tar7_document_note_1_10}} ({{campaginWithKyc?.fin_statement_year}})
-                  </p>
-                </dd>
-                <dd class="col-sm-12">
-                  <p dir="rtl">
-                    * {{LANG.tar7_document_note_1_11}} ({{campaginWithKyc?.total_valuation}}) {{LANG.tar7_document_note_1_12}} ({{campaginWithKyc?.total_valuation}}) {{LANG.tar7_document_note_1_13}} ({{campaginWithKyc?.due_date}})   {{LANG.tar7_document_note_1_14}} ({{campaginWithKyc?.APR}}) {{LANG.tar7_document_note_1_15}} ({{ campaginWithKyc?.share_price}}) {{LANG.tar7_document_note_1_16}}
-                  </p>
-                </dd>
-                <dd class="col-sm-12">
-                  <p dir="rtl">
-                    * {{LANG.tar7_document_note_1_17}} (<a href='http://www.atam-mena.com/' target='_blank'>التنافسية المالية</a>)
-                  </p>
-                </dd>
-                <dd class="col-sm-12">
-                  <p dir="rtl">*{{LANG.tar7_document_note_1_18}} </p>
-                </dd>
-              </dl>
-            </div>
-            <hr />
-            <br />
-            <h2 style="color: red; text-align: center">{{LANG.tar7_document_note_title_2}}</h2>
-            <div class="border border-primary"><br/>
-              <dl class="row text-right">
-                <dd class="col-md-12">
-                  <p dir="rtl">* {{LANG.tar7_document_note_2_1}}</p>
-                  <p dir="rtl">* {{LANG.tar7_document_note_2_2}}</p>
-                </dd>
-              </dl>
-            </div>
-            <hr />
-            <br />
-            <h2 style="text-align: center">{{LANG.tar7_document_note_title_3}}</h2>
-            <div class="border border-primary">
-              <br/>
-              <dl class="row text-right">
-                <dd class="col-md-12">
-                  <p dir="rtl">*
-                    {{LANG.tar7_document_note_3_1_a}} {{ campaginWithKyc?.company_name }} {{LANG.tar7_document_note_3_1_b}}
-                  </p>
-                  <p dir="rtl">* {{LANG.tar7_document_note_3_2}} </p>
-                  <p dir="rtl">* {{LANG.tar7_document_note_3_3}}</p>
-                  <p dir="rtl">* {{LANG.tar7_document_note_3_4}}</p>
-                  <p dir="rtl">* {{LANG.tar7_document_note_3_5}} </p>
-                  <p dir="rtl">* {{LANG.tar7_document_note_3_6}}</p>
-                  <p dir="rtl">*
-                    {{LANG.this_document_prepared}} {{campaginWithKyc?.info_Statement_date_h}}   {{LANG.On_Date}} {{campaginWithKyc?.info_Statement_date_G}}
-                  </p>
-                </dd>
-              </dl>
-            </div>
 
+          </div>
+          <div class="tab-pane fade" id="nav-mustanad-tarh" role="tabpanel" aria-labelledby="nav-mustanad-tarh-tab">
+           <app-tar7-document></app-tar7-document>
           </div>
         </div>
     </div>

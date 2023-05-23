@@ -34,28 +34,25 @@
                                     <div class="carousel-content" >
                                         <div class="caro-img carousel-slide">
                                             <!-- <img  src="{{list.campaign_images[0].image}}" class="w-100" alt="" > -->
-                                            <img  src="assets/images/add-img.png" class="w-100" alt="" >
+                                            <img  src="assets/images/main-logo1-ar.png" class="w-100" alt="" >
                                             <!-- <span>2 days left</span> -->
                                         </div>
                                         <div class="pad-carousel">
                                             <h6 >{{list.tagline}}</h6>
                                             <p>{{list.reason_to_invest}}</p>
 
-                                            <div class="d-flex justify-content-between ">
+                                            <div>
                                                 <div class="fund-rate">
                                                     <h5>{{list.raised}} </h5><br/>
                                                     <p>{{LANG.Pledged_Of_SAR}} {{list.total_valuation}}</p>
-                                                    <h5>{{LANG.Close_Date}}</h5>
-                                                    <p>{{list.close_date != null ? list.close_date:'Not Entered yet'}}</p>
+                                                    <h5></h5>
+                                                    <p>{{LANG.Close_Date}} : {{list.close_date != null ? list.close_date:'Not Entered yet'}}</p>
                                                 </div>
                                                 <div class="fund-investers">
-                                                    <!-- <h6>{{LANG.Investers}}</h6> -->
-<br/>
-                                                    <p>{{list.investers}}</p>
                                                     <button class="btn btn-primary custom" (click)="navTo(list)">{{LANG.View_Details}}</button>
                                                 </div>
                                             </div>
-                                        </div>
+                                          </div>
                                     </div>
                                 </div>
                             </div>

@@ -119,8 +119,8 @@
 
 
                         <div class="box">
-                            <!-- <div class="box-topic">Profile_Info</div> -->
-                            <div class="box-topic">البيانات الشخصية</div>
+                            <div class="box-topic">{{LANG.Profile_Info}}</div>
+                            <!-- <div class="box-topic">البيانات الشخصية</div> -->
                             <div class="profile-right">
                                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
 
@@ -190,7 +190,8 @@
           </div> -->
                     <div class="col-md-3">
                         <!-- Number_of_Investment -->
-                        <div class="box-topic">عدد الاستثمارات</div>
+                        <!-- <div class="box-topic">عدد الاستثمارات</div> -->
+                        <div class="box-topic">{{LANG.Number_of_Investment}}</div>
                         <div class="box">
                             <div class="right-side">
                                 <div class="number">{{invesorDashDetails.number_of_investment != null ?
@@ -205,8 +206,8 @@
                     </div>
                     <div class="col-md-3">
                         <!-- Total_Amount_Invested -->
-                        <div class="box-topic">إجمالي مبالغ الاستثمار</div>
-
+                        <!-- <div class="box-topic">إجمالي مبالغ الاستثمار</div> -->
+                        <div class="box-topic">{{LANG.Total_Amount_Invested}}</div>
                         <div class="box">
                             <div class="right-side">
                                 <div class="number">{{roundOF(invesorDashDetails.total_investment !=null ?
@@ -220,7 +221,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="box-topic">إجمالي الربح</div>
+                        <div class="box-topic">{{LANG.Total_Profit}}</div>
 
                         <div class="box">
                             <div class="right-side">
@@ -255,7 +256,8 @@
                                     <img src="../../../assets/images/bank_img.jpg" alt="" class="img-size">
                                 </div>
                                 <!-- Account_Number -->
-                                <div class="box-topic">رقم الحساب</div>
+                                <!-- <div class="box-topic">رقم الحساب</div> -->
+                                <div class="box-topic">{{LANG.Account_Number}}</div>
                                 <div class="number">{{profileDetails.account_number != null ?
                                     profileDetails.account_number:0}}</div>
                                 <!-- <div class="indicator">
@@ -270,17 +272,17 @@
 
 
                         <div class="box">
-                            <!-- <div class="box-topic">Profile_Info</div> -->
-                            <div class="box-topic">البيانات الشخصية</div>
+                            <div class="box-topic">{{LANG.Profile_Info}}</div>
+                            <!-- <div class="box-topic">البيانات الشخصية</div> -->
                             <div class="profile-right">
                                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                                 <div class="right-side">
-                                    <div class="box-topic">
-                                        الاسم:{{profileDetails?.first_name}}{{profileDetails?.last_name}}</div>
+                                    <div class="box-topic">{{LANG.Name}}
+                                        :{{profileDetails?.first_name}}{{profileDetails?.last_name}}</div>
                                     <div class="box-topic box-topic-i"><i class="fa fa-envelope-o"
-                                            aria-hidden="true"></i>البريد الالكتروني:{{profileDetails?.email}}</div>
+                                            aria-hidden="true"></i>{{LANG.Email_ID}}:{{profileDetails?.email}}</div>
                                     <div class="box-topic  box-topic-i"><i class="fa fa-phone"
-                                            aria-hidden="true"></i>رقم التواصل:{{profileDetails?.mobile_number}}</div>
+                                            aria-hidden="true"></i>{{LANG.Contact_Number}}:{{profileDetails?.mobile_number}}</div>
 
                                     <!-- <div class="indicator">
                       <i class='bx bx-up-arrow-alt'></i>

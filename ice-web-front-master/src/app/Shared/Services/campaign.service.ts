@@ -5,7 +5,7 @@ import { apiServiceComponent } from '../Services/api.service';
 @Injectable({ providedIn: 'root' })
 export class CampaignService {
   private url: string = '';
-
+public campaignDetail:any;
   constructor(private api: apiServiceComponent) {}
 
   addCampaign(data: Object) {

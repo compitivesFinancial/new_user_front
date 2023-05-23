@@ -18,6 +18,7 @@ import { DocumentService } from 'src/app/Shared/Services/document.service';
 import { CampaginWithKyc } from 'src/app/Shared/Models/campagin-with-kyc';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { SharedService } from 'src/app/Shared/Services/shared.service';
 // import { Toast } from 'ngx-toastr';
 @Component({
   selector: 'app-dashboard',
@@ -31,8 +32,9 @@ export class DashboardComponent implements OnInit {
   user_data: any = {};
   dashboard_data: any = {};
   subscriptions: Subscription[] = [];
-  LANG = environment.english_translations;
-  opertunityDetailList: any;
+  // LANG = environment.arabic_translations;
+  LANG:any={};
+  public opertunityDetailList: any;
   requestId: any;
   public teams: any;
   public campaign_images: any;
@@ -53,7 +55,7 @@ export class DashboardComponent implements OnInit {
     private formBuilder: FormBuilder,
     public router: Router,
     private toast: ToastrService,
-    private documentService: DocumentService
+    private documentService: DocumentService,private shared:SharedService
   ) {
     this.myDate = new Date();
     this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
@@ -73,6 +75,11 @@ export class DashboardComponent implements OnInit {
       cardNumber: ['', Validators.required],
       carddate: ['', Validators.required],
     });
+    this.subscriptions.push(this.shared.languageChange.subscribe((path:any)=>{
+      this.changeLanguage();
+
+    }))
+    this.changeLanguage();
   }
 
   ngOnInit(): void {
@@ -120,7 +127,7 @@ export class DashboardComponent implements OnInit {
     if (
       localStorage.getItem('arabic') == 'true' &&
       localStorage.getItem('arabic') != null
-    ) {
+    ){
       this.LANG = environment.arabic_translations;
     } else {
       this.LANG = environment.english_translations;
@@ -157,7 +164,7 @@ export class DashboardComponent implements OnInit {
           this.opertunityDetailList = res.response.campaign;
           this.teams = res.response.campaign.team;
           this.campaign_images = res.response.campaign.campaign_images;
-          this.getSukukDetails();
+          this.campaignService.campaignDetail = res.response.campaign;
         })
     );
   }
@@ -185,16 +192,16 @@ export class DashboardComponent implements OnInit {
       };
       this.errors.amount = false;
       this.closebutton.nativeElement.click();
-      // this.dashboardService.onPay(data).subscribe((res: any) => {
-      //   this.onPaydetails = res.response.session_id;
-      //   this.toast.success(res.response.message);
-      //   // $('#modalwindow').modal('hide');
+      this.dashboardService.onPay(data).subscribe((res: any) => {
+        this.onPaydetails = res.response.session_id;
+        this.toast.success(res.response.message);
+        // $('#modalwindow').modal('hide');
 
-      //   console.log(this.onPaydetails);
-      //   // this.router.navigateByUrl(`payment/${btoa(this.onPaydetails)}`)
-      //   this.amountForm.value.amount = '';
-      //   this.isAmountValid = false;
-      // });
+        console.log(this.onPaydetails);
+        // this.router.navigateByUrl(`payment/${btoa(this.onPaydetails)}`)
+        this.amountForm.value.amount = '';
+        // this.isAmountValid = false;
+      });
     } else {
       console.log(
         '*********************please fill the form data*********************'

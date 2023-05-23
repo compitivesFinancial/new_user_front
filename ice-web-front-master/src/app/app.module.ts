@@ -19,7 +19,8 @@ import { DashboarddetailsComponent } from './Pages/dashboarddetails/dashboarddet
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { InvestmentagreementComponent } from './Pages/docs/investmentagreement/investmentagreement.component';
 import { DatePipe } from '@angular/common';
-// import { SukukPositComponent } from './Pages/documents/docs-posit/sukuk-posit.component';
+import { ProgramInfoComponent } from './Pages/docs/programInfo/program-info.component';
+import { Tar7DocumentComponent } from './Pages/docs/tar7-document/tar7-document.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { DatePipe } from '@angular/common';
     SettingComponent,
     DashboarddetailsComponent,
     InvestmentagreementComponent,
-    // SukukPositComponent,
+    ProgramInfoComponent,
+    Tar7DocumentComponent,
   ],
   imports: [
     BrowserModule,

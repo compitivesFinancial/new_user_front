@@ -198,3 +198,9 @@
 .add-image span i {
   padding-bottom: 10px;
 }
+.tab-header {
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}

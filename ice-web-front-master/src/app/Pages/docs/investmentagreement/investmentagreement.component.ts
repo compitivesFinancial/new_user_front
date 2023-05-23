@@ -16,7 +16,7 @@ export class InvestmentagreementComponent implements OnInit {
   LANG = environment.english_translations;
   session_user: any = {};
   investorAddress: any;
-  myDate :any;
+  myDate: any;
   /*****************************************************************/
   constructor(
     private datePipe: DatePipe,
@@ -30,7 +30,6 @@ export class InvestmentagreementComponent implements OnInit {
       this.session_user = JSON.parse(
         atob(atob(localStorage.getItem(user_data) || '{}'))
       );
-      // console.log(`Qaysar Test User ${JSON.stringify(this.session_user)}`);
     }
     /*****************************************************************/
     this.statement.getPageDetails('2', '').subscribe((data: any) => {
@@ -38,12 +37,11 @@ export class InvestmentagreementComponent implements OnInit {
         this.pageDetail = data.response;
       }
     });
-    // this.subscriptions.push(
-      this.campaign_service.getUserKycAddress().subscribe((data: any) => {
-        if (data.status) {
-          this.investorAddress = data.response
-        }
-      });
+    this.campaign_service.getUserKycAddress().subscribe((data: any) => {
+      if (data.status) {
+        this.investorAddress = data.response;
+      }
+    });
     // );
   }
   /*****************************************************************/

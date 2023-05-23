@@ -3,6 +3,7 @@
 }
 
 .fund-investers p {
+  margin-top: 15px;
     color: #0D0D0D;
     font-family: 'maison-bold';
 }
@@ -17,7 +18,7 @@
 .carousel-content {
     border-radius: 32px;
     background: rgb(227, 227, 227);
-    
+
 }
 .caro-img {
     position: relative;
@@ -36,8 +37,8 @@
 }
 
 .caro-img img {
-    height: 238px;
-    object-fit: cover;
+    height: 100px;
+    object-fit: fill;
 }
 .carousel-slide img {
     border-radius: 32px;
@@ -98,4 +99,18 @@
 .fund-investers p {
     color: #0D0D0D;
     font-family: 'maison-bold';
+}
+.btn {
+  width: 90%;
+  font-weight: 400;
+  white-space: pre-line;
+  vertical-align: inherit;
+  -webkit-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 0.5;
+  border-radius: 3.25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
