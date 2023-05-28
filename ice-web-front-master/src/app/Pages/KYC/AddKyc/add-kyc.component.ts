@@ -30,6 +30,7 @@ import { Console } from 'console';
 import { YaqeenService } from 'src/app/Shared/Services/yaqeen.service';
 import { YaqeenData } from 'src/app/Shared/Models/YaqeenData';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { DashboardService } from '../../Dashboard/dashboard.service';
 
 @Component({
   selector: 'app-add-kyc',
@@ -59,7 +60,7 @@ export class AddKycComponent implements OnInit, OnChanges {
   issueDate: any;
   businessType: any;
   crEntityNumber: any;
-
+  public profileDetails: any = '';
   //added By Qaysar For updating the page with dynamic list
   public yaqeenArName: any = '';
   public yaqeenEnName: any = '';
@@ -75,6 +76,7 @@ export class AddKycComponent implements OnInit, OnChanges {
   yearsHijri: number[] = [];
   monthsHijri: string[] = [];
   days: number[] = [];
+  grossIncomeList: string[] = [];
 
   identityStr: string = '';
   genderStr: string = '';
@@ -116,7 +118,8 @@ export class AddKycComponent implements OnInit, OnChanges {
     private toast: ToastrService,
     private router: Router,
     private lkservice: LkServiceService,
-    private yaqeenService: YaqeenService
+    private yaqeenService: YaqeenService,
+    public dashBoardService: DashboardService
   ) {
     const user_data = btoa(btoa('user_info_web'));
     if (localStorage.getItem(user_data) != undefined) {
@@ -157,6 +160,8 @@ export class AddKycComponent implements OnInit, OnChanges {
     this.getYearsHijri();
     this.getMonthsHijri();
     this.getDays();
+    this.getGrossIncomeList();
+    this.profile();
   }
 
   ngOnInit(): void {
@@ -238,6 +243,9 @@ export class AddKycComponent implements OnInit, OnChanges {
   }
   getDays() {
     this.days = this.lkservice.getDays();
+  }
+  getGrossIncomeList() {
+    this.grossIncomeList = this.lkservice.getGrossIncome();
   }
   /*************************************************************************************************************/
 
@@ -423,6 +431,16 @@ export class AddKycComponent implements OnInit, OnChanges {
       const str: string = 'undefined' as string;
       return str as unknown as T;
     }
+  }
+
+  profile() {
+    let data = {
+      id: this.user_data.id,
+    };
+    this.dashBoardService.profileDetails(data).subscribe((res: any) => {
+      this.profileDetails = res.response;
+      console.log(this.profileDetails);
+    });
   }
   //end add By Qaysar For updating the page with dynamic list
 

@@ -31,11 +31,11 @@
                             <span class="hov-border"></span>
                         </a>
                     </li>
-                    <li class="nav-item active" *ngIf="user_data?.role_type == 3">
-                        <a class="nav-link" routerLink="/add-campaign">{{LANG.Add_Opportunity}}
-                            <span class="hov-border"></span>
-                        </a>
-                    </li>
+                    <li class="nav-item" *ngIf="user_data?.role_type == 3">
+                      <a class="nav-link" routerLink="/add-campaign"
+                          *ngIf="profileDetails.kyc_approved_status==1"> {{LANG.Add_Opportunity}}
+                      </a>
+                  </li>
                     <!-- <li class="nav-item active" *ngIf="user_data?.role_type == 3">
                         <a class="nav-link" routerLink="/my-profile/user-campaigns">{{LANG.My_Opportunities}}
                             <span class="hov-border"></span>

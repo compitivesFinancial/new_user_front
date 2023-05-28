@@ -287,6 +287,7 @@ export const environment = {
     Investment_opportunities: "Investment opportunities",
     Open_and_ongoing_popular_croudfungings_for_you_to_choose_from: "Open and ongoing popular croudfungings for you to choose from",
     Close_Date: "Close Date",
+    Open_Date:"Open Date",
     View_Details: "View Details",
     EXPLORE_ALL: "EXPLORE ALL",
     Upcoming_opportunities: "Upcoming opportunities",
@@ -547,6 +548,8 @@ export const environment = {
      Campaign_Attachements:"Campaign Attachements",
      Program_Information:"Program Information",
      Investment_Agreement:"Investment Agreement",
+     Sukuk_Murabaha:"Sukuk Murabaha",
+     Annual_return_rate:"Annual return rate",
         //End Add by Qaysar
   },
   //******************************************************* Start Arabic array *******************************************//
@@ -810,6 +813,7 @@ export const environment = {
     "Investment_opportunities": "الفرص الاستثمارية",
     "Open_and_ongoing_popular_croudfungings_for_you_to_choose_from": "الفرص المفتوحة للإستثمار",
     "Close_Date": "تاريخ الاغلاق",
+    "Open_Date":"تاريخ الفتح",
     "View_Details": "عرض التفاصيل",
     "EXPLORE_ALL": "إستعراض",
     "Upcoming_opportunities": "الفرص القادمة",
@@ -1069,6 +1073,8 @@ export const environment = {
      "Campaign_Attachements":"مرفقات الفرصة",
      "Program_Information":"معلومات البرنامج",
      "Investment_Agreement":"اﺗﻔﺎﻗﻴﺔ وﻛﺎﻟﺔ ﺑﺎﻻﺳﺘﺜﻤﺎر",
+     "Sukuk_Murabaha":"صكوك المرابحة",
+     "Annual_return_rate":"نسبة العائد السنوي",
     //End Add by Qaysar
 
   },

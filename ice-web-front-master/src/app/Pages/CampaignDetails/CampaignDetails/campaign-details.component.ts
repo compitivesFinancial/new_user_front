@@ -22,7 +22,7 @@ export class CampaignDetailsComponent implements OnInit {
   user_data:any={};
   user_details:any={};
   LANG:any={}
-
+  disabled_inputs: boolean = false;
 
   constructor(private route:ActivatedRoute,private campaignService:CampaignService,private loginService:LoginService,private toast:ToastrService,private router:Router,private shared:SharedService) {
     const user_data=btoa(btoa("user_info_web"));
@@ -104,7 +104,9 @@ export class CampaignDetailsComponent implements OnInit {
       if(res.status){
           this.user_details=res.response
       }
-
+      if (res.response.kyc_approved_status == 1) {
+        this.disabled_inputs = true;
+      }
     }))
 
   }

@@ -8,6 +8,8 @@ import { CampaignService } from 'src/app/Shared/Services/campaign.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
+import { LkServiceService } from 'src/app/Shared/Services/lk-service.service';
+import { FundUse } from 'src/app/Shared/Models/fund-use';
 
 @Component({
   templateUrl: './add-campaign.component.html',
@@ -26,16 +28,24 @@ export class AddCampaignComponent implements OnInit {
   uploaded_count:number=0;
   upload_called:boolean=false;
   subscriptions:Subscription[]=[];
-  LANG:any={}
+  LANG:any={};
+  financingType: any;
+  financingPeriod: any;
+  fundUseList: Array<FundUse> = [];
 
-  constructor(private toast:ToastrService,private campaign_service:CampaignService,private router:Router,private shared:SharedService) {
+  constructor(private toast:ToastrService,private campaign_service:CampaignService,private router:Router,private shared:SharedService,private lkService:LkServiceService) {
     this.subscriptions.push(this.shared.languageChange.subscribe((path:any)=>{
       this.changeLanguage();
     }))
     this.changeLanguage();
+    this.financingPeriod = this.lkService.getFinancingPeriod();
+    this.financingType = this.lkService.getFinancingTyp();
+    this.fundUseList=this.lkService.getFundUseList();
    }
 
   ngOnInit(): void {
+    this.financingPeriod = this.lkService.getFinancingPeriod();
+    this.financingType = this.lkService.getFinancingTyp();
   }
 
   addEmployees(){
@@ -89,14 +99,26 @@ export class AddCampaignComponent implements OnInit {
       this.errors.total_valuation=true;
       this.err=true;
     }
-    // if(this.campaign_details.min_investment == "" || this.campaign_details.min_investment == undefined){
-    //   this.errors.min_investment=true;
-    //   this.err=true;
-    // }
-    // if(this.campaign_details.max_investment == "" || this.campaign_details.max_investment == undefined){
-    //   this.errors.max_investment=true;
-    //   this.err=true;
-    // }
+    if(this.campaign_details.financing_type == "" || this.campaign_details.financing_type == undefined){
+      this.errors.financing_type=true;
+      this.err=true;
+    }
+    if(this.campaign_details.fund_use == "" || this.campaign_details.fund_use == undefined){
+      this.errors.fund_use=true;
+      this.err=true;
+    }
+        if(this.campaign_details.financing_period == "" || this.campaign_details.financing_period == undefined){
+      this.errors.financing_period=true;
+      this.err=true;
+    }
+        if(this.campaign_details.obtain_finance_dt == "" || this.campaign_details.obtain_finance_dt == undefined){
+      this.errors.obtain_finance_dt=true;
+      this.err=true;
+    }
+        if(this.campaign_details.finance_repayment_dt == "" || this.campaign_details.finance_repayment_dt == undefined){
+      this.errors.finance_repayment_dt=true;
+      this.err=true;
+    }
     if(this.campaign_details.company_bio == "" || this.campaign_details.company_bio == undefined){
       this.errors.company_bio=true;
       this.err=true;
@@ -240,6 +262,11 @@ add(){
     "investment_planning": this.campaign_details.investment_planning,
     "terms": this.campaign_details.terms,
     "introduce_team": this.campaign_details.introduce_team,
+    "financing_type": this.campaign_details.financing_type,
+    "fund_use": this.campaign_details.fund_use,
+    "financing_period": this.campaign_details.financing_period,
+    "obtain_finance_dt": this.campaign_details.obtain_finance_dt,
+    "finance_repayment_dt": this.campaign_details.finance_repayment_dt,
 
   }
   this.subscriptions.push(this.campaign_service.addCampaign(data).subscribe((res:any)=>{

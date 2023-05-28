@@ -21,12 +21,12 @@
                             <span class="hov-border"></span>
                         </button>
                     </li>
-                    <li class="nav-item active" >
+                    <li class="nav-item active" *ngIf="user_data?.role_type == 2">
                         <button class="btn btn-primary" routerLink="/investment">{{LANG.Investment}}
                             <span class="hov-border"></span>
                         </button>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item active" *ngIf="user_data?.role_type == 2">
                         <button class=" btn btn-primary" routerLink="/setting">{{LANG.Operations}}
                             <span class="hov-border"></span>
                         </button>

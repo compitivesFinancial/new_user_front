@@ -11,7 +11,12 @@ export interface campaign_data {
     reason_to_invest:string,
     investment_planning:string,
     terms:string,
-    introduce_team:string
+    introduce_team:string,
+    financing_type:string,
+    fund_use:string,
+    financing_period:string,
+    obtain_finance_dt:string,
+    finance_repayment_dt:string,
 }
 
 interface campaign_type{

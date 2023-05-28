@@ -16,14 +16,14 @@ export class MyAccountComponent implements OnInit {
   last_name:string="";
   email:string="";
   mobile_number:string="";
-  country_code: string=""; 
+  country_code: string="";
   subscriptions:Subscription[]=[]
   user_data:any={};
   old_password:any= ''
   new_password:any=''
   LANG:any={};
 
-  constructor(private loginService:LoginService, public toast:ToastrService, lkService:LkServiceService,private shared:SharedService) { 
+  constructor(private loginService:LoginService, public toast:ToastrService, lkService:LkServiceService,private shared:SharedService) {
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
       this.user_data=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
@@ -53,14 +53,15 @@ export class MyAccountComponent implements OnInit {
     const data={id:this.user_data.id}
     this.subscriptions.push(this.loginService.getProfileDetails(data,type).subscribe((res:any)=>{
       if(res.status){
-        this.first_name=res.response.name;
-        // this.last_name=res.response.last_name;
+        // this.first_name=res.response.name;
+        this.first_name=res.response.first_name ;
+        this.last_name=res.response.last_name;
         this.email=res.response.email;
         this.mobile_number=res.response.country_code+res.response.mobile_number;
       }
-      
+
     }))
-    
+
   }
 
   updateProfile(){

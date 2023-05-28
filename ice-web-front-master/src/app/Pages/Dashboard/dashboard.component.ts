@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit {
   campaginWithKyc!: CampaginWithKyc;
   kycStatus: any;
   myDate :any;
+  disabled_inputs: boolean = false;
 
 
   constructor(
@@ -140,6 +141,9 @@ export class DashboardComponent implements OnInit {
       this.loginService.getProfileDetails(data, type).subscribe((res: any) => {
         if (res.status) {
           this.user_info = res.response;
+        }
+        if (res.response.kyc_approved_status == 1) {
+          this.disabled_inputs = true;
         }
       })
     );

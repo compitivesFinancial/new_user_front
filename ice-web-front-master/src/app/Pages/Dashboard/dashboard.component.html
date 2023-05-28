@@ -1,7 +1,7 @@
 <section class="container-fluid weather sec6 bg-white">
     <div class="container">
         <div class="row">
-            <div class="col-md-8  rate-left">
+            <div class="col-md-4 rate-left">
                 <div class="campaign-blue ">
                     <div>
                         <h2>{{opertunityDetailList?.tagline}}</h2>
@@ -22,7 +22,7 @@
                 <!-- <p>{{opertunityDetailList?.company_bio}}</p> -->
             </div>
 
-            <div class="col-md-4 rate-right">
+            <div class="col-md-8 rate-right">
                 <div class="rate">
                     <div>
                         <h4>SAR {{opertunityDetailList?.total_valuation}}</h4>
@@ -30,38 +30,38 @@
                     <!-- <span><i class="fa fa-heart-o"></i></span> -->
                 </div>
                 <div class="row invest-row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="invest">
                             <p>{{LANG.Investers}}</p>
                             <h6>{{opertunityDetailList?.investers}}</h6>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="invest">
                             <p>{{LANG.Raised}}</p>
                             <h6>SAR {{opertunityDetailList?.raised}}</h6>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="invest">
                             <p>{{LANG.Price_Per_Share}}</p>
                             <h6>SAR {{opertunityDetailList?.share_price}}</h6>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="invest">
                             <p>{{LANG.Valuation}}</p>
                             <h6>SAR {{opertunityDetailList?.total_valuation}}</h6>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="invest">
                             <p>{{LANG.Max_Investment}}</p>
                             <h6>SAR {{opertunityDetailList?.max_investment}}</h6>
                         </div>
                     </div>
                     <br>
-                    <button class="btn btn-primary" *ngIf="user_data.role_type==2" data-toggle="modal" data-target="#investmentModal"> {{LANG.investment}}</button>
+                    <button class="btn btn-primary" *ngIf="user_data.role_type==2 && disabled_inputs" data-toggle="modal" data-target="#investmentModal"> {{LANG.investment}}</button>
                     <!-- Button trigger modal -->
                 </div>
 
@@ -87,7 +87,7 @@
                       </div>
                       <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">{{LANG.Close}}</button>
-                    <button type="button" class="btn btn-primary" (click)="onPay()">{{LANG.Pay}}</button>
+                    <button type="button" *ngIf="disabled_inputs" class="btn btn-primary" (click)="onPay()">{{LANG.Pay}}</button>
                       </div>
                     </div>
                   </div>

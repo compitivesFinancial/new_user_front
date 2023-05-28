@@ -18,4 +18,5 @@ export enum FieldType {
     Years=17,
     Months=18,
     Days=19,
+    GrossIncome=20,
 }
