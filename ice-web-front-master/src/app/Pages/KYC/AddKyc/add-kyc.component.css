@@ -13,7 +13,7 @@
 
 .campaign-tab .nav-tabs {
     justify-content: center;
-    background: #160034;
+    background: #3c0d7c;
 }
 .pointer {cursor: pointer;}
 
@@ -147,4 +147,24 @@ input[type="radio"]:not(:checked) {
 
 .buttons .next {
     background: #00C48A;
+}
+.buttons .link-yaqeen{
+  border: ridge;
+  background-color: #58C18E;
+}
+.nav nav-tabs{
+  justify-content: center;
+  background: #3c0d7c;
+}
+.campaign-tab .nav-tabs  .nav-link {
+  border-radius: 0;
+  font-size: 16px;
+  color: #FFFFFF;
+  border: 0;
+  font-family: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 31px;
+  font-weight: bold;
 }

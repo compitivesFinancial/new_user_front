@@ -65,20 +65,20 @@
                         <option value="+966">+966</option>
                     </select>
                 </div>
-                <input type="text" placeholder="{{LANG.Mobile_Number}}" class="form-control" name="mobile_number"
-                    [(ngModel)]="mobile_number" (keypress)="onlyNumbers($event)">
+                <input type="text" placeholder="{{LANG.Mobile_Number}} (5xxxxxxxxx)" class="form-control" name="mobile_number"
+                    [(ngModel)]="mobile_number" (keypress)="onlyNumbers($event)" maxlength="10">
             </div>
             <span class="error" *ngIf="registration_error.mobile_number">{{LANG.This_field_is_required}}</span>
             <span class="error" *ngIf="registration_error.mobile_number_valid && country_code == '+966'">{{LANG.Enter_Valid_Mobile_Number_Ex}}</span>
-            <span class="error" *ngIf="registration_error.mobile_number_valid && country_code != '+966'">{{LANG.Enter_valid_Mobile_Number}} </span>
+            <span class="error" *ngIf="registration_error.mobile_number_valid && country_code != '+966'">{{LANG.Enter_Valid_Mobile_Number_Ex}} </span>
 
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <input type="text" class="form-control" placeholder="{{LANG.User_Name}}" name="user_name"
                 [(ngModel)]="user_name">
             <span class="error" *ngIf="registration_error.user_name">{{LANG.This_field_is_required}}</span>
-        </div>
+        </div> -->
 
 
 

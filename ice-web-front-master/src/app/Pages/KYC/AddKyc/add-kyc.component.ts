@@ -329,6 +329,7 @@ export class AddKycComponent implements OnInit, OnChanges {
               this.toast.error('The Id number not exist ');
               return;
             }
+            this.calculateDate(res.response.personBasicInfo.birthDateG);
             this.yaqeenData = new YaqeenData(
               res.status,
               res.response.personBasicInfo.birthDateG,
@@ -384,6 +385,7 @@ export class AddKycComponent implements OnInit, OnChanges {
               this.toast.error('The Id number not exist ');
               return;
             }
+            this.calculateDate(res.response.personBasicInfo.birthDateG);
             this.yaqeenData = new YaqeenData(
               res.status,
               res.response.personBasicInfo.birthDateG,
@@ -839,5 +841,32 @@ export class AddKycComponent implements OnInit, OnChanges {
       console.log(`the value from user is ${event.target.value}`);
       this.verifyCrNumber(crName);
     }
+  }
+
+  calculateDate(birthdate: Date) {
+    let today = new Date();
+    let BOD = new Date(birthdate);
+    // let past = new Date(2010,05,01) // remember this is equivalent to 06 01 2010
+    let diff = Math.floor(today.getTime() - BOD.getTime());
+    let day = 1000 * 60 * 60 * 24;
+
+    let days = Math.floor(diff / day);
+    let months = Math.floor(days / 31);
+    let years = Math.floor(months / 12);
+
+    let message = BOD.toDateString();
+    message += ' was ';
+    message += days + ' days ';
+    message += months + ' months ';
+    message += years + ' years ago \n';
+    alert(message);
+    // if (years < 18) {
+    //   if (true) {
+    //   if (confirm('You are under 18 year old and we sorry you cannot go thrugh with our investement before you complete the preffered age')) {
+    //     console.log('You are under 18 year old and we sorry you cannot go thrugh with our investement before you complete the preffered age');
+    //     this.router.navigate(['/dashboard']);
+    //   }
+    // }
+    return message;
   }
 }

@@ -550,6 +550,8 @@ export const environment = {
      Investment_Agreement:"Investment Agreement",
      Sukuk_Murabaha:"Sukuk Murabaha",
      Annual_return_rate:"Annual return rate",
+     Please_Fill_your_information:"Please complete your information or waiting for approve",
+     Be_Qualified_Investor:"Be Qualified Investor",
         //End Add by Qaysar
   },
   //******************************************************* Start Arabic array *******************************************//
@@ -772,7 +774,7 @@ export const environment = {
     "Expiry_Year": "سنة الانتهاء",
     "Security_Code": "رمز الأمان",
     "Cardholder_Name": "اسم حامل البطاقة",
-    "Kyc_Details": "تفاصيل المعلومات",
+    "Kyc_Details": "بياناتي",
     "Edit_Profiel": "تعديل الملف الشخصي",
     "Number_of_Oppertunity": "عدد الفرص",
     "Total_Amount_Raised": "إجمالي التمويل",
@@ -1075,6 +1077,8 @@ export const environment = {
      "Investment_Agreement":"اﺗﻔﺎﻗﻴﺔ وﻛﺎﻟﺔ ﺑﺎﻻﺳﺘﺜﻤﺎر",
      "Sukuk_Murabaha":"صكوك المرابحة",
      "Annual_return_rate":"نسبة العائد السنوي",
+     "Please_Fill_your_information":"الرجاء استكمال بياناتك او انتظار الاعتماد",
+     "Be_Qualified_Investor":"كن مؤهلاً",
     //End Add by Qaysar
 
   },

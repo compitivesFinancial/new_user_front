@@ -12,6 +12,9 @@
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" routerLink="/my-profile">{{LANG.Edit_Profiel}}</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" *ngIf="user_data?.role_type == 2" data-toggle="tab" routerLink="/qualified-investor">{{LANG.Be_Qualified_Investor}}</a>
+              </li>
                 <li class="nav-item" *ngIf="user_data?.role_type == 3">
                     <a class="nav-link" data-toggle="tab" routerLink="/add-campaign"
                         *ngIf="profileDetails.kyc_approved_status==1"> {{LANG.Add_Opportunity}}</a>
@@ -106,7 +109,7 @@
                                 </div>
                                 <div class="box-topic">رقم الحساب</div>
                                 <div class="number">{{profileDetails.account_number!= null ?
-                                    profileDetails.account_number:0}}</div>
+                                    profileDetails.account_number:LANG.Please_Fill_your_information}}</div>
                                 <!-- <div class="indicator">
                   <i class='bx bx-up-arrow-alt'></i>
                   <span class="text">Up from yesterday</span>
@@ -168,6 +171,9 @@
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" routerLink="/my-profile">{{LANG.Edit_Profiel}}</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" routerLink="/qualified-investor">{{LANG.Be_Qualified_Investor}}</a>
+              </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" routerLink="/campaign-list">{{LANG.View_Opportunity}}</a>
                 </li>

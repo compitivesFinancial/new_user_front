@@ -8,10 +8,12 @@ import { HomeComponent } from './Pages/Home/home.component';
 import { NewHomeComponent } from './Pages/NewHome/home.component';
 import { authGuard } from './Shared/Services/authGuard.service';
 import { noLoggedIn } from './Shared/Services/noLoggedIn';
+import { QualifiedInvestorComponent } from './Pages/qualified-investor/qualified-investor.component';
 
 const routes: Routes = [
   { path:'',component:NewHomeComponent,pathMatch:'full'},
   { path:'dashboard',component:DashboarddetailsComponent, canActivate:[authGuard]},
+  { path:'qualified-investor',component:QualifiedInvestorComponent, canActivate:[authGuard]},
   // {path:'new-home',  component:NewHomeComponent, },
   { path:'dashboard/:id', component:DashboardComponent, canActivate:[authGuard]},
   { path: '', loadChildren: () => import('./Pages/Login/login.module').then(m => m.LoginModule), canActivate:[noLoggedIn]},

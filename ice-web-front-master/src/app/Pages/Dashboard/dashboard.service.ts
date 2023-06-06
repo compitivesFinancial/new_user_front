@@ -54,4 +54,8 @@ getBankAccountNumber(){
   this.url= "account_number"
   return this.api.get(this.url,'')
 }
+getCampaignInvestPerc(id:any){
+  this.url= `campaignInvestPerc/${id}`
+  return this.api.get(this.url,'')
+}
 }

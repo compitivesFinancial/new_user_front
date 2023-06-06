@@ -120,7 +120,7 @@ changeUserType(type:string){
 resetError(){
   this.registration_error={
     "first_name":false,
-    "user_name":false,
+    // "user_name":false,
     "last_name":false,
     "email_id":false,
     "email_id_valid":false,
@@ -140,7 +140,7 @@ resetError(){
         "country_code": this.country_code,
         "mobile_number": this.mobile_number,
         "email": this.email,
-        "username": this.user_name,
+        "username": '',
         // "name": `${this.first_name} ${this.last_name}`,
         "name": `${this.first_name}`,
         "password": this.loginService.encryptPassword(this.password),
@@ -191,10 +191,10 @@ registerErrorHandler(){
         this.err=true;
     }
 
-    if(this.user_name == "" || this.user_name == undefined){
-      this.registration_error.user_name=true;
-      this.err=true;
-    }
+    // if(this.user_name == "" || this.user_name == undefined){
+    //   this.registration_error.user_name=true;
+    //   this.err=true;
+    // }
 
     // if(this.last_name == "" || this.last_name == undefined){
     //   this.registration_error.last_name=true;

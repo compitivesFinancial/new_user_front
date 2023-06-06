@@ -4,7 +4,7 @@
 
 .campaign-tab .nav-tabs {
     justify-content: center;
-    background: #160034;
+    background:#3c0d7c;
 }
 
 .campaign-tab .nav-tabs a {
@@ -35,7 +35,7 @@
 }
 
 .btn {
-    background-color: #310075;  
+    background-color: #310075;
 }
 
 .campaign-tab .tab-content {
@@ -173,4 +173,20 @@ button {
 
 .amo-rai {
     padding: 0;
+}
+.nav nav-tabs{
+  justify-content: center;
+  background: #3c0d7c;
+}
+.campaign-tab .nav-tabs  .nav-link {
+  border-radius: 0;
+  font-size: 16px;
+  color: #FFFFFF;
+  border: 0;
+  font-family: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 31px;
+  font-weight: bold;
 }

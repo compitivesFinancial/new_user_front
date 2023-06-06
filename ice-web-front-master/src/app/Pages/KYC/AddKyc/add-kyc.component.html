@@ -1,21 +1,38 @@
 <div>
-    <div class="campaign-tab">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" routerLink="/add-kyc">{{LANG.Kyc_Details}}</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " data-toggle="tab" routerLink="/my-profile">{{LANG.Edit_Profile}}</a>
-            </li>
-            <li class="nav-item" *ngIf="user_data?.role_type == 2">
-                <a class="nav-link" data-toggle="tab" routerLink="/campaign-list">{{LANG.View_Opportunity}}</a>
-            </li>
-          <li class="nav-item" *ngIf="user_data?.role_type == 3">
-            <a class="nav-link" data-toggle="tab" routerLink="/add-campaign"
-                *ngIf="profileDetails.kyc_approved_status==1"> {{LANG.Add_Opportunity}}</a>
-        </li>
-        </ul>
-    </div>
+  <div class="campaign-tab">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" routerLink="/add-kyc">{{
+          LANG.Kyc_Details
+        }}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" routerLink="/my-profile">{{
+          LANG.Edit_Profile
+        }}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="user_data?.role_type == 2" data-toggle="tab" routerLink="/qualified-investor">
+          {{LANG.Be_Qualified_Investor}}
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="user_data?.role_type == 2">
+        <a class="nav-link" data-toggle="tab" routerLink="/campaign-list">{{
+          LANG.View_Opportunity
+        }}</a>
+      </li>
+      <li class="nav-item" *ngIf="user_data?.role_type == 3">
+        <a
+          class="nav-link"
+          data-toggle="tab"
+          routerLink="/add-campaign"
+          *ngIf="profileDetails.kyc_approved_status == 1"
+        >
+          {{ LANG.Add_Opportunity }}</a
+        >
+      </li>
+    </ul>
+  </div>
     <section class="container-fluid campaign">
         <div class="col-md-5 mx-auto">
             <!-- <div class="row step-row">
@@ -285,8 +302,10 @@
                                         </select>
                                         <span class="error"
                                             *ngIf="fields.required">{{LANG.This_field_is_required}}</span>
-                                        <br /><br />
-                                        <a (click)="checkYaqeenService()" class="pointer">{{LANG.Check_Data}}</a>
+                                        <div class="buttons">
+                                          <button class="btn link-yaqeen pointer"  (click)="checkYaqeenService()">{{LANG.Check_Data}}</button>
+                                      </div>
+                                        <!-- <a style="border: ridge;background-color: #58C18E;"  (click)="checkYaqeenService()" class="pointer">{{LANG.Check_Data}}</a> -->
                                     </div>
                                     <div class="form-group col-md-6"
                                         *ngIf="identityStr != '1' && fields.type == field_types.Date &&  fields.id == 136 &&  fields.id != 112 && fields.id != 113&& fields.id != 114&& fields.id != 115 && fields.id != 116 && fields.id != 135 && fields.id != 137 && fields.id != 138">
@@ -296,8 +315,10 @@
                                             [disabled]="disabled_inputs">
                                         <span class="error"
                                             *ngIf="fields.required">{{LANG.This_field_is_required}}</span>
-                                        <br />
-                                        <a (click)="checkYaqeenService()" class="pointer">{{LANG.Check_Data}}</a>
+                                        <div class="buttons">
+                                          <button class="btn link-yaqeen pointer"  (click)="checkYaqeenService()">{{LANG.Check_Data}}</button>
+                                      </div>
+                                        <!-- <a style="border: ridge;background-color: #58C18E;" (click)="checkYaqeenService()" class="pointer">{{LANG.Check_Data}}</a> -->
                                     </div>
                                     <div class="form-group col-md-6" *ngIf="fields.id == 137 || fields.id == 138">
                                         <label>{{fields.title}}</label>
@@ -461,3 +482,15 @@
         </div>
     </section>
 </div>
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Modal title</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<p>One fine body&hellip;</p>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>

@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <button class="btn right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></button> -->
-                
+
                 <div class="campaign-tab-detail tempest" >
                     <div class="tempest">
                         <span class="image-flo"><img src="{{details?.campaign_images[0].image}}" alt=""></span>
@@ -119,7 +119,7 @@
                         <button class="btn right-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
                     </div> -->
                         <div class="campaign-tab-detail" *ngFor="let details of investedDetails">
-                        
+
                             <div class="tempest">
                                 <span class="image-flo"><img src="{{details?.campaign_images[0].image}}" alt=""></span>
                                 <div class="weather-flo">
@@ -140,7 +140,7 @@
                             <div class="campaign-last">
                                 <p>{{LANG.Investers}}</p>
                                 <h6>{{details?.investers}}</h6>
-                                
+
                             </div>
                             <button class="btn right-arrow" (click)="navToDetailsInvest(details)" *ngIf="details?.approved_status==1"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
                             <button class="btn right-arrow" (click)="navToDetailsInvestNull(details)" *ngIf="details?.approved_status==null"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>

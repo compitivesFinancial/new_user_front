@@ -21,6 +21,8 @@ import { InvestmentagreementComponent } from './Pages/docs/investmentagreement/i
 import { DatePipe } from '@angular/common';
 import { ProgramInfoComponent } from './Pages/docs/programInfo/program-info.component';
 import { Tar7DocumentComponent } from './Pages/docs/tar7-document/tar7-document.component';
+import { SubHeaderMenueComponent } from './Pages/subHeader/sub-header-menue.component';
+import { QualifiedInvestorComponent } from './Pages/qualified-investor/qualified-investor.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { Tar7DocumentComponent } from './Pages/docs/tar7-document/tar7-document.
     InvestmentagreementComponent,
     ProgramInfoComponent,
     Tar7DocumentComponent,
-  ],
+    SubHeaderMenueComponent,
+    QualifiedInvestorComponent,
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -56,6 +60,9 @@ import { Tar7DocumentComponent } from './Pages/docs/tar7-document/tar7-document.
     })
     //  NgImageSliderModule
   ],
+  exports: [
+    SubHeaderMenueComponent,
+],
   providers: [DatePipe],
   bootstrap: [AppComponent]
 })

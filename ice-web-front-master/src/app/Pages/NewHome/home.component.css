@@ -53,8 +53,10 @@ button:hover:disabled {
 }
 
 .carousel-content {
+    /* border-radius: 32px;
+    background: #fff; */
     border-radius: 32px;
-    background: #fff;
+    background: rgb(227, 227, 227);
 }
 
 .pad-carousel h6 {
@@ -158,8 +160,10 @@ button:hover:disabled {
 }
 
 .caro-img img {
-    height: 238px;
-    object-fit: cover;
+    /* height: 238px;
+    object-fit: cover; */
+    height: 100px;
+    object-fit: fill;
 }
 
 .slide2 {

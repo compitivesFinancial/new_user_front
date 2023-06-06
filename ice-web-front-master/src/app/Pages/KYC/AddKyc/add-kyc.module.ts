@@ -25,7 +25,7 @@ const ChildRoutes: Routes = [
     path: 'kyc-details',
     component:AddKycComponent
   },
-  
+
   ]
 
 @NgModule({

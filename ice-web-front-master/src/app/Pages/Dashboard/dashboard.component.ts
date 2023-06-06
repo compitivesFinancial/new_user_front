@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
   dashboard_data: any = {};
   subscriptions: Subscription[] = [];
   // LANG = environment.arabic_translations;
-  LANG:any={};
+  LANG: any = {};
   public opertunityDetailList: any;
   requestId: any;
   public teams: any;
@@ -43,9 +43,9 @@ export class DashboardComponent implements OnInit {
   public campaignAttachements: any = '';
   campaginWithKyc!: CampaginWithKyc;
   kycStatus: any;
-  myDate :any;
+  myDate: any;
   disabled_inputs: boolean = false;
-
+  investPercentage: any;
 
   constructor(
     private datePipe: DatePipe,
@@ -56,7 +56,8 @@ export class DashboardComponent implements OnInit {
     private formBuilder: FormBuilder,
     public router: Router,
     private toast: ToastrService,
-    private documentService: DocumentService,private shared:SharedService
+    private documentService: DocumentService,
+    private shared: SharedService
   ) {
     this.myDate = new Date();
     this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
@@ -76,10 +77,11 @@ export class DashboardComponent implements OnInit {
       cardNumber: ['', Validators.required],
       carddate: ['', Validators.required],
     });
-    this.subscriptions.push(this.shared.languageChange.subscribe((path:any)=>{
-      this.changeLanguage();
-
-    }))
+    this.subscriptions.push(
+      this.shared.languageChange.subscribe((path: any) => {
+        this.changeLanguage();
+      })
+    );
     this.changeLanguage();
   }
 
@@ -92,6 +94,7 @@ export class DashboardComponent implements OnInit {
         this.getOpertunityDetails(1);
         this.getCampaignAttachments();
       }
+      this.getOpertunityComPercentage();
       return;
     }
     this.getProfileDetails();
@@ -102,6 +105,7 @@ export class DashboardComponent implements OnInit {
       this.getOpertunityDetails();
     }
     this.getCampaignAttachments();
+    this.getOpertunityComPercentage();
   }
   /***********************************************************************************/
 
@@ -128,7 +132,7 @@ export class DashboardComponent implements OnInit {
     if (
       localStorage.getItem('arabic') == 'true' &&
       localStorage.getItem('arabic') != null
-    ){
+    ) {
       this.LANG = environment.arabic_translations;
     } else {
       this.LANG = environment.english_translations;
@@ -156,6 +160,18 @@ export class DashboardComponent implements OnInit {
         .investorDashboard(data, type)
         .subscribe((res: any) => {
           this.dashboard_data = res.response.data;
+        })
+    );
+  }
+
+  getOpertunityComPercentage() {
+    this.subscriptions.push(
+      this.dashboardService
+        .getCampaignInvestPerc(this.requestId)
+        .subscribe((res: any) => {
+          // Math.round((res.response + Number.EPSILON) * 100) / 100
+          this.investPercentage = (Math.round((res.response + Number.EPSILON) * 100) / 100);
+          console.log("this.investPercentage == "+ this.investPercentage);
         })
     );
   }

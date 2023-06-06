@@ -41,12 +41,10 @@ export class DashboarddetailsComponent implements OnInit {
     if (this.user_data.role_type == 2) {
       this.investorDashdetails()
       this.profile()
-      this.profileAcountNumber()
     }
     if (this.user_data.role_type == 3) {
       this.dashDetails()
       this.profile()
-      this.profileAcountNumber()
     }
   }
   dashDetails() {
@@ -70,6 +68,7 @@ export class DashboarddetailsComponent implements OnInit {
     }
     this.dashBoardService.profileDetails(data).subscribe((res: any) => {
       this.profileDetails = res.response
+      this.profileAcountNumber();
       console.log(this.profileDetails);
 
     })
