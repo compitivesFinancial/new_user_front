@@ -12,7 +12,15 @@ export class SettingService {
     this.url="wallet_dashboard/"+id;
     return this.api.get(this.url,"")
   }
+  walletBorrower(id:any){
+    this.url="wallet_borrower/"+id;
+    return this.api.get(this.url,"")
+  }
 
+  walletInvestor(id:any){
+    this.url="wallet_investor/"+id;
+    return this.api.get(this.url,"")
+  }
   opertunityDetails(id:any){
     this.url="opportunity_detail/"+id;
     return this.api.get(this.url,"")

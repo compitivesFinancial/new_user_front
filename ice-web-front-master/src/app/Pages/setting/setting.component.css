@@ -190,3 +190,12 @@ button {
   padding: 20px 31px;
   font-weight: bold;
 }
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -120px;
+  margin-left: -70px;
+}
