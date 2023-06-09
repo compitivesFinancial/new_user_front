@@ -12,11 +12,13 @@ declare const $:any;
 })
 export class StatementsComponent implements OnInit {
   borrower_statement:any=[];
+  borrowerStatement:any;
+  investorStatement:any;
   subscriptions:Subscription[]=[];
   user_data:any={};
   LANG: any = "";
 
-  constructor(private shared: SharedService,private statmentsService:StatementsService,private toast:ToastrService) { 
+  constructor(private shared: SharedService,private statmentsService:StatementsService,private toast:ToastrService) {
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
       this.user_data=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
@@ -35,6 +37,8 @@ export class StatementsComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+    this.getBorrowerStatements();
+    this.getInvestorStatements();
     this.getStatements()
   }
 
@@ -48,12 +52,12 @@ export class StatementsComponent implements OnInit {
           break
         }
       }
-      
-      setTimeout(() => {   
+
+      setTimeout(() => {
         $('#borrowers').DataTable({
           ordering: false,
           responsive: true,
-          
+
         });
       }, 100);
     }))
@@ -73,5 +77,34 @@ export class StatementsComponent implements OnInit {
 
     }))
   }
+
+/*********************************************************************************/
+getBorrowerStatements(){
+  const data={user_id:this.user_data.id}
+  this.subscriptions.push(this.statmentsService.getBorrowerStatements(data).subscribe((res:any)=>{
+    this.borrowerStatement=res.response;
+    setTimeout(() => {
+      $('#borrowerStatement').DataTable({
+        ordering: false,
+        responsive: true,
+
+      });
+    }, 100);
+  }))
+}
+/*********************************************************************************/
+getInvestorStatements(){
+  const data={user_id:this.user_data.id}
+  this.subscriptions.push(this.statmentsService.getInvesterStatement(data).subscribe((res:any)=>{
+    this.investorStatement=res.response;
+    setTimeout(() => {
+      $('#investorStatement').DataTable({
+        ordering: false,
+        responsive: true,
+
+      });
+    }, 100);
+  }))
+}
 
 }

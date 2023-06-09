@@ -9,9 +9,13 @@ import { NewHomeComponent } from './Pages/NewHome/home.component';
 import { authGuard } from './Shared/Services/authGuard.service';
 import { noLoggedIn } from './Shared/Services/noLoggedIn';
 import { QualifiedInvestorComponent } from './Pages/qualified-investor/qualified-investor.component';
+import { StatementsComponent } from './Pages/Statements/statements.component';
+import { SettingComponent } from './Pages/setting/setting.component';
 
 const routes: Routes = [
   { path:'',component:NewHomeComponent,pathMatch:'full'},
+  { path:'user-wallet',component:SettingComponent, canActivate:[authGuard]},
+  { path:'user-statement',component:StatementsComponent, canActivate:[authGuard]},
   { path:'dashboard',component:DashboarddetailsComponent, canActivate:[authGuard]},
   { path:'qualified-investor',component:QualifiedInvestorComponent, canActivate:[authGuard]},
   // {path:'new-home',  component:NewHomeComponent, },
