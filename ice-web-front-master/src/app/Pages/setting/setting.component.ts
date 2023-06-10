@@ -24,6 +24,8 @@ export class SettingComponent implements OnInit {
   amount: any = '';
   subscriptions: Subscription[] = [];
   LANG: any = '';
+  walletInvestorSum: any;
+  walletBorrowerSum: any;
 
   constructor(
     private shared: SharedService,
@@ -74,11 +76,13 @@ export class SettingComponent implements OnInit {
     if (this.user_data.role_type == 3) {
       // this.TotalDetails()
       this.getWalletBorrower();
+      this.getWallerBorrowerSum();
     }
 
     if (this.user_data.role_type == 2) {
       // this.getInvestorDEtails();
       this.getInvestorWallet();
+      this.getWalletInvestorSum();
     }
 
     this.getDashboardDetails();
@@ -95,8 +99,8 @@ export class SettingComponent implements OnInit {
     });
   }
 
-  getWalletBorrower() {
-    this.setingservice
+   async getWalletBorrower() {
+    await this.setingservice
       .walletBorrower(this.user_data.id)
       .subscribe((res: any) => {
         if (res.status) {
@@ -141,11 +145,11 @@ export class SettingComponent implements OnInit {
     this.setingservice
       .walletInvestor(this.user_data.id)
       .subscribe((res: any) => {
-        if(res.status){
-          this.walletInvestor = res
-        }else{
-          this.walletInvestor = res
-          this.toast.success(res.response.data)
+        if (res.status) {
+          this.walletInvestor = res;
+        } else {
+          this.walletInvestor = res;
+          this.toast.success(res.response.data);
         }
       });
   }
@@ -167,6 +171,16 @@ export class SettingComponent implements OnInit {
     this.setingservice.addmoney(data).subscribe((res: any) => {
       this.toast.success(res.response.message);
       this.ngOnInit();
+    });
+  }
+ async getWallerBorrowerSum() {
+   await this.setingservice.walletBorrowerSum().subscribe((res: any) => {
+      this.walletBorrowerSum = res.response;
+    });
+  }
+  async getWalletInvestorSum() {
+    await this.setingservice.walletInvestorSum().subscribe((res: any) => {
+      this.walletInvestorSum = res.response;
     });
   }
 }

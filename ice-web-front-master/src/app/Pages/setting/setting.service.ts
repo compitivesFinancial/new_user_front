@@ -50,6 +50,13 @@ export class SettingService {
     this.url = "add_money_wallet"
     return this.api.post(this.url,data)
   }
-
+  walletInvestorSum(){
+    this.url ="wallet_investor_sum"
+    return this.api.get(this.url,"")
+  }
+  walletBorrowerSum(){
+    this.url ="wallet_borrower_sum"
+    return this.api.get(this.url,"")
+  }
 
 }

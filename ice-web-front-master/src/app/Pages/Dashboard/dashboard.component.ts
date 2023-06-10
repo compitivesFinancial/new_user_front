@@ -19,6 +19,7 @@ import { CampaginWithKyc } from 'src/app/Shared/Models/campagin-with-kyc';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
+import { SettingService } from '../setting/setting.service';
 // import { Toast } from 'ngx-toastr';
 @Component({
   selector: 'app-dashboard',
@@ -48,8 +49,10 @@ export class DashboardComponent implements OnInit {
   myDate: any;
   disabled_inputs: boolean = false;
   investPercentage: any;
+  walletInvestorSum :any;
 
   constructor(
+    public setingservice: SettingService,
     private datePipe: DatePipe,
     private loginService: LoginService,
     private campaignService: CampaignService,
@@ -85,8 +88,13 @@ export class DashboardComponent implements OnInit {
       })
     );
     this.changeLanguage();
+    this.getWalletInvestorSum();
   }
-
+  async getWalletInvestorSum() {
+    await this.setingservice.walletInvestorSum().subscribe((res: any) => {
+      this.walletInvestorSum = res.response;
+    });
+  }
   ngOnInit(): void {
     if (this.user_data.role_type == 2) {
       this.getProfileDetails(1);
@@ -219,6 +227,10 @@ export class DashboardComponent implements OnInit {
         }
         if(this.campaignCount >=2){
           this.toast.error("you are already invest in 2 opportunity in the last 12 month");
+          return;
+        }
+        if(this.walletInvestorSum.walletBalance<this.amountForm.value.amount){
+          this.toast.error("you don't have enough money in your wallet");
           return;
         }
       }
