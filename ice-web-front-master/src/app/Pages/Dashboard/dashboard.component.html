@@ -81,7 +81,7 @@
                               <label style="margin-left: 10px;">I agree to the</label>
                             </div>
                             <span class="error" *ngIf="errors?.agreement">{{LANG.This_field_is_required}}</span>
-                            <input type="text" class="form-control" placeholder="{{LANG.Enter_the_Amount}}" name="amount" formControlName="amount"  (keypress)="onlyNumbers($event)" maxlength="4">
+                            <input type="text" class="form-control" placeholder="{{LANG.Enter_the_Amount}}" name="amount" formControlName="amount"  (keypress)="onlyNumbers($event)">
                             <span class="error" *ngIf="errors?.amount">{{LANG.This_field_is_required}}</span>
                           </form>
                       </div>

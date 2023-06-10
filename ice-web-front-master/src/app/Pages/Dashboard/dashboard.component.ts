@@ -41,6 +41,8 @@ export class DashboardComponent implements OnInit {
   public amountForm: FormGroup;
   public cardDetailsForm: any;
   public campaignAttachements: any = '';
+  public totalInvest: any = '';
+  public campaignCount: any = '';
   campaginWithKyc!: CampaginWithKyc;
   kycStatus: any;
   myDate: any;
@@ -94,6 +96,7 @@ export class DashboardComponent implements OnInit {
         this.getOpertunityDetails(1);
         this.getCampaignAttachments();
       }
+      this.getCheckInvestorRole();
       this.getOpertunityComPercentage();
       return;
     }
@@ -104,6 +107,7 @@ export class DashboardComponent implements OnInit {
     if (this.requestId != null) {
       this.getOpertunityDetails();
     }
+    this.getCheckInvestorRole();
     this.getCampaignAttachments();
     this.getOpertunityComPercentage();
   }
@@ -188,11 +192,9 @@ export class DashboardComponent implements OnInit {
         })
     );
   }
+
   onPaydetails: any;
   onPay() {
-    console.log(`THE CHECK BOX VALUE IS ${this.amountForm.value.agreement}`);
-    console.log(`AMOOUNT VALUE IS ${this.amountForm.value.amount}`);
-
     if (this.amountForm.valid) {
       if (
         this.amountForm.value.agreement == undefined ||
@@ -203,6 +205,22 @@ export class DashboardComponent implements OnInit {
         return;
       } else {
         this.errors.agreement = false;
+      }
+
+      if(!this.user_data.isQualified){
+        const totalInvestment = Number(this.amountForm.value.amount) + Number(this.totalInvest);
+        if(this.amountForm.value.amount <1000){
+          this.toast.error("You are not allowed to invest less than 1000 SR");
+          return;
+        }
+        if(totalInvestment > 20000){
+          this.toast.error("You are not allowed to invest over 20000 SR");
+          return;
+        }
+        if(this.campaignCount >=2){
+          this.toast.error("you are already invest in 2 opportunity in the last 12 month");
+          return;
+        }
       }
 
       let data = {
@@ -245,6 +263,7 @@ export class DashboardComponent implements OnInit {
       }
     }
   }
+
   public PaymentSession: any;
   pay() {
     // UPDATE THE SESSION WITH THE INPUT FROM HOSTED FIELDS
@@ -330,6 +349,17 @@ export class DashboardComponent implements OnInit {
         .getCampainAttachement(this.requestId)
         .subscribe((res: any) => {
           this.campaignAttachements = res.response;
+        })
+    );
+  }
+
+  async getCheckInvestorRole() {
+   await this.subscriptions.push(
+      this.campaignService
+        .checkInvestorRole()
+        .subscribe((res: any) => {
+          this.totalInvest = res.response.total_invest;
+          this.campaignCount= res.response.campaignCount;
         })
     );
   }

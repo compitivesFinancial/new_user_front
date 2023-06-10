@@ -109,4 +109,9 @@ public campaignDetail:any;
     this.url = `get_campaign_attachements/${id}`;
     return this.api.get(this.url, '');
   }
+
+  checkInvestorRole() {
+    this.url = `check_investor_role`;
+    return this.api.get(this.url, '');
+  }
 }
