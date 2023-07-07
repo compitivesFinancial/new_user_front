@@ -116,16 +116,15 @@
                 </div>
             </div>
         </div>
-        <div class="row allocation">
+        <div class="row-menue allocation">
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
               <a class="nav-item nav-link active" id="nav-team-tab" data-toggle="tab" href="#nav-team" role="tab" aria-controls="nav-team" aria-selected="true">{{LANG.Team}}</a>
-              <!-- <a class="nav-item nav-link" id="nav-updates-tab" data-toggle="tab" href="#nav-updates" role="tab" aria-controls="nav-updates" aria-selected="false">{{LANG.Updates}}</a> -->
-              <!-- <a class="nav-item nav-link" id="nav-terms-tab" data-toggle="tab" href="#nav-terms" role="tab" aria-controls="nav-terms" aria-selected="false">{{LANG.Terms}}</a> -->
               <a class="nav-item nav-link" id="nav-campainAttach-tab" data-toggle="tab" href="#nav-campainAttach" role="tab" aria-controls="nav-campainAttach" aria-selected="false">{{LANG.Campaign_Attachements}}</a>
               <a class="nav-item nav-link" id="nav-mustanad-tarh-tab" data-toggle="tab" href="#nav-mustanad-tarh" role="tab" aria-controls="nav-mustanad-tarh" aria-selected="false">{{LANG.MustanadAltarh}}</a>
               <a class="nav-item nav-link" id="nav-invest_agree-tab" data-toggle="tab" href="#nav-invest_agree" role="tab" aria-controls="nav-invest_agree" aria-selected="false">{{LANG.Investment_Agreement}}</a>
               <a class="nav-item nav-link" id="nav-prog-info-tab" data-toggle="tab" href="#nav-prog-info" role="tab" aria-controls="nav-prog-info" aria-selected="false">{{LANG.Program_Information}}</a>
+              <a class="nav-item nav-link" id="nav-invest_wallet-tab" data-toggle="tab" href="#nav-invest_wallet" role="tab" aria-controls="nav-invest_wallet" aria-selected="false">Investor Statement</a>
             </div>
           </nav>
         </div>
@@ -227,6 +226,9 @@
           <div class="tab-pane fade" id="nav-mustanad-tarh" role="tabpanel" aria-labelledby="nav-mustanad-tarh-tab">
            <app-tar7-document></app-tar7-document>
           </div>
+          <div class="tab-pane fade" id="nav-invest_wallet" role="tabpanel" aria-labelledby="nav-invest_wallet-tab">
+            <app-investor-wallet-list></app-investor-wallet-list>
+           </div>
         </div>
     </div>
 </section>

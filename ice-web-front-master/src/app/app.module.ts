@@ -23,6 +23,7 @@ import { ProgramInfoComponent } from './Pages/docs/programInfo/program-info.comp
 import { Tar7DocumentComponent } from './Pages/docs/tar7-document/tar7-document.component';
 import { SubHeaderMenueComponent } from './Pages/subHeader/sub-header-menue.component';
 import { QualifiedInvestorComponent } from './Pages/qualified-investor/qualified-investor.component';
+import { InvestorWalletListComponent } from './Pages/CampaignDetails/investor-wallet-list/investor-wallet-list.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { QualifiedInvestorComponent } from './Pages/qualified-investor/qualified
     Tar7DocumentComponent,
     SubHeaderMenueComponent,
     QualifiedInvestorComponent,
+    InvestorWalletListComponent,
     ],
   imports: [
     BrowserModule,

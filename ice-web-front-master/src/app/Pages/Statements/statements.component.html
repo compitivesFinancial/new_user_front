@@ -22,6 +22,7 @@
                           <tr>
                             <th>id</th>
                             <th>campaign_id</th>
+                            <th>campaign Name</th>
                             <th>due_date</th>
                             <th>principle_expected</th>
                             <th>interest_expected</th>
@@ -48,6 +49,7 @@
                           <tr *ngFor="let data of borrowerStatement">
                               <td>{{data.id}}</td>
                               <td>{{data.campaign_id}}</td>
+                              <td>{{data.tagline}}</td>
                               <td>{{data.due_date}}</td>
                               <td>{{data.principle_expected}}</td>
                               <td>{{data.interest_expected}}</td>
@@ -77,6 +79,7 @@
                         <tr>
                           <th>id</th>
                           <th>campaign_id</th>
+                          <th>campaign Name</th>
                           <th>invester_id</th>
                           <th>date</th>
                           <th>principle</th>
@@ -92,6 +95,7 @@
                         <tr *ngFor="let data of investorStatement">
                           <td>{{data.id}}</td>
                           <td>{{data.campaign_id}}</td>
+                          <td>{{data.tagline}}</td>
                           <td>{{data.invester_id}}</td>
                           <td>{{data.date}}</td>
                           <td>{{data.principle}}</td>
