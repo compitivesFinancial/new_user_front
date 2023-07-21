@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, NavigationStart  } from '@angular/router';
 import firebase from 'firebase/app';
 import { environment } from 'src/environments/environment';
+import { FirebaseConfigService } from './Shared/Services/firebase-config.service';
 
 @Component({
   selector: 'app-root',

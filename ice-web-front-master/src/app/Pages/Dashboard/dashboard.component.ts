@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
 import { SettingService } from '../setting/setting.service';
+import { BankapiService } from 'src/app/Shared/Services/bankapi.service';
 // import { Toast } from 'ngx-toastr';
 @Component({
   selector: 'app-dashboard',
@@ -62,6 +63,7 @@ export class DashboardComponent implements OnInit {
     public router: Router,
     private toast: ToastrService,
     private documentService: DocumentService,
+    private bankapiService: BankapiService,
     private shared: SharedService
   ) {
     this.myDate = new Date();
@@ -246,12 +248,18 @@ export class DashboardComponent implements OnInit {
         this.onPaydetails = res.response.session_id;
         this.toast.success(res.response.message);
         // $('#modalwindow').modal('hide');
-
         console.log(this.onPaydetails);
         // this.router.navigateByUrl(`payment/${btoa(this.onPaydetails)}`)
-        this.amountForm.value.amount = '';
         // this.isAmountValid = false;
       });
+
+      this.bankapiService.payment(this.amountForm.value.amount).subscribe((res: any) => {
+        console.log(`id = ${res.response.id}`);
+        console.log(`sequenceNumber = ${res.response.sequenceNumber}`);
+        console.log(`transactionReferenceNumber = ${res.response.transactionReferenceNumber}`);
+        console.log(`status = ${res.response.status}`);
+      });
+      this.amountForm.value.amount = '';
     } else {
       console.log(
         '*********************please fill the form data*********************'

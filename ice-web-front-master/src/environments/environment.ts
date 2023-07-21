@@ -5,14 +5,6 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    // apiKey: "AIzaSyC_vC_cpFkc0ZiCdey9tEx2TMW0bNQzPjM",
-    // authDomain: "royal-stallion.firebaseapp.com",
-    // databaseURL: "https://royal-stallion.firebaseio.com",
-    // projectId: "royal-stallion",
-    // storageBucket: "royal-stallion.appspot.com",
-    // messagingSenderId: "296126986485",
-    // appId: "1:296126986485:web:ea750bc8e8576b16062dbc",
-    // measurementId: "G-EDH0E6EHS1"
     apiKey: "AIzaSyB7l5QmXf9pxwW2RZxLHQ2VtLJtL2K8OCY",
     authDomain: "aaaa-6d056.firebaseapp.com",
     databaseURL: "https://aaaa-6d056-default-rtdb.firebaseio.com",

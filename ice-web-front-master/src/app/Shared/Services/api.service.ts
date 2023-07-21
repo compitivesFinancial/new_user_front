@@ -45,6 +45,10 @@ export class apiServiceComponent {
 			'Accept-Language': 'en',
 			'crossDomain': 'true',
 			'city_id': '4'
+      // ,'Access-Control-Allow-Origin': 'https://www.cfc.sa',
+      // 'Access-Control-Allow-Credentials': 'true',
+      // 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      // 'Access-Control-Allow-Headers': 'Authorization, Content-Type'
 		});
 		const token = localStorage.getItem("token")
 		if (token) {
