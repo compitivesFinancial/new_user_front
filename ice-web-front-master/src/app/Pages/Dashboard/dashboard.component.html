@@ -8,7 +8,7 @@
                     </div>
                 </div>
                 <div class="col-9">
-                <img   src="{{opertunityDetailList?.campaign_images[0].image}}" class="w-100 add-img-wrapper" alt="" />
+                <img   src="{{opertunityDetailList?.campaign_images[0]?.image}}" class="w-100 add-img-wrapper" alt="" />
                   <!-- <img   src="assets/images/add-img.png" class="w-100 add-img-wrapper" alt="" /> -->
                 </div>
                 <br>
@@ -92,10 +92,7 @@
                     </div>
                   </div>
                 </div>
-
                 <!-- Button trigger modal -->
-
-
                 <!-- Modal -->
                 <div class="modal fade" id="mastercardModal" tabindex="-1" role="dialog" aria-labelledby="mastercardModal" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -219,7 +216,7 @@
                     </table>
                 </div>
                 <div class="table-first">
-                  <h4>{{campaignAttachements.message}}</h4>
+                  <h4>{{campaignAttachements?.message}}</h4>
                 </div>
 
           </div>

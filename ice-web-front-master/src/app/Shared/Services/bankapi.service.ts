@@ -17,5 +17,12 @@ export class BankapiService {
     this.url = 'bankAuth';
     return this.api.get(this.url, '');
   }
-
+  doPayment(amount:any){
+    this.url =`payment?amount=${amount}`
+    return this.api.post(this.url,'');
+  }
+  getBankBlance(){
+  this.url ="balance"
+  return this.api.get(this.url,"");
+}
 }

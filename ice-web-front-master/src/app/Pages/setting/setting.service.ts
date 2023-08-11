@@ -58,5 +58,4 @@ export class SettingService {
     this.url ="wallet_borrower_sum"
     return this.api.get(this.url,"")
   }
-
 }

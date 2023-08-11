@@ -6,6 +6,7 @@ import { SettingService } from './setting.service';
 import { Subscription } from 'rxjs';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
 import { environment } from 'src/environments/environment';
+import { BankapiService } from 'src/app/Shared/Services/bankapi.service';
 declare const $: any;
 @Component({
   selector: 'app-setting',
@@ -26,13 +27,15 @@ export class SettingComponent implements OnInit {
   LANG: any = '';
   walletInvestorSum: any;
   walletBorrowerSum: any;
+  bankBalance:any;
 
   constructor(
     private shared: SharedService,
     private campaignService: CampaignService,
     public setingservice: SettingService,
     public router: Router,
-    public toast: ToastrService
+    public toast: ToastrService,
+    public bankApiService: BankapiService
   ) {
     const user_data = btoa(btoa('user_info_web'));
     if (localStorage.getItem(user_data) != undefined) {
@@ -84,7 +87,7 @@ export class SettingComponent implements OnInit {
       this.getInvestorWallet();
       this.getWalletInvestorSum();
     }
-
+this.getBankBalance();
     this.getDashboardDetails();
   }
 
@@ -181,6 +184,18 @@ export class SettingComponent implements OnInit {
   async getWalletInvestorSum() {
     await this.setingservice.walletInvestorSum().subscribe((res: any) => {
       this.walletInvestorSum = res.response;
+    });
+  }
+  async getBankBalance() {
+    await this.bankApiService.getBankBlance().subscribe((res: any) => {
+      this.bankBalance = res.response;
+      console.log(JSON.stringify(`JSON RES ---- ${res}`));
+      console.log(`----------------------------------------------`);
+      console.log(JSON.stringify(`JSON RES.response ---- ${res.response}`));
+      console.log(`----------------------------------------------`);
+      console.log(this.bankBalance.accountNumber);
+      console.log(this.bankBalance.currency);
+      console.log(this.bankBalance.clearedBalance);
     });
   }
 }
