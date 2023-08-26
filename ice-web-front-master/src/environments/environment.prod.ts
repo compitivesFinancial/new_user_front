@@ -4,6 +4,16 @@
 
 export const environment = {
   production: true,
+  firebaseConfig: {
+    apiKey: "AIzaSyB7l5QmXf9pxwW2RZxLHQ2VtLJtL2K8OCY",
+    authDomain: "aaaa-6d056.firebaseapp.com",
+    databaseURL: "https://aaaa-6d056-default-rtdb.firebaseio.com",
+    projectId: "aaaa-6d056",
+    storageBucket: "aaaa-6d056.appspot.com",
+    messagingSenderId: "1021417514491",
+    appId: "1:1021417514491:web:22abc3ab52fbafe486d75e",
+    measurementId: "G-GEMW853ESY"
+  },
   english_translations: {
     Login_your_account: "Login your account",
     Please_enter_your_details_below: "Please enter your details below",

@@ -51,7 +51,6 @@ export class DashboardComponent implements OnInit {
   disabled_inputs: boolean = false;
   investPercentage: any;
   walletInvestorSum :any;
-  accountBalance:any;
 
   constructor(
     public setingservice: SettingService,
@@ -97,15 +96,6 @@ export class DashboardComponent implements OnInit {
     await this.setingservice.walletInvestorSum().subscribe((res: any) => {
       this.walletInvestorSum = res.response;
     });
-  }
- async getAccountBankBalance(){
-    await this.bankapiService.getBankBlance().subscribe((res: any) => {
-      this.accountBalance = res.response;
-    });
-    if(this.accountBalance != null && this.accountBalance != `undefined`){
-      return this.accountBalance.clearedBalance;
-    }
-    return 0;
   }
   ngOnInit(): void {
     if (this.user_data.role_type == 2) {
@@ -245,10 +235,6 @@ export class DashboardComponent implements OnInit {
           this.toast.error("you don't have enough money in your wallet");
           return;
         }
-        if(this.getAccountBankBalance()<this.amountForm.value.amount){
-          this.toast.error("you don't have enough money in your Bank account");
-          return;
-        }
       }
 
       let data = {
@@ -267,7 +253,7 @@ export class DashboardComponent implements OnInit {
         // this.isAmountValid = false;
       });
 
-      this.bankapiService.doPayment(this.amountForm.value.amount).subscribe((res: any) => {
+      this.bankapiService.payment(this.amountForm.value.amount).subscribe((res: any) => {
         console.log(`id = ${res.response.id}`);
         console.log(`sequenceNumber = ${res.response.sequenceNumber}`);
         console.log(`transactionReferenceNumber = ${res.response.transactionReferenceNumber}`);

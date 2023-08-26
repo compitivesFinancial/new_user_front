@@ -13,13 +13,12 @@ export class AppComponent {
   title = 'ice-web';
   path = ""
 
-  constructor(public router: Router,
-    public firebaseConfigService :FirebaseConfigService){
+  constructor(public router: Router){
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.path=event.url.split("?")[0];
       }
     });
-    firebase.initializeApp(this.firebaseConfigService.firebaseConfig);
+    firebase.initializeApp(environment.firebaseConfig);
   }
 }

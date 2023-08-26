@@ -4,16 +4,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class FirebaseConfigService {
-  constructor() { }
-   firebaseConfig:any ={
-    apiKey: "AIzaSyB7l5QmXf9pxwW2RZxLHQ2VtLJtL2K8OCY",
-    authDomain: "aaaa-6d056.firebaseapp.com",
-    //authDomain: "https://www.cfc.sa",
-    databaseURL: "https://aaaa-6d056-default-rtdb.firebaseio.com",
-    projectId: "aaaa-6d056",
-    storageBucket: "aaaa-6d056.appspot.com",
-    messagingSenderId: "1021417514491",
-    appId: "1:1021417514491:web:22abc3ab52fbafe486d75e",
-    measurementId: "G-GEMW853ESY"
-  }
+ private apiKey:string = "AIzaSyB7l5QmXf9pxwW2RZxLHQ2VtLJtL2K8OCY";
+ private authDomain:string = "aaaa-6d056.firebaseapp.com";
+ private  databaseURL:string =  "https://aaaa-6d056-default-rtdb.firebaseio.com";
+ private  projectId:string =  "aaaa-6d056";
+ private storageBucket:string =  "aaaa-6d056.appspot.com";
+ private messagingSenderId:string =  "1021417514491";
+ private appId:string =  "1:1021417514491:web:22abc3ab52fbafe486d75e";
+ private measurementId:string = "G-GEMW853ESY";
+  constructor(
+  ) { }
 }
