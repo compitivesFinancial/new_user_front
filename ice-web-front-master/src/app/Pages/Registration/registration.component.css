@@ -19,7 +19,7 @@
 }
 .change-type{
     position: fixed;
-
+    
 }
 
 #yes{
@@ -85,21 +85,4 @@ input:disabled {
     .country-code select {
         width: 58px;
     }
-}
-.otp-field{
-  display: flex;
-  justify-content: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  -webkit-box-pack: justify;
-  direction: ltr;
-}
-.otp-field input{
-  width: 50px;
-  height: 50px;
-  border-radius: 8px;
-  margin-right: 10px;
-  text-align: center;
-  border: none;
-  padding: 0;
 }
