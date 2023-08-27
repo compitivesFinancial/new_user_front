@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import {AngularFireAuth} from '@angular/fire/auth'
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +12,19 @@ export class FirebaseConfigService {
  private messagingSenderId:string =  "1021417514491";
  private appId:string =  "1:1021417514491:web:22abc3ab52fbafe486d75e";
  private measurementId:string = "G-GEMW853ESY";
-  constructor(
-  ) { }
+  isLoggedIn: boolean=false;
+  constructor(public firebaseAuth:AngularFireAuth) { }
+  // async signin(email:string,password:string){
+  //   await this.firebaseAuth.signInWithEmailAndPassword(email,password).then(res=>{
+  //     this.isLoggedIn=true;
+  //     localStorage.setItem('firebaseUser',JSON.stringify(res.user))
+  //   });
+  // };
+  // async signup(email:string,password:string){
+  //   await 
+  // }
+  logout(){
+    this.firebaseAuth.signOut();
+    localStorage.removeItem('firebaseUser');
+  }
 }

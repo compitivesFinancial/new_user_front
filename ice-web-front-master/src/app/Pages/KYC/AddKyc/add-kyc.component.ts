@@ -543,35 +543,40 @@ export class AddKycComponent implements OnInit, OnChanges {
   }
 
   uploadImage(data: any) {
-    this.upload_called = true;
-    var n = Date.now();
-    var fileName = data.file.name;
-    var path = fileName + n;
-    const filePath = `Kyc/${path}`;
-    this.load = true;
-    const uploadTask = firebase
-      .storage()
-      .ref()
-      .child(`${filePath}`)
-      .put(data.file);
-    uploadTask.on(
-      firebase.storage.TaskEvent.STATE_CHANGED,
-      (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        data.progress = progress;
-      },
-      (error) => console.log(error),
-      async () => {
-        await uploadTask.snapshot.ref.getDownloadURL().then((res) => {
-          data.value = res;
-          this.uploaded_count += 1;
-          if (this.image_count == this.uploaded_count) {
-            this.add();
+    this.shared.currentUserStatus.subscribe((isLoggedIn) => {
+      if (isLoggedIn == true && this.loginService.getToken() !== null) {
+        this.upload_called = true;
+        var n = Date.now();
+        var fileName = data.file.name;
+        var path = fileName + n;
+        const filePath = `Kyc/${path}`;
+        this.load = true;
+        const uploadTask = firebase
+          .storage()
+          .ref()
+          .child(`${filePath}`)
+          .put(data.file);
+        uploadTask.on(
+          firebase.storage.TaskEvent.STATE_CHANGED,
+          (snapshot) => {
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            data.progress = progress;
+          },
+          (error) => console.log(error),
+          async () => {
+            await uploadTask.snapshot.ref.getDownloadURL().then((res) => {
+              data.value = res;
+              this.uploaded_count += 1;
+              if (this.image_count == this.uploaded_count) {
+                this.add();
+              }
+            });
           }
-        });
+        );
       }
-    );
+    });
+
   }
 
   onlyNumbers(event: any, data: any) {
