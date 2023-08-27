@@ -24,6 +24,8 @@ import { Tar7DocumentComponent } from './Pages/docs/tar7-document/tar7-document.
 import { SubHeaderMenueComponent } from './Pages/subHeader/sub-header-menue.component';
 import { QualifiedInvestorComponent } from './Pages/qualified-investor/qualified-investor.component';
 import { InvestorWalletListComponent } from './Pages/CampaignDetails/investor-wallet-list/investor-wallet-list.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { InvestorWalletListComponent } from './Pages/CampaignDetails/investor-wa
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     NgCircleProgressModule.forRoot({
       // set defaults here
       outerStrokeWidth: 16,

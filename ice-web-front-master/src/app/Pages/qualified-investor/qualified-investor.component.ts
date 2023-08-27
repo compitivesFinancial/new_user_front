@@ -25,7 +25,7 @@ export class QualifiedInvestorComponent implements OnInit {
   load: boolean = false;
   image_count: number = 0;
   uploaded_count: number = 0;
-  disableSave:any;
+  disableSave: any;
   min3WorkYear: any = {}; //1
   certificateCME1: any = {}; //2
   professionalCertificate: any = {}; //3
@@ -56,19 +56,19 @@ export class QualifiedInvestorComponent implements OnInit {
     console.log(`THE this.min3WorkYear img = ${this.min3WorkYear?.image}`);
   }
   /************************************************************************************/
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   /************************************************************************************/
   getQualifiedInvestorData() {
     this.subscriptions.push(
       this.qualifiedInvestorService.getQualifiedInvestorData(this.user_data.id).subscribe((res: any) => {
         if (res.status) {
           const object = res.response[0];
-            this.min3WorkYear = {"image": object.min3WorkYear_url,"file": '', "extension": ''};
-            this.certificateCME1 = {"image": object.certificateCME1_url,"file": '', "extension": ''};
-            this.professionalCertificate = {"image": object.professionalCertificate_url,"file": '', "extension": ''};
-            this.investTenOpport = {"image": object.investTenOpport_url,"file": '', "extension": ''};
-            this.netOrigin = {"image": object.netOrigin_url,"file": '', "extension": ''};
-            this.disableSave = false;
+          this.min3WorkYear = { "image": object.min3WorkYear_url, "file": '', "extension": '' };
+          this.certificateCME1 = { "image": object.certificateCME1_url, "file": '', "extension": '' };
+          this.professionalCertificate = { "image": object.professionalCertificate_url, "file": '', "extension": '' };
+          this.investTenOpport = { "image": object.investTenOpport_url, "file": '', "extension": '' };
+          this.netOrigin = { "image": object.netOrigin_url, "file": '', "extension": '' };
+          this.disableSave = false;
         }
       })
     );
@@ -194,7 +194,10 @@ export class QualifiedInvestorComponent implements OnInit {
   upgradeToQualified() {
     this.err = false;
     this.errors = {};
-    this.errorHandler();
+    if (this.min3WorkYear.file.size > 10485760 || this.certificateCME1.file.size > 10485760 || this.investTenOpport.file.size > 10485760 || this.netOrigin.file.size > 10485760){
+      this.toast.warning("Each file should NOT exceed 10MB");
+    }
+      this.errorHandler();
     if (this.err) return;
     this.load = true;
     if (this.min3WorkYear.file) {
@@ -243,32 +246,32 @@ export class QualifiedInvestorComponent implements OnInit {
   }
   /************************************************************************************/
   errorHandler() {
-    if (this.min3WorkYear.file == '' || this.min3WorkYear.file == undefined) {
+    if (this.min3WorkYear.file == '' || this.min3WorkYear.file == undefined || this.min3WorkYear.file.size > 10485760) {
       this.errors.min3WorkYear = true;
       this.err = true;
     }
     if (
       this.certificateCME1.file == '' ||
-      this.certificateCME1.file == undefined
+      this.certificateCME1.file == undefined || this.certificateCME1.file.size > 10485760
     ) {
       this.errors.certificateCME1 = true;
       this.err = true;
     }
     if (
       this.professionalCertificate.file == '' ||
-      this.professionalCertificate.file == undefined
+      this.professionalCertificate.file == undefined || this.professionalCertificate.file.size > 10485760
     ) {
       this.errors.professionalCertificate = true;
       this.err = true;
     }
     if (
       this.investTenOpport.file == '' ||
-      this.investTenOpport.file == undefined
+      this.investTenOpport.file == undefined || this.investTenOpport.file.size > 10485760
     ) {
       this.errors.investTenOpport = true;
       this.err = true;
     }
-    if (this.netOrigin.file == '' || this.netOrigin.file == undefined) {
+    if (this.netOrigin.file == '' || this.netOrigin.file == undefined || this.netOrigin.file.size > 10485760) {
       this.errors.netOrigin = true;
       this.err = true;
     }

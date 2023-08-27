@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyB7l5QmXf9pxwW2RZxLHQ2VtLJtL2K8OCY",
+    apiKey: "AIzaSyAkw7ImOFHF3I5y52W2yydQb9ANhpuR-3E",//I had to change this to not have 403 ERROR - done by rashed rabadi
     authDomain: "aaaa-6d056.firebaseapp.com",
     databaseURL: "https://aaaa-6d056-default-rtdb.firebaseio.com",
     projectId: "aaaa-6d056",
