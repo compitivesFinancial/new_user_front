@@ -4,7 +4,7 @@ import {AngularFireAuth} from '@angular/fire/auth'
   providedIn: 'root'
 })
 export class FirebaseConfigService {
- private apiKey:string = "AIzaSyB7l5QmXf9pxwW2RZxLHQ2VtLJtL2K8OCY";
+ private apiKey:string = "AIzaSyAkw7ImOFHF3I5y52W2yydQb9ANhpuR-3E";
  private authDomain:string = "aaaa-6d056.firebaseapp.com";
  private  databaseURL:string =  "https://aaaa-6d056-default-rtdb.firebaseio.com";
  private  projectId:string =  "aaaa-6d056";
@@ -21,7 +21,7 @@ export class FirebaseConfigService {
   //   });
   // };
   // async signup(email:string,password:string){
-  //   await 
+  //   await
   // }
   logout(){
     this.firebaseAuth.signOut();
