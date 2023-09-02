@@ -238,7 +238,8 @@ export class AddCampaignComponent implements OnInit {
             const progress = ((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
             data.progress = progress
           },
-          error => console.log(error),
+          //error => console.log(error),
+          error => error,
           async () => {
             await uploadTask.snapshot.ref.getDownloadURL().then(res => {
               data.image = res;

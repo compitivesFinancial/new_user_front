@@ -19,8 +19,8 @@ export class InvestmentComponent implements OnInit {
   closedOPpertunity:boolean=false
   subscriptions:Subscription[]=[];
   LANG:any={};
-  
-  constructor(public investmentService:InvestmentService,private campaignService:CampaignService, public router:Router,private shared:SharedService) { 
+
+  constructor(public investmentService:InvestmentService,private campaignService:CampaignService, public router:Router,private shared:SharedService) {
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
       this.user_data=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
@@ -33,10 +33,10 @@ export class InvestmentComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
+
     this.getDashboardDetails(1);
-   
-  
+
+
     if(this.user_data.role_type==3){
       this.closedOppertunityList()
       this.TotalDetails()
@@ -49,11 +49,11 @@ export class InvestmentComponent implements OnInit {
     // var countDownDate = new Date("Jan 5, 2024 15:37:25").getTime();
 
     // var countdownfunction = setInterval(function() {
-    
+
     //   var now = new Date().getTime();
-      
+
     //   var distance = countDownDate - now;
-      
+
     //   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
     //   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     //   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -61,7 +61,7 @@ export class InvestmentComponent implements OnInit {
     //   // @ts-ignore
     //   document.getElementById("coming_soon").innerHTML = "<span>" + days + "d " + "</span>" + hours + "h "
     //   + minutes + "m " + seconds + "s ";
-      
+
     //   if (distance < 0) {
     //     clearInterval(countdownfunction);
     //       // @ts-ignore
@@ -78,22 +78,22 @@ closedOPpertunityInvester:boolean= false
           // const data={user_id:this.user_data.id}
           this.investmentService.totalOppertunities(this.user_data.id).subscribe((res:any)=>{
             this.totalDetails= res.response
-            
-            
+
+
           })
         }
 
         percantageInvestment(a:number,b:number){
           return(`${(a/b)*100}`)
         }
-        
+
         getDashboardDetails(type?:number){
           const data={user_id:this.user_data.id}
           this.campaignService.investorDashboard(data,type).subscribe((res:any)=>{
             this.dashboard_data=res.response.data.investor_id
-            
+
           })
-          
+
         }
         closedOpertunity(){
           this.closedOPpertunity= true
@@ -109,21 +109,21 @@ closedOPpertunityInvester:boolean= false
         }
 
         totalInvested(){
-          
+
           this.investmentService.totalInvested(this.user_data.id).subscribe((res:any)=>{
             this.investedDetails = res.response
-            console.log(this.investedDetails);
-            
+            // console.log(this.investedDetails);
+
           })
-          
+
         }
 public closedInvestedDetails:any
         closedInvested(){
-          
+
           this.investmentService.closedInvested(this.user_data.id).subscribe((res:any)=>{
             this.closedInvestedDetails = res.response
           })
-          
+
         }
 
 
@@ -160,7 +160,7 @@ public closedInvestedDetails:any
         navToLoan(){
           this.router.navigateByUrl(`/wallet`)
         }
-    
+
         changeLanguage(){
           if(localStorage.getItem("arabic") == "true" && localStorage.getItem("arabic") != null) {
               this.LANG=environment.arabic_translations;

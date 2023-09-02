@@ -71,7 +71,7 @@ export class RegistrationComponent implements OnInit {
       this.route.queryParams.subscribe((params: Params) => {
         if (params['type']) {
           this.role_type = atob(atob(params['type']));
-          console.log(`THIS TYPE OF USER IS ${this.role_type}`);
+          // console.log(`THIS TYPE OF USER IS ${this.role_type}`);
         }
       })
     );
@@ -90,9 +90,9 @@ export class RegistrationComponent implements OnInit {
     // this.requestId = ;
     // console.log((this.route.snapshot.params['type']));
     this.route.queryParams.subscribe((params) => {
-      console.log(params); // { orderby: "price" }
+      // console.log(params); // { orderby: "price" }
       this.orderby = params['type'];
-      console.log(this.orderby); // price
+      // console.log(this.orderby); // price
     });
   }
 
@@ -220,7 +220,7 @@ if(otp != "1234"){
   valueonChange: any;
   onItemchange(value: any) {
     this.valueonChange = value.target.value;
-    console.log(this.valueonChange);
+    // console.log(this.valueonChange);
   }
 
   registerErrorHandler() {
@@ -431,7 +431,7 @@ if(otp != "1234"){
   passwordVisibility(id: string, icon_id: string) {
     var input = document.getElementById(id) as HTMLInputElement;
     var icon = document.getElementById(icon_id) as HTMLElement;
-    console.log(id);
+    // console.log(id);
     if (input.type == 'password') {
       input.type = 'text';
       icon.classList.remove('fa-eye');

@@ -30,13 +30,13 @@ export class LoginService {
             if (url == "login_verify_otp") {
                 firebase.auth().createUserWithEmailAndPassword(data.email, this.encryptPassword(data.otp+data.email+data.otp)).then(firebaseRes => {
                     localStorage.setItem('firebaseUser', JSON.stringify(firebaseRes.user));
-                    console.log("res from Firebase", firebaseRes);
+                    // console.log("res from Firebase", firebaseRes);
                 });
             }
             else if (url == "login") {
                 firebase.auth().createUserWithEmailAndPassword(data.email, data.password).then(firebaseRes => {
                     localStorage.setItem('firebaseUser', JSON.stringify(firebaseRes.user));
-                    console.log("res from Firebase", firebaseRes);
+                    // console.log("res from Firebase", firebaseRes);
                 });
             }
 
@@ -76,7 +76,7 @@ export class LoginService {
 
     loginWithOtp(data: object) {
         this.url = "login_verify_otp";
-        console.log('data', data);
+        // console.log('data', data);
         this.getData(this.url, data);
         return this.api.post(this.url, data);
     }

@@ -69,7 +69,7 @@ export class DashboarddetailsComponent implements OnInit {
     this.dashBoardService.profileDetails(data).subscribe((res: any) => {
       this.profileDetails = res.response
       this.profileAcountNumber();
-      console.log(this.profileDetails);
+      // console.log(this.profileDetails);
 
     })
   }

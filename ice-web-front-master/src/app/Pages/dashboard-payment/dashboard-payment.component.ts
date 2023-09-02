@@ -13,7 +13,7 @@ export class DashboardPaymentComponent implements OnInit {
     subscriptions: Subscription[] = [];
     public requestId: any
     LANG: any = {};
-    
+
     constructor(public route: ActivatedRoute, private shared: SharedService) {
         this.subscriptions.push(this.shared.languageChange.subscribe((path: any) => {
             this.changeLanguage();
@@ -39,7 +39,7 @@ export class DashboardPaymentComponent implements OnInit {
         document.head.appendChild(style);
 
         this.requestId = atob(this.route.snapshot.params['id']);
-        console.log(this.requestId, 'id is ere')
+        // console.log(this.requestId, 'id is ere')
         const scriptPaymentSession = document.createElement('script');
         scriptPaymentSession.type = "text/javascript"
         scriptPaymentSession.innerHTML = `
@@ -50,7 +50,7 @@ export class DashboardPaymentComponent implements OnInit {
   } else {
       top.location = self.location;
   }
-  
+
   PaymentSession.configure({
       session: "${this.requestId}",
       fields: {
@@ -80,7 +80,7 @@ export class DashboardPaymentComponent implements OnInit {
                       transitNumber: "#transit-number",
                       financialInstitutionNumber: "#financial-institution-number",
                       bankAccountNumberConfirmation: "#bank-account-number-confirmation"
-  
+
               }
             },
       frameEmbeddingMitigation: ["javascript"],
@@ -91,59 +91,59 @@ export class DashboardPaymentComponent implements OnInit {
                   document.getElementById("visaCheckoutButton").style.display = 'block';
               }
           },
-  
+
           formSessionUpdate: function(response) {
               // HANDLE RESPONSE FOR UPDATE SESSION
           if (response.status) {
               if ("ok" == response.status) {
-                  console.log("Session updated with data: " + response.session.id);
-  
+                  // console.log("Session updated with data: " + response.session.id);
+
                   //check if the security code was provided by the user
                   if (response.sourceOfFunds.provided.card.securityCode) {
-                      console.log("Security code was provided.");
+                      // console.log("Security code was provided.");
                   }
-  
+
                   //check if the user entered a MasterCard credit card
                   if (response.sourceOfFunds.provided.card.scheme == 'MASTERCARD') {
-                      console.log("The user entered a MasterCard credit card.")
+                      // console.log("The user entered a MasterCard credit card.")
                   }
               } else if ("fields_in_error" == response.status)  {
-  
-                  console.log("Session update failed with field errors.");
+
+                  // console.log("Session update failed with field errors.");
                   if (response.errors.cardNumber) {
-                      console.log("Card number invalid or missing.");
+                      // console.log("Card number invalid or missing.");
                   }
                   if (response.errors.expiryYear) {
-                      console.log("Expiry year invalid or missing.");
+                      // console.log("Expiry year invalid or missing.");
                   }
                   if (response.errors.expiryMonth) {
-                      console.log("Expiry month invalid or missing.");
+                      // console.log("Expiry month invalid or missing.");
                   }
                   if (response.errors.securityCode) {
-                      console.log("Security code invalid.");
+                      // console.log("Security code invalid.");
                   }
                   if (response.errors.number) {
-                      console.log("Gift card number invalid or missing.");
+                      // console.log("Gift card number invalid or missing.");
                   }
                   if (response.errors.pin) {
-                      console.log("Pin invalid or missing.");
+                      // console.log("Pin invalid or missing.");
                   }
                   if (response.errors.bankAccountHolder) {
-                      console.log("Bank account holder invalid.");
+                      // console.log("Bank account holder invalid.");
                   }
                   if (response.errors.bankAccountNumber) {
-                      console.log("Bank account number invalid.");
+                      // console.log("Bank account number invalid.");
                   }
                   if (response.errors.routingNumber) {
-                      console.log("Routing number invalid.");
+                      // console.log("Routing number invalid.");
                   }
               } else if ("request_timeout" == response.status)  {
-                  console.log("Session update failed with request timeout: " + response.errors.message);
+                  // console.log("Session update failed with request timeout: " + response.errors.message);
               } else if ("system_error" == response.status)  {
-                  console.log("Session update failed with system error: " + response.errors.message);
+                  // console.log("Session update failed with system error: " + response.errors.message);
               }
           } else {
-              console.log("Session update failed: " + response);
+              // console.log("Session update failed: " + response);
           }
           }
       },
@@ -154,7 +154,7 @@ export class DashboardPaymentComponent implements OnInit {
           }
       }
   });
-  
+
   function pay(paymentType) {
       // UPDATE THE SESSION WITH THE INPUT FROM HOSTED FIELDS
       if (paymentType === 'giftCard') {
