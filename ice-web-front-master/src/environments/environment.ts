@@ -15,8 +15,8 @@ export const environment = {
     measurementId: "G-GEMW853ESY"
   },
   decryptionAES:{
-    key:"missing",
-    iv:"missing"
+    key:"nuTgmGLZLsGbdkkF/FltFpUx1NAEjGF/JIGhrdI0Css=",
+    iv:""
   },
   english_translations: {
     Login_your_account: "Login your account",
