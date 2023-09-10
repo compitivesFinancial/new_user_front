@@ -9,24 +9,24 @@
         <a class="navbar-brand p-0 header-logo" (click)="goHome()">
             <img src="{{logo_1}}" class="w-100" alt="" />
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" (click)="togglePhoneMenu()" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" [class.show]="phoneMenuToggle== true">
             <ul class="navbar-nav align-items-center">
                 <ng-container *ngIf="logged_in;else no_logged_in">
-                    <li class="nav-item active">
+                    <li class="nav-item phoneLi active">
                         <button class="btn btn-primary"  routerLink="/dashboard">{{LANG.Dashboard}}
                             <span class="hov-border"></span>
                         </button>
                     </li>
-                    <li class="nav-item active" *ngIf="user_data?.role_type == 2">
+                    <li class="nav-item phoneLi active" *ngIf="user_data?.role_type == 2">
                         <button class="btn btn-primary" routerLink="/investment">{{LANG.Investment}}
                             <span class="hov-border"></span>
                         </button>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item phoneLi active">
                         <button class=" btn btn-primary" routerLink="/setting">{{LANG.Operations}}
                             <span class="hov-border"></span>
                         </button>
@@ -58,7 +58,7 @@
                     </li>
                 </ng-template>
                 <li class="dropdown">
-                    <button type="button" class="btn " data-toggle="dropdown">
+                    <button type="button" class="btn BG" data-toggle="dropdown">
                         {{selected_language}}
                     </button>
                     <div class="dropdown-menu">

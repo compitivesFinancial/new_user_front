@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
+import { decryptAesService } from 'src/app/Shared/Services/decryptAES.service';
 import { LkServiceService } from 'src/app/Shared/Services/lk-service.service';
 import { LoginService } from 'src/app/Shared/Services/login.service';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
@@ -23,10 +24,13 @@ export class MyAccountComponent implements OnInit {
   new_password:any=''
   LANG:any={};
 
-  constructor(private loginService:LoginService, public toast:ToastrService, lkService:LkServiceService,private shared:SharedService) {
+  constructor(private loginService:LoginService, public toast:ToastrService, lkService:LkServiceService,private shared:SharedService,public decryptAES:decryptAesService) {
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
       this.user_data=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
+    }
+    if (isNaN(this.user_data.id)) {
+      this.user_data.id = decryptAES.decryptAesCbc(this.user_data.id, environment.decryptionAES.key, environment.decryptionAES.iv);
     }
     this.subscriptions.push(this.shared.languageChange.subscribe((path:any)=>{
       this.changeLanguage();

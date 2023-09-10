@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
 import { WalletService } from 'src/app/Shared/Services/wallet.service';
+import { decryptAesService } from 'src/app/Shared/Services/decryptAES.service';
 
 @Component({
   selector: 'app-investor-wallet-list',
@@ -26,13 +27,17 @@ export class InvestorWalletListComponent implements OnInit {
     private campaignService: CampaignService,
     public dashboardService: DashboardService,
     private shared: SharedService,
-    private walletService: WalletService
+    private walletService: WalletService,
+    public decryptAES:decryptAesService
   ) {
     const user_data = btoa(btoa('user_info_web'));
     if (localStorage.getItem(user_data) != undefined) {
       this.user_data = JSON.parse(
         atob(atob(localStorage.getItem(user_data) || '{}'))
       );
+    }
+    if (isNaN(this.user_data.id)) {
+      this.user_data.id = decryptAES.decryptAesCbc(this.user_data.id, environment.decryptionAES.key, environment.decryptionAES.iv);
     }
     this.requestId = atob(this.route.snapshot.params['id']);
     this.subscriptions.push(
