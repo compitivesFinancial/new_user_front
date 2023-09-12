@@ -120,7 +120,8 @@ export class RegistrationComponent implements OnInit {
         return;
       }
       this.load = false;
-      this.show_otp=true;
+      this.show_otp = true;
+      this.sendOtpRegestration();
       //this.registerUser();
       return;
     }
@@ -153,69 +154,89 @@ export class RegistrationComponent implements OnInit {
       password_match: false,
       confirm_password_valid: false,
       registration_type: false,
-      otp :false
+      otp: false,
     };
+  }
+
+  sendOtpRegestration() {
+    const data = {
+      email: this.email,
+    };
+    this.subscriptions.push(
+      this.loginService.sendOtpRegestration(data).subscribe((result: any) => {
+        this.load = false;
+        if (result.status) {
+          this.load = false;
+          this.resetError();
+          this.toast.success(result.response.message, '');
+
+          return;
+        }
+        this.load = false;
+        this.toast.warning(result.message, '');
+      })
+    );
   }
 
   registerUser() {
-    const otp=this.otp1+this.otp2+this.otp3+this.otp4
+    const otp = this.otp1 + this.otp2 + this.otp3 + this.otp4;
     // alert(otp);
 
-if(otp != "1234"){
-  this.toast.error("WROOOONG OTP "+otp);
-    return;
-}else{
-    //this.toast.info("SUCCESSSSS OTP "+otp);
-    const data: registration_data = {
-      country_code: this.country_code,
-      mobile_number: this.mobile_number,
-      email: this.email,
-      username: '',
-      // "name": `${this.first_name} ${this.last_name}`,
-      name: `${this.first_name}`,
-      password: this.loginService.encryptPassword(this.password),
-      // "password": this.password,
-      role_type: this.role_type,
-      registration_type: this.registration_type.registration_type,
-    };
-    this.subscriptions.push(
-      this.loginService.register(data).subscribe(
-        (result: any) => {
-          this.load = false;
-          if (result.status) {
-            localStorage.setItem('logged_in', btoa('1'));
-            localStorage.setItem('token', result?.response?.token);
-            localStorage.setItem(
-              btoa(btoa('user_info_web')),
-              btoa(btoa(JSON.stringify(result.response)))
-            );
-            this.shared.changeUserStatus(true);
-            this.shared.changeUserData(result.response);
-            this.toast.success(
-              'Registration Successfull! Welcome ' + result.response.name,
-              ''
-            );
-            // this.toast.success(result.response.message,"")
-            this.router.navigate(['/add-kyc']);
+    if (otp == null || otp == '' || otp == undefined) {
+      this.toast.error('WROOOONG OTP ');
+      return;
+    } else {
+      const data: registration_data = {
+        otp: otp,
+        country_code: this.country_code,
+        mobile_number: this.mobile_number,
+        email: this.email,
+        username: '',
+        // "name": `${this.first_name} ${this.last_name}`,
+        name: `${this.first_name}`,
+        password: this.loginService.encryptPassword(this.password),
+        // "password": this.password,
+        role_type: this.role_type,
+        registration_type: this.registration_type.registration_type
+      };
+      this.subscriptions.push(
+        this.loginService.register(data).subscribe(
+          (result: any) => {
+            this.load = false;
+            if (result.status) {
+              localStorage.setItem('logged_in', btoa('1'));
+              localStorage.setItem('token', result?.response?.token);
+              localStorage.setItem(
+                btoa(btoa('user_info_web')),
+                btoa(btoa(JSON.stringify(result.response)))
+              );
+              this.shared.changeUserStatus(true);
+              this.shared.changeUserData(result.response);
+              this.toast.success(
+                'Registration Successfull! Welcome ' + result.response.name,
+                ''
+              );
+              // this.toast.success(result.response.message,"")
+              this.router.navigate(['/add-kyc']);
 
-            // this.router.navigate(["/add-kyc"],{queryParams:{type:btoa(btoa(result.response.role_type.toString()))}})
+              // this.router.navigate(["/add-kyc"],{queryParams:{type:btoa(btoa(result.response.role_type.toString()))}})
 
-            return;
+              return;
+            }
+            this.toast.warning(result.response.message, '');
+          },
+          (respagesError) => {
+            this.load = false;
+            const error = this.error.getError(respagesError);
+            if (error == 'Gateway timeout') {
+              return;
+            }
+            this.toast.error(error, 'Error');
           }
-          this.toast.warning(result.response.message, '');
-        },
-        (respagesError) => {
-          this.load = false;
-          const error = this.error.getError(respagesError);
-          if (error == 'Gateway timeout') {
-            return;
-          }
-          this.toast.error(error, 'Error');
-        }
-      )
-    );
+        )
+      );
+    }
   }
-}
 
   valueonChange: any;
   onItemchange(value: any) {
@@ -465,13 +486,13 @@ if(otp != "1234"){
     });
   }
   // Send OTP Methods
-  sendOTP(){
-    if(this.load) return;
-    this.err=false;
+  sendOTP() {
+    if (this.load) return;
+    this.err = false;
     this.resetError();
-    if(!this.err){
-        this.load=true;
-        this.show_otp=true;
+    if (!this.err) {
+      this.load = true;
+      this.show_otp = true;
     }
   }
   onKeyUpEvent(index: number, event: any) {
