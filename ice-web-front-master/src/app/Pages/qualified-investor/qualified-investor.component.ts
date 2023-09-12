@@ -53,7 +53,7 @@ export class QualifiedInvestorComponent implements OnInit {
     this.changeLanguage();
     this.profile();
     this.getQualifiedInvestorData();
-    console.log(`THE this.min3WorkYear img = ${this.min3WorkYear?.image}`);
+    // console.log(`THE this.min3WorkYear img = ${this.min3WorkYear?.image}`);
   }
   /************************************************************************************/
   ngOnInit(): void { }
@@ -91,7 +91,7 @@ export class QualifiedInvestorComponent implements OnInit {
     };
     this.dashBoardService.profileDetails(data).subscribe((res: any) => {
       this.profileDetails = res.response;
-      console.log(this.profileDetails);
+      // console.log(this.profileDetails);
     });
   }
   /************************************************************************************/
@@ -182,7 +182,7 @@ export class QualifiedInvestorComponent implements OnInit {
           };
           break;
         default:
-          console.log('The file not exist');
+          // console.log('The file not exist');
           break;
       }
       reader.readAsDataURL(file);
@@ -297,7 +297,8 @@ export class QualifiedInvestorComponent implements OnInit {
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         data.progress = progress;
       },
-      (error) => console.log(error),
+      // (error) => console.log(error),
+      (error) => error,
       async () => {
         await uploadTask.snapshot.ref.getDownloadURL().then((res) => {
           data.image = res;

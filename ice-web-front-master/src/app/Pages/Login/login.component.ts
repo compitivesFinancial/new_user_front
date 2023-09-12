@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
 
 
@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
     this.show_password = !this.show_password;
   }
   forgetPassword() {
-    console.log("Forget Password From Login Page");
+    // console.log("Forget Password From Login Page");
   }
 
   errorHandler() {

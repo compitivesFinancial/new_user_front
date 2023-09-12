@@ -175,7 +175,7 @@ export class AddKycComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     // changes.prop contains the old and the new value...
-    console.log('Changes detected');
+    // console.log('Changes detected');
   }
 
   changeLanguage() {
@@ -275,7 +275,7 @@ export class AddKycComponent implements OnInit, OnChanges {
           alert(
             'please fill Identity Type and the ID number and birthdate in Hijri to retrieve tha data'
           );
-          console.log(`the error says ${this.err}`);
+          // console.log(`the error says ${this.err}`);
           if (this.err) return;
         } else {
           this.getYaqeenSaudiData();
@@ -293,15 +293,15 @@ export class AddKycComponent implements OnInit, OnChanges {
         alert(
           'please fill Identity Type and the ID number and birthdate to retrieve tha data'
         );
-        console.log(`the error says ${this.err}`);
+        // console.log(`the error says ${this.err}`);
         if (this.err) return;
       } else {
-        console.log(`the Date Of birth iqama service ${this.iqamaDOB}`);
+        // console.log(`the Date Of birth iqama service ${this.iqamaDOB}`);
         const monthYear =
           new Date(this.iqamaDOB).getFullYear().toString() +
           '-' +
           (new Date(this.iqamaDOB).getMonth() + 1).toString().slice(-2);
-        console.log(`the Date Of birth iqama service ${monthYear}`);
+        // console.log(`the Date Of birth iqama service ${monthYear}`);
         this.getYaqeenIqamaData(monthYear);
         hasData = true;
       }
@@ -324,7 +324,7 @@ export class AddKycComponent implements OnInit, OnChanges {
             const hasData = this.getSafe(
               () => res.response.personBasicInfo.birthDateG
             );
-            console.log(`THE VLUE NOT EXIST ${hasData}`);
+            // console.log(`THE VLUE NOT EXIST ${hasData}`);
             if (hasData === 'undefined') {
               this.toast.error('The Id number not exist ');
               return;
@@ -380,7 +380,7 @@ export class AddKycComponent implements OnInit, OnChanges {
             const hasData = this.getSafe(
               () => res.response.personBasicInfo.birthDateG
             );
-            console.log(`THE VLUE NOT EXIST ${hasData}`);
+            // console.log(`THE VLUE NOT EXIST ${hasData}`);
             if (hasData === 'undefined') {
               this.toast.error('The Id number not exist ');
               return;
@@ -441,7 +441,7 @@ export class AddKycComponent implements OnInit, OnChanges {
     };
     this.dashBoardService.profileDetails(data).subscribe((res: any) => {
       this.profileDetails = res.response;
-      console.log(this.profileDetails);
+      // console.log(this.profileDetails);
     });
   }
   //end add By Qaysar For updating the page with dynamic list
@@ -563,7 +563,8 @@ export class AddKycComponent implements OnInit, OnChanges {
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             data.progress = progress;
           },
-          (error) => console.log(error),
+          // (error) => console.log(error),
+          (error) => error,
           async () => {
             await uploadTask.snapshot.ref.getDownloadURL().then((res) => {
               data.value = res;
@@ -651,9 +652,9 @@ export class AddKycComponent implements OnInit, OnChanges {
           if (fields.id == 138 && fields.value == null) {
             fields.value = this.yaqeenEnName;
           }
-          console.log(
-            `the value for sield ID is ${fields.id} and the fields value is ${fields.value}`
-          );
+          // console.log(
+          //   `the value for sield ID is ${fields.id} and the fields value is ${fields.value}`
+          // );
         });
       });
     }
@@ -843,7 +844,7 @@ export class AddKycComponent implements OnInit, OnChanges {
   change(event: any) {
     let crName = event.target.value;
     if (crName.length === 10) {
-      console.log(`the value from user is ${event.target.value}`);
+      // console.log(`the value from user is ${event.target.value}`);
       this.verifyCrNumber(crName);
     }
   }

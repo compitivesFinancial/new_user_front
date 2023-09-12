@@ -21,7 +21,7 @@ export class FirebaseConfigService {
   //   });
   // };
   // async signup(email:string,password:string){
-  //   await 
+  //   await
   // }
   logout(){
     this.firebaseAuth.signOut();
