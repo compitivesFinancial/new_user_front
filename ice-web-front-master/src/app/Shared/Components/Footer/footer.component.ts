@@ -88,7 +88,7 @@ export class FooterComponent implements OnInit {
   // }
   calculateList() {
     for (let item of this.footerPages) {
-      console.log(`the item data is ${item.title}`)
+     // console.log(`the item data is ${item.title}`)
       switch (item.type) {
         case "1": this.investDetails.push(item); break;
         case "2": this.raiseDetails.push(item); break;
