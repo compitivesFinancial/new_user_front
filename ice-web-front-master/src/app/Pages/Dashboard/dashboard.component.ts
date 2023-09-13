@@ -21,6 +21,7 @@ import { DatePipe } from '@angular/common';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
 import { SettingService } from '../setting/setting.service';
 import { BankapiService } from 'src/app/Shared/Services/bankapi.service';
+import { decryptAesService } from 'src/app/Shared/Services/decryptAES.service';
 // import { Toast } from 'ngx-toastr';
 @Component({
   selector: 'app-dashboard',
@@ -64,7 +65,7 @@ export class DashboardComponent implements OnInit {
     private toast: ToastrService,
     private documentService: DocumentService,
     private bankapiService: BankapiService,
-    private shared: SharedService
+    private shared: SharedService,public decryptAES:decryptAesService
   ) {
     this.myDate = new Date();
     this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
@@ -74,7 +75,9 @@ export class DashboardComponent implements OnInit {
         atob(atob(localStorage.getItem(user_data) || '{}'))
       );
     }
-
+    if (isNaN(this.user_data.id)) {
+      this.user_data.id = decryptAES.decryptAesCbc(this.user_data.id, environment.decryptionAES.key, environment.decryptionAES.iv);
+    }
     this.amountForm = this.formBuilder.group({
       amount: ['', Validators.required],
       agreement: ['', Validators.required],

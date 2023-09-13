@@ -5,6 +5,7 @@ import { SharedService } from 'src/app/Shared/Services/shared.service';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
+import { decryptAesService } from 'src/app/Shared/Services/decryptAES.service';
 
 @Component({
   selector: 'app-dashboarddetails',
@@ -20,14 +21,15 @@ export class DashboarddetailsComponent implements OnInit {
   public invesorDashDetails: any = ''
 
 
-  constructor(public dashBoardService: DashboardService, private shared: SharedService) {
+  constructor(public dashBoardService: DashboardService, private shared: SharedService,public decryptAES:decryptAesService) {
     const user_data = btoa(btoa("user_info_web"));
+    console.log("btoa('user_info_web')",btoa(btoa("user_info_web")))
     if (localStorage.getItem(user_data) != undefined) {
       this.user_data = JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
 
     }
     if (isNaN(this.user_data.id)) {
-      this.user_data.id = this.decryptAesCbc(this.user_data.id, environment.decryptionAES.key, environment.decryptionAES.iv);
+      this.user_data.id = decryptAES.decryptAesCbc(this.user_data.id, environment.decryptionAES.key, environment.decryptionAES.iv);
     }
     this.subscriptions.push(this.shared.languageChange.subscribe((path: any) => {
       this.changeLanguage();
@@ -43,27 +45,7 @@ export class DashboarddetailsComponent implements OnInit {
     }
   }
 
-  decryptAesCbc(encrypted: any, keyCode: string, IVCode: string): number {
-
-    // console.log(`encrypted --- ${encrypted} - `);
-    encrypted = atob(encrypted);
-    encrypted=JSON.parse(encrypted);
-    const iv = CryptoJS.enc.Base64.parse(encrypted.iv);
-
-    const value = encrypted.value;
-    const key = CryptoJS.enc.Base64.parse(keyCode);
-
-    // Decrypt the ciphertext using AES CBC mode
-    var decrypted = CryptoJS.AES.decrypt(value, key, {
-      iv: iv
-    });
-
-    // Convert the decrypted WordArray to a UTF-8 string
-    let plaintext = decrypted.toString(CryptoJS.enc.Utf8).replaceAll("[^\\d]", '');
-    let idArr = plaintext.split(':')
-    // console.log("plaintext",idArr[1]);
-    return parseInt(idArr[1]);
-  }
+ 
 
 
 

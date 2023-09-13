@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
 import { environment } from 'src/environments/environment';
 import { DashboardService } from '../Dashboard/dashboard.service';
+import { decryptAesService } from 'src/app/Shared/Services/decryptAES.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,10 +17,13 @@ export class ProfileComponent implements OnInit {
   LANG: any = {};
   public profileDetails: any  = ''
 
-  constructor(private shared: SharedService,public dashBoardService: DashboardService) {
+  constructor(private shared: SharedService,public dashBoardService: DashboardService,public decryptAES:decryptAesService) {
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
       this.user_data=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
+    }
+    if (isNaN(this.user_data.id)) {
+      this.user_data.id = decryptAES.decryptAesCbc(this.user_data.id, environment.decryptionAES.key, environment.decryptionAES.iv);
     }
     this.subscriptions.push(this.shared.languageChange.subscribe((path: any) => {
       this.changeLanguage();
