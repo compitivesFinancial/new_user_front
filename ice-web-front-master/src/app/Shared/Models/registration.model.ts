@@ -6,6 +6,5 @@ export interface registration_data {
     email: string,
     country_code: string,
     role_type:string,
-    registration_type:string,
-    otp:string
+    registration_type:string
 }

@@ -262,7 +262,7 @@ $("#carousel-3").owlCarousel({
   investMentOppertunity(){
     this.campaignService.investmentOppertunityQaysar().subscribe((res:any)=>{
       this.investmentOppertunityList =res.response
-      // console.log(this.investmentOppertunityList);
+      console.log(this.investmentOppertunityList);
 
     })
   }
@@ -270,7 +270,7 @@ $("#carousel-3").owlCarousel({
   upcomingInvestmentOppertunity(){
     this.campaignService.upcomingInvesmentOppertunity().subscribe((res:any)=>{
       this.upcomingInvestmentOppertunityList = res.response
-      // console.log(this.upcomingInvestmentOppertunityList);
+      console.log(this.upcomingInvestmentOppertunityList);
 
 
     })
