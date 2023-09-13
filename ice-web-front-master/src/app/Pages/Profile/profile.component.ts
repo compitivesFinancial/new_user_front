@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
     }
     this.dashBoardService.profileDetails(data).subscribe((res: any) => {
       this.profileDetails = res.response
-     // console.log(this.profileDetails);
+      console.log(this.profileDetails);
 
     })
   }
