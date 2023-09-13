@@ -188,7 +188,7 @@ export class DashboardComponent implements OnInit {
         .subscribe((res: any) => {
           // Math.round((res.response + Number.EPSILON) * 100) / 100
           this.investPercentage = (Math.round((res.response + Number.EPSILON) * 100) / 100);
-          //console.log("this.investPercentage == "+ this.investPercentage);
+          console.log("this.investPercentage == "+ this.investPercentage);
         })
     );
   }
@@ -251,22 +251,22 @@ export class DashboardComponent implements OnInit {
         this.onPaydetails = res.response.session_id;
         this.toast.success(res.response.message);
         // $('#modalwindow').modal('hide');
-        //console.log(this.onPaydetails);
+        console.log(this.onPaydetails);
         // this.router.navigateByUrl(`payment/${btoa(this.onPaydetails)}`)
         // this.isAmountValid = false;
       });
 
       this.bankapiService.payment(this.amountForm.value.amount).subscribe((res: any) => {
-        // console.log(`id = ${res.response.id}`);
-        // console.log(`sequenceNumber = ${res.response.sequenceNumber}`);
-        // console.log(`transactionReferenceNumber = ${res.response.transactionReferenceNumber}`);
-        // console.log(`status = ${res.response.status}`);
+        console.log(`id = ${res.response.id}`);
+        console.log(`sequenceNumber = ${res.response.sequenceNumber}`);
+        console.log(`transactionReferenceNumber = ${res.response.transactionReferenceNumber}`);
+        console.log(`status = ${res.response.status}`);
       });
       this.amountForm.value.amount = '';
     } else {
-      // console.log(
-      //   '*********************please fill the form data*********************'
-      // );
+      console.log(
+        '*********************please fill the form data*********************'
+      );
       if (
         this.amountForm.value.agreement == undefined ||
         this.amountForm.value.agreement == false
@@ -316,44 +316,44 @@ export class DashboardComponent implements OnInit {
           // HANDLE RESPONSE FOR UPDATE SESSION
           if (response.status) {
             if ('ok' == response.status) {
-              // console.log('Session updated with data: ' + response.session.id);
+              console.log('Session updated with data: ' + response.session.id);
 
               //check if the security code was provided by the user
               if (response.sourceOfFunds.provided.card.securityCode) {
-                // console.log('Security code was provided.');
+                console.log('Security code was provided.');
               }
 
               //check if the user entered a Mastercard credit card
               if (response.sourceOfFunds.provided.card.scheme == 'MASTERCARD') {
-                // console.log('The user entered a Mastercard credit card.');
+                console.log('The user entered a Mastercard credit card.');
               }
             } else if ('fields_in_error' == response.status) {
-              // console.log('Session update failed with field errors.');
+              console.log('Session update failed with field errors.');
               if (response.errors.cardNumber) {
-                // console.log('Card number invalid or missing.');
+                console.log('Card number invalid or missing.');
               }
               if (response.errors.expiryYear) {
-                // console.log('Expiry year invalid or missing.');
+                console.log('Expiry year invalid or missing.');
               }
               if (response.errors.expiryMonth) {
-                // console.log('Expiry month invalid or missing.');
+                console.log('Expiry month invalid or missing.');
               }
               if (response.errors.securityCode) {
-                // console.log('Security code invalid.');
+                console.log('Security code invalid.');
               }
             } else if ('request_timeout' == response.status) {
-              // console.log(
-              //   'Session update failed with request timeout: ' +
-              //     response.errors.message
-              // );
+              console.log(
+                'Session update failed with request timeout: ' +
+                  response.errors.message
+              );
             } else if ('system_error' == response.status) {
-              // console.log(
-              //   'Session update failed with system error: ' +
-              //     response.errors.message
-              // );
+              console.log(
+                'Session update failed with system error: ' +
+                  response.errors.message
+              );
             }
           } else {
-            // console.log('Session update failed: ' + response);
+            console.log('Session update failed: ' + response);
           }
         },
       },
