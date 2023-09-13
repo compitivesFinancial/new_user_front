@@ -121,7 +121,7 @@ export class SettingComponent implements OnInit {
       .subscribe((res: any) => {
         this.totalDetails = res.response.active_funds;
         this.walletFundBorower = res.response;
-        console.log(this.totalDetails);
+      //  console.log(this.totalDetails);
       });
   }
   public roundof: any;

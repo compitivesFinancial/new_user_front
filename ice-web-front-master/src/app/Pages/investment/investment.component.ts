@@ -113,21 +113,21 @@ closedOPpertunityInvester:boolean= false
         }
 
         totalInvested(){
-          
+
           this.investmentService.totalInvested(this.user_data.id).subscribe((res:any)=>{
             this.investedDetails = res.response
-            console.log(this.investedDetails);
-            
+            // console.log(this.investedDetails);
+
           })
-          
+
         }
 public closedInvestedDetails:any
         closedInvested(){
-          
+
           this.investmentService.closedInvested(this.user_data.id).subscribe((res:any)=>{
             this.closedInvestedDetails = res.response
           })
-          
+
         }
 
 
@@ -164,7 +164,6 @@ public closedInvestedDetails:any
         navToLoan(){
           this.router.navigateByUrl(`/wallet`)
         }
-    
         changeLanguage(){
           if(localStorage.getItem("arabic") == "true" && localStorage.getItem("arabic") != null) {
               this.LANG=environment.arabic_translations;

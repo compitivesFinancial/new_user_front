@@ -46,7 +46,7 @@ export class UserCampaignDetailsComponent implements OnInit {
     this.subscriptions.push(this.statmentsService.getUserCampaignDetails(this.id).subscribe((res:any)=>{
       this.campaign_details=res.response;
       this.data_loaded=true;
-      console.log(res)
+      //console.log(res)
 
     }))
   }
