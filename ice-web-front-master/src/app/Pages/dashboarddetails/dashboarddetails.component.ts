@@ -43,26 +43,25 @@ export class DashboarddetailsComponent implements OnInit {
     }
   }
 
-  decryptAesCbc(encrypted: any, keyCode: string, IVCode: string): number {
+  decryptAesCbc(base64Ciphertext: string, key: string, iv: string): number {
+    // Decode the base64 ciphertext to a WordArray
+    const ciphertext = CryptoJS.enc.Base64.parse(base64Ciphertext).toString(CryptoJS.enc.Hex);
 
-    // console.log(`encrypted --- ${encrypted} - `);
-    encrypted = atob(encrypted);
-    encrypted=JSON.parse(encrypted);
-    const iv = CryptoJS.enc.Base64.parse(encrypted.iv);
-
-    const value = encrypted.value;
-    const key = CryptoJS.enc.Base64.parse(keyCode);
+    // Create WordArrays for the key and IV
+    const keyBytes = CryptoJS.enc.Hex.parse(key);
+    const ivBytes = CryptoJS.enc.Hex.parse(iv);
 
     // Decrypt the ciphertext using AES CBC mode
-    var decrypted = CryptoJS.AES.decrypt(value, key, {
-      iv: iv
+    const decrypted = CryptoJS.AES.decrypt(ciphertext, keyBytes, {
+      iv: ivBytes,
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7,
     });
 
     // Convert the decrypted WordArray to a UTF-8 string
-    let plaintext = decrypted.toString(CryptoJS.enc.Utf8).replaceAll("[^\\d]", '');
-    let idArr = plaintext.split(':')
-    // console.log("plaintext",idArr[1]);
-    return parseInt(idArr[1]);
+    const plaintext = decrypted.toString(CryptoJS.enc.Utf8);
+
+    return parseInt(plaintext);
   }
 
 
@@ -101,7 +100,7 @@ export class DashboarddetailsComponent implements OnInit {
       this.profileDetails = res.response
       this.profileAcountNumber();
       //must be an encryption code
-      //console.log("this.profileDetails", this.profileDetails);
+      console.log("this.profileDetails", this.profileDetails);
 
     })
   }
