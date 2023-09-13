@@ -2,17 +2,12 @@ li.nav-item.dropdown {
     list-style: none;
     cursor: pointer;
     width: auto;
-
-}
-.phoneLi {
-    @media (max-width: 576px) {
-        margin-bottom: 30px !important;
-      }
 }
 
-.BG {
-    background-color: rgb(240, 240, 240);  
+.btn {
+    background-color: rgb(240, 240, 240);
 }
+
 .card-title {
     text-decoration: none !important;
 }
@@ -83,9 +78,7 @@ a {
 .menuAppear {
     display: none;
 }
-/* .phoneMenuAppear {
-    display: none;
-} */
+
 .version {
     position: absolute;
     top: 0;

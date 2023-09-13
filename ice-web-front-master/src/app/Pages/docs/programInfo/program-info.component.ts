@@ -6,7 +6,6 @@ import { CampaginWithKyc } from 'src/app/Shared/Models/campagin-with-kyc';
 import { CampaignService } from 'src/app/Shared/Services/campaign.service';
 import { environment } from 'src/environments/environment';
 import { DashboardService } from '../../Dashboard/dashboard.service';
-import { decryptAesService } from 'src/app/Shared/Services/decryptAES.service';
 
 @Component({
   selector: 'app-program-info',
@@ -22,15 +21,12 @@ export class ProgramInfoComponent implements OnInit {
   subscriptions: Subscription[] = [];
   requestId: any;
 
-  constructor(private route: ActivatedRoute,private dashboardService: DashboardService,public decryptAES:decryptAesService) {
+  constructor(private route: ActivatedRoute,private dashboardService: DashboardService) {
     const user_data = btoa(btoa('user_info_web'));
     if (localStorage.getItem(user_data) != undefined) {
       this.user_data = JSON.parse(
         atob(atob(localStorage.getItem(user_data) || '{}'))
       );
-    }
-    if (isNaN(this.user_data.id)) {
-      this.user_data.id = decryptAES.decryptAesCbc(this.user_data.id, environment.decryptionAES.key, environment.decryptionAES.iv);
     }
   }
 

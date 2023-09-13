@@ -6,7 +6,6 @@ import { CampaignService } from 'src/app/Shared/Services/campaign.service';
 import { DocumentService } from 'src/app/Shared/Services/document.service';
 import { environment } from 'src/environments/environment';
 import { DashboardService } from '../../Dashboard/dashboard.service';
-import { decryptAesService } from 'src/app/Shared/Services/decryptAES.service';
 
 @Component({
   selector: 'app-tar7-document',
@@ -26,16 +25,13 @@ export class Tar7DocumentComponent implements OnInit {
     private route: ActivatedRoute,
     private campaignService: CampaignService,
     private documentService: DocumentService,
-    public dashboardService: DashboardService,public decryptAES:decryptAesService
+    public dashboardService: DashboardService
   ) {
     const user_data = btoa(btoa('user_info_web'));
     if (localStorage.getItem(user_data) != undefined) {
       this.user_data = JSON.parse(
         atob(atob(localStorage.getItem(user_data) || '{}'))
       );
-    }
-    if (isNaN(this.user_data.id)) {
-      this.user_data.id = decryptAES.decryptAesCbc(this.user_data.id, environment.decryptionAES.key, environment.decryptionAES.iv);
     }
   }
 

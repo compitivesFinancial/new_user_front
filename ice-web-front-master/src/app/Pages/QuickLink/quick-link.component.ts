@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { decryptAesService } from 'src/app/Shared/Services/decryptAES.service';
 import { StatementsService } from 'src/app/Shared/Services/statements.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-quick-link',
@@ -13,15 +11,12 @@ export class QuickLinkComponent implements OnInit {
   public id:string="";
   public details:any={};
   users:any={};
-  constructor(private statement:StatementsService,private route:ActivatedRoute,public decryptAES:decryptAesService) {
+  constructor(private statement:StatementsService,private route:ActivatedRoute) {
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
 
       this.users=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
 
-    }
-    if (isNaN(this.users.id)) {
-      this.users.id = decryptAES.decryptAesCbc(this.users.id, environment.decryptionAES.key, environment.decryptionAES.iv);
     }
    this.route.queryParams
       .subscribe(

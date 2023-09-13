@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { decryptAesService } from 'src/app/Shared/Services/decryptAES.service';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
 import { StatementsService } from 'src/app/Shared/Services/statements.service';
 import { environment } from 'src/environments/environment';
@@ -20,13 +19,10 @@ export class UserCampaignListComponent implements OnInit {
   LANG:any={};
 
 
-  constructor(private statmentsService:StatementsService,private router:Router ,private shared:SharedService,public decryptAES:decryptAesService) {
+  constructor(private statmentsService:StatementsService,private router:Router ,private shared:SharedService) {
     const user_data=btoa(btoa("user_info_web"));
     if(localStorage.getItem(user_data) != undefined){
       this.user_data=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
-    }
-    if (isNaN(this.user_data.id)) {
-      this.user_data.id = decryptAES.decryptAesCbc(this.user_data.id, environment.decryptionAES.key, environment.decryptionAES.iv);
     }
     this.subscriptions.push(this.shared.languageChange.subscribe((path:any)=>{
       this.changeLanguage();

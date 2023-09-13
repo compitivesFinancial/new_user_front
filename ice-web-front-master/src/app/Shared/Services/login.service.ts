@@ -30,27 +30,13 @@ export class LoginService {
             if (url == "login_verify_otp") {
                 firebase.auth().createUserWithEmailAndPassword(data.email, this.encryptPassword(data.otp+data.email+data.otp)).then(firebaseRes => {
                     localStorage.setItem('firebaseUser', JSON.stringify(firebaseRes.user));
-                }).catch(error => {
-                    if(error.code=='auth/email-already-in-use'){
-                        firebase.auth().currentUser?.delete().then(() => { }).catch((error: any) => { alert(error) });
-                        localStorage.removeItem('firebaseUser');
-                        firebase.auth().createUserWithEmailAndPassword(data.email, this.encryptPassword(data.otp+data.email+data.otp)).then(firebaseRes => {
-                            localStorage.setItem('firebaseUser', JSON.stringify(firebaseRes.user));
-                        });
-                    }
+                    console.log("res from Firebase", firebaseRes);
                 });
             }
             else if (url == "login") {
                 firebase.auth().createUserWithEmailAndPassword(data.email, data.password).then(firebaseRes => {
                     localStorage.setItem('firebaseUser', JSON.stringify(firebaseRes.user));
-                }).catch(error => {
-                    if(error.code=='auth/email-already-in-use'){
-                        firebase.auth().currentUser?.delete().then(() => { }).catch((error: any) => { alert(error) });
-                        localStorage.removeItem('firebaseUser');
-                        firebase.auth().createUserWithEmailAndPassword(data.email, data.password).then(firebaseRes => {
-                            localStorage.setItem('firebaseUser', JSON.stringify(firebaseRes.user));                
-                        });
-                    }
+                    console.log("res from Firebase", firebaseRes);
                 });
             }
 
