@@ -251,7 +251,6 @@ button:hover:disabled {
     .sec1 {
         height: 475px;
     }
-
     .sec1 h2 {
         font-size: 24px;
         line-height: 30px;
@@ -265,12 +264,10 @@ button:hover:disabled {
         font-size: 27px;
         width: 100%;
     }
-
     .carousel-first p {
         font-size: 11px;
         padding: 3px 0 22px;
     }
-
     .caro-img img {
         height: 150px;
         object-fit: cover;
@@ -309,12 +306,10 @@ button:hover:disabled {
         padding-right: 36px;
         border-right: 1px solid #707070;
     }
-
     .explore {
         margin: 24px auto 0;
         padding: 11px 37px;
     }
-
     .slide2 p {
         font-size: 9px;
         padding: 5px 15px;
@@ -330,7 +325,6 @@ button:hover:disabled {
         padding: 9px 0 5px;
         width: 100%;
     }
-
     .slide2 h4 {
         font-size: 14px;
         width: 100%;
@@ -346,7 +340,6 @@ button:hover:disabled {
         right: 15px;
         font-size: 18px;
     }
-
     .slide3-img {
         height: 249px;
     }

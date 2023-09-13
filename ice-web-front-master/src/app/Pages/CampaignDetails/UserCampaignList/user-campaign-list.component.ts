@@ -49,7 +49,7 @@ export class UserCampaignListComponent implements OnInit {
     this.subscriptions.push(this.statmentsService.getUserCampaigns(this.user_data.id).subscribe((res:any)=>{
       this.campaign_list=res.response;
       this.data_loaded=true;
-      console.log(res)
+     // console.log(res)
       setTimeout(() => {
         $('#borrowers').DataTable({
           ordering: false,
