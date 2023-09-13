@@ -4,7 +4,6 @@ import { LoginService } from 'src/app/Shared/Services/login.service';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
 import { environment } from 'src/environments/environment';
 import { DashboardService } from '../Dashboard/dashboard.service';
-import { decryptAesService } from 'src/app/Shared/Services/decryptAES.service';
 
 @Component({
   selector: 'app-sub-header-menue',
@@ -21,7 +20,7 @@ export class SubHeaderMenueComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private shared: SharedService,
-    public dashBoardService: DashboardService,public decryptAES:decryptAesService
+    public dashBoardService: DashboardService
   ) {
     // ------------------------------------------------------------------------------------//
     const user_data = btoa(btoa('user_info_web'));
@@ -29,9 +28,6 @@ export class SubHeaderMenueComponent implements OnInit {
       this.user_data = JSON.parse(
         atob(atob(localStorage.getItem(user_data) || '{}'))
       );
-    }
-    if (isNaN(this.user_data.id)) {
-      this.user_data.id = decryptAES.decryptAesCbc(this.user_data.id, environment.decryptionAES.key, environment.decryptionAES.iv);
     }
     // ------------------------------------------------------------------------------------//
     this.subscriptions.push(

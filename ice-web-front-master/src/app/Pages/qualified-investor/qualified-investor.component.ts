@@ -8,7 +8,6 @@ import firebase from 'firebase/app';
 import 'firebase/storage';
 import { QualifiedInvestor } from 'src/app/Shared/Models/qualified-investor';
 import { QualifiedInvestorService } from 'src/app/Shared/Services/qualified-investor.service';
-import { decryptAesService } from 'src/app/Shared/Services/decryptAES.service';
 
 @Component({
   selector: 'app-qualified-investor',
@@ -38,16 +37,13 @@ export class QualifiedInvestorComponent implements OnInit {
     private toast: ToastrService,
     private shared: SharedService,
     public dashBoardService: DashboardService,
-    public qualifiedInvestorService: QualifiedInvestorService,public decryptAES:decryptAesService
+    public qualifiedInvestorService: QualifiedInvestorService
   ) {
     const user_data = btoa(btoa('user_info_web'));
     if (localStorage.getItem(user_data) != undefined) {
       this.user_data = JSON.parse(
         atob(atob(localStorage.getItem(user_data) || '{}'))
       );
-    }
-    if (isNaN(this.user_data.id)) {
-      this.user_data.id = decryptAES.decryptAesCbc(this.user_data.id, environment.decryptionAES.key, environment.decryptionAES.iv);
     }
     this.subscriptions.push(
       this.shared.languageChange.subscribe((path: any) => {

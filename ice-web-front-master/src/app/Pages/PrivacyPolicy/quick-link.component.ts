@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { decryptAesService } from 'src/app/Shared/Services/decryptAES.service';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
 import { StatementsService } from 'src/app/Shared/Services/statements.service';
 import { environment } from 'src/environments/environment';
@@ -14,7 +13,7 @@ export class QuickLinkComponent implements OnInit {
   public details:any={};
   LANG:any=""
   users:any={};
-  constructor(private statement:StatementsService,private route:ActivatedRoute,private shared:SharedService,public decryptAES:decryptAesService) {
+  constructor(private statement:StatementsService,private route:ActivatedRoute,private shared:SharedService) {
     this.shared.languageChange.subscribe((path:any)=>{
       this.changeLanguage();
     })
@@ -23,9 +22,6 @@ export class QuickLinkComponent implements OnInit {
 
       this.users=JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
 
-    }
-    if (isNaN(this.users.id)) {
-      this.users.id = decryptAES.decryptAesCbc(this.users.id, environment.decryptionAES.key, environment.decryptionAES.iv);
     }
     this.changeLanguage();
     this.route.queryParams
