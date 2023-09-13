@@ -48,7 +48,7 @@ export class OperationdetailsComponent implements OnInit {
     this.requestId = atob(this.route.snapshot.params['id']);
     if (this.requestId != null) {
       // this.investmentDetails()
-    //  console.log(this.requestId);
+      console.log(this.requestId);
 
 
     }
@@ -68,7 +68,7 @@ export class OperationdetailsComponent implements OnInit {
   oppertunityDetails() {
     this.settingservice.opertunityDetails(this.requestId).subscribe((res: any) => {
       this.oppertunityDetailsList = res.response
-     // console.log(this.oppertunityDetailsList, 'here');
+      console.log(this.oppertunityDetailsList, 'here');
 
       this.receivedinvestment = res.response.transaction_history
       // this.receiveddebit = res.response.investor_debit_history
@@ -107,7 +107,7 @@ export class OperationdetailsComponent implements OnInit {
   public amount: any
   principleRemainInvestor() {
     this.amount = this.totalAmount - this.investorWalletDetails.old_withdrawal
-   // console.log();
+    console.log();
 
     return (this.amount)
   }
@@ -133,7 +133,7 @@ export class OperationdetailsComponent implements OnInit {
     let data = {
       "campaign_id": this.requestId
     }
-    //console.log(data);
+    console.log(data);
 
     this.settingservice.withdrawl(data).subscribe((res: any) => {
       this.toast.success("Amount Withdraw")
