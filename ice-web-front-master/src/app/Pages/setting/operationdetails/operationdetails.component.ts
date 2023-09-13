@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
-import { decryptAesService } from 'src/app/Shared/Services/decryptAES.service';
 
 @Component({
   selector: 'app-operationdetails',
@@ -21,13 +20,10 @@ export class OperationdetailsComponent implements OnInit {
   subscriptions: Subscription[] = []
 
 
-  constructor(private shared: SharedService, private route: ActivatedRoute, public settingservice: SettingService, private toast: ToastrService,public decryptAES:decryptAesService) {
+  constructor(private shared: SharedService, private route: ActivatedRoute, public settingservice: SettingService, private toast: ToastrService) {
     const user_data = btoa(btoa("user_info_web"));
     if (localStorage.getItem(user_data) != undefined) {
       this.user_data = JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
-    }
-    if (isNaN(this.user_data.id)) {
-      this.user_data.id = decryptAES.decryptAesCbc(this.user_data.id, environment.decryptionAES.key, environment.decryptionAES.iv);
     }
     this.subscriptions.push(this.shared.languageChange.subscribe((path: any) => {
       this.changeLanguage();

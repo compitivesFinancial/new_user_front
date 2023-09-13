@@ -31,7 +31,6 @@ import { YaqeenService } from 'src/app/Shared/Services/yaqeen.service';
 import { YaqeenData } from 'src/app/Shared/Models/YaqeenData';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { DashboardService } from '../../Dashboard/dashboard.service';
-import { decryptAesService } from 'src/app/Shared/Services/decryptAES.service';
 
 @Component({
   selector: 'app-add-kyc',
@@ -120,16 +119,13 @@ export class AddKycComponent implements OnInit, OnChanges {
     private router: Router,
     private lkservice: LkServiceService,
     private yaqeenService: YaqeenService,
-    public dashBoardService: DashboardService,public decryptAES:decryptAesService
+    public dashBoardService: DashboardService
   ) {
     const user_data = btoa(btoa('user_info_web'));
     if (localStorage.getItem(user_data) != undefined) {
       this.user_data = JSON.parse(
         atob(atob(localStorage.getItem(user_data) || '{}'))
       );
-    }
-    if (isNaN(this.user_data.id)) {
-      this.user_data.id = decryptAES.decryptAesCbc(this.user_data.id, environment.decryptionAES.key, environment.decryptionAES.iv);
     }
     if (this.router.url == '/kyc-details') {
       this.type = 1;
