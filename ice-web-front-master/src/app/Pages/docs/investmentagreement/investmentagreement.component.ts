@@ -28,7 +28,6 @@ export class InvestmentagreementComponent implements OnInit {
     this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
     const user_data = btoa(btoa('user_info_web'));
     if (localStorage.getItem(user_data) != undefined) {
-
       this.session_user = JSON.parse(
         atob(atob(localStorage.getItem(user_data) || '{}'))
       );

@@ -23,7 +23,7 @@ export class DashboarddetailsComponent implements OnInit {
 
   constructor(public dashBoardService: DashboardService, private shared: SharedService,public decryptAES:decryptAesService) {
     const user_data = btoa(btoa("user_info_web"));
-    console.log("btoa('user_info_web')",btoa(btoa("user_info_web")))
+    // console.log("btoa('user_info_web')",btoa(btoa("user_info_web")))
     if (localStorage.getItem(user_data) != undefined) {
       this.user_data = JSON.parse(atob(atob(localStorage.getItem(user_data) || '{}')));
 
