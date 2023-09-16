@@ -85,7 +85,10 @@ export class LoginService {
         this.url = "send_otp";
         return this.api.post(this.url, data);
     }
-
+    sendOtpRegestration(data: object) {
+        this.url = 'send_otp_regestration';
+        return this.api.post(this.url, data);
+      }
     verifyOtp(data: object) {
         this.url = "verify_otp";
         return this.api.post(this.url, data);
